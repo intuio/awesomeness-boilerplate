@@ -3,3 +3,4 @@ the-build/
 */.sass-cache/
 *.css
 !*demo.css
+!*font-awesome.min.css
