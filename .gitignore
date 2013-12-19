@@ -1,1 +1,3 @@
-.sass-cache
+.DS_Store
+the-build/
+*/.sass-cache/
