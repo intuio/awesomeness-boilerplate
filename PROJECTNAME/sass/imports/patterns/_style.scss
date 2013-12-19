@@ -1,0 +1,68 @@
+//  ---------------------------------------------------------------------------
+//
+//  Style patterns
+//
+//  ---------------------------------------------------------------------------
+
+	$separatorColor: $primaryAccent;
+	
+	%top-separator
+	{
+		border-top:0 solid $separatorColor;
+		@include rem(border-top-width, $borderThick);
+		@include rem(padding-top, $singleSpace - $borderThick);
+	}
+
+	%bottom-separator
+	{
+		border-bottom:0 solid $separatorColor;
+		@include rem(border-bottom-width, $borderThick);
+		@include rem(padding-bottom, $singleSpace * 2 - $borderThick);
+	}
+
+	%left-separator
+	{
+		border-left:0 solid $separatorColor;
+		@include rem(border-left-width, $borderVeryThick);
+		@include rem(padding-left, $singleSpace);
+	}
+
+
+
+//  = SPACE LOVER
+//  ---------------------------------------------------------------------------
+	
+	// Use this class to set a larger
+	// bottom margin than the default
+	.space-lover
+	{
+		@include rem(margin-bottom, $doubleSpace * 2, !important);
+	}
+
+	// Use this class to set an EVEN LARGER
+	// bottom margin than the default
+	.space-lover--huge
+	{
+		@include rem(margin-bottom, $doubleSpace * 4, !important);
+	}
+
+
+
+//  = ISLANDS
+//  ---------------------------------------------------------------------------
+	
+	// Use this class to give an element
+	// more space to other elements, just 
+	// like an island.
+	.island
+	{
+		@include rem(padding, $singleSpace, !important);
+	}
+
+	// Use this class to give an element
+	// EVEN MORE space to other elements, 
+	// just like a far away island.
+	.island--far-away
+	{
+		@include rem(padding, $doubleSpace, !important);
+	}

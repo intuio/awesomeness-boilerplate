@@ -1,0 +1,98 @@
+//  ---------------------------------------------------------------------------
+//	
+//	PLACEHOLDER MODULE
+//
+//	Can be used in prototyping stages of projects to create dummy lines of
+//	text or images. 
+//
+//	Example with three lines of text
+//
+//	HTML Structure:
+//	<div class="text-placeholder">
+//		<div></div>			
+//		<div></div>
+//		<div></div>
+//	</div>
+//
+//	Example with one image
+//
+//	HTML Structure:
+//	<div class="img-placeholder">
+//		<div class="aspect-4-to-3"></div>
+//		<div class="inner">Image</div>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = COLORS
+//  --------------------------------------------------------------------------- 
+
+	$phTextBackgroundColor:		$grayVeryLight;
+	$phImgBackgroundColor:		darken($phTextBackgroundColor, 14%);
+
+
+
+//  = TEXT PLACEHOLDER
+//  ---------------------------------------------------------------------------
+
+	.text-placeholder
+	{
+		@include rem(margin-bottom, $doubleSpace);
+
+		div
+		{
+			@include rem(margin-bottom, $bodyLineHeight);
+			@include rem(height, $bodyLineHeight);
+			background:$phTextBackgroundColor;
+		}
+	}
+
+
+
+//  = IMAGE PLACEHOLDER
+//  ---------------------------------------------------------------------------
+
+	.img-placeholder
+	{
+		@include inline-block;
+		position: relative;
+		width:80%;
+		@include rem(margin-bottom, $doubleSpace);
+	}
+
+	.img-placeholder--aspect-4-to-3
+	{
+		padding-top:75%;
+	}
+
+	.img-placeholder--aspect-3-to-4
+	{
+		padding-top:125%;
+	}
+
+	.img-placeholder--aspect-1-to-1
+	{
+		padding-top:100%;
+	}
+
+	.img-placeholder--aspect-smartphone-portrait
+	{
+		padding-top:165%;
+	}
+
+	.img-placeholder__inner
+	{
+		@extend  h4;
+		margin:0;
+		@include rem(padding, 1);
+		position: absolute;
+    	top: 0;
+    	bottom: 0;
+    	left: 0;
+    	right: 0;
+    	background-color:$phImgBackgroundColor;
+    	color:#fff;
+    	border-radius: 2px;
+	}

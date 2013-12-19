@@ -1,0 +1,266 @@
+//  ---------------------------------------------------------------------------
+//	
+//	TABLE MODULE
+//
+//	Different styles for common tables. The data-label attribute is used to
+//	show a Description for every Tabledata on small screens
+//
+//	Example with a table containing two elements per row:
+//	
+//	HTML structure:
+//	<table class="table">
+//		<thead>
+//			<tr>
+//				<th>First Name</th>
+//				<th>Last Name</th>
+//				<th>...</th>
+//			</tr>
+//		</thead>
+//		<tbody>
+//			<tr>
+//				<td data-label="First Name">James</td>
+//				<td data-label="Last Name">Matman</td>
+//				<td data-label="etc.">...</td>
+//			</tr>
+//			<tr>
+//			  	<td data-label="First Name">The</td>
+//			  	<td data-label="Last Name">Tick</td>
+//			  	<td data-label="etc.">...</td>
+//			</tr>
+//		</tbody>
+//	</table>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$tableHuge: 		$huge-width;
+
+
+
+//	= COLORS
+//	---------------------------------------------------------------------------
+
+	$tableBaseColor: 					$white;
+	$table2ndBaseColor: 				$blue;
+
+	$tableBorderColor: 					darken($tableBaseColor, 4%);
+	$table2ndBorderColor:				desaturate(lighten($table2ndBaseColor, 30%), 3%);
+	
+	$table2ndBackgroundColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%);
+	$table2ndHoverBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%);
+	
+	$tableDividerBorderColor:			darken($tableBaseColor, 42%);
+
+	$tableLasteditedBackgroundColor:	desaturate(lighten(adjust-hue($table2ndBaseColor, -120deg), 36%), 3%);
+
+	$tableDisabledBackgroundColor:		darken($tableBaseColor, 4%);
+	$tableDisabledTextColor:			darken($tableBaseColor, 28%);
+
+	$tableSelectedBorderColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%);
+	$tableSelectedBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%);
+	$tableSelectedShadowColor:			darken($table2ndBaseColor, 30%);
+
+
+
+//	= TABLE
+//	---------------------------------------------------------------------------
+
+	.table
+	{
+		// Override basic table properties and
+		// make it behave like a normal block
+		// element on mobile devices
+		display:block;
+		width:100%;
+		padding:0;
+		border-collapse:collapse;
+		@include rem(line-height, $bodyLineHeight);
+
+
+		// Override basic table properties
+		thead, tbody, tr, td, th
+		{
+			display:block;
+			vertical-align:top;
+		}
+
+		// Hide table headers (but not display: none;, for accessibility)
+		thead
+		{
+			position:absolute;
+			left:-9999em;
+			font-family:$headingsFontFamily;
+			font-weight:$boldFontWeight;
+		}
+		
+		tr 
+		{
+			// Account for bottom border to keep vertical rhythm
+			@include rem(padding, $doubleSpace 0 $doubleSpace - .1);
+			border-bottom:1px solid $tableBorderColor;
+
+			&:nth-child(2n)
+			{
+				@include background($table2ndBackgroundColor);
+			}
+
+			&:hover
+			{
+				@include background($table2ndHoverBackgroundColor);
+			}
+
+			&.table__row--selected
+			{	
+				border:0 solid $table2ndBorderColor;
+				@include rem(border-width, $borderMedium);
+				box-shadow: inset 0 3px 2px -1px rgba(0, 0, 0, 0.1), inset 0 -3px 2px -1px rgba(0, 0, 0, 0.1);
+				// box-shadow: inset 0 3px 3px -1px rgba(90, 191, 224, 0.2), inset 0 -3px 3px -1px rgba(90, 191, 224, 0.2);
+				//box-shadow: inset 0 3px 2px -1px rgba(0, 0, 0, 0.3), inset 0 -3px 2px -2px rgba(0, 0, 0, 0.3);
+				@include background($table2ndBackgroundColor);		
+			}
+
+			&.table__row--lastedited
+			{
+				@include background($tableLasteditedBackgroundColor);
+			}
+
+			&.table__row--disabled
+			{
+				@include background($tableDisabledBackgroundColor);
+				color:$tableDisabledTextColor;
+			}
+
+			&.table__row--divider
+			{
+				font-family:$headingsFontFamily;
+				font-weight:$boldFontWeight;
+
+				border-bottom:2px solid $tableDividerBorderColor;
+				border-top:2px solid $tableDividerBorderColor;
+				@include background($tableBaseColor);
+			}
+
+			
+		}
+
+		td 
+		{ 
+			// Make it a positioning container
+			position:relative;
+			// Behave  like a "row"
+			border:none;
+			padding:0;
+			// Make some room for the labels
+			// on the left side. (They will 
+			// be injected via pseudo element)
+			padding-left:50%; 
+		}
+		
+		td::before 
+		{
+			// Now like a table header
+			position: absolute;
+			left:0;
+			width: 45%; 
+			white-space:nowrap;
+			font-family:$headingsFontFamily;
+			font-weight:$boldFontWeight;
+		}
+		
+		// Label the data
+		td:before { content: attr(data-label); }
+
+
+	//  = HUGE SCREEN
+	//  ---------------------------------------------------------------------------
+
+		@include at-breakpoint($tableHuge no-mq)
+		{
+			// Reset the display property to
+			// make the table act like a table again
+			display:table;
+
+			thead, tbody
+			{
+				display:table-row-group;
+				position:static;
+			}
+
+			tr:last-child
+			{
+				border-bottom-width:2px;
+				border-bottom-color:$tableDividerBorderColor;
+
+				td 
+				{
+					// Account for borders
+					@include rem(padding, $singleSpace - .1 .2);
+				}
+			}
+
+			tr
+			{
+				display:table-row;
+
+				&.table__row--selected
+				{
+
+					border:0 solid $tableSelectedBorderColor;
+					@include rem(border-width, $borderMedium);
+
+					td 
+					{
+						box-shadow: inset 0 3px 2px -1px rgba(0, 0, 0, 0.1), inset 0 -3px 2px -1px rgba(0, 0, 0, 0.1);
+						// box-shadow: inset 0 3px 3px -1px rgba(90, 191, 224, 0.2), inset 0 -3px 3px -1px rgba(90, 191, 224, 0.2);
+						//box-shadow: inset 0 3px 2px -1px rgba(0, 0, 0, 0.3), inset 0 -3px 2px -2px rgba(0, 0, 0, 0.3);
+						@include background($tableSelectedBackgroundColor);
+						border-top:1px solid $tableSelectedShadowColor;
+						border-bottom:1px solid $tableSelectedShadowColor;
+					}
+				}
+			}
+
+
+			th, td
+			{ 
+				display:table-cell;
+				width:auto;
+				@include rem(padding, $singleSpace - .1 .2 $singleSpace);
+				text-align:left;
+			}
+
+			// Hide the pseudo labels
+			td::before 
+			{
+				display:none;
+			}
+
+			&.table--condensed
+			{
+
+				th, td
+				{
+					@include rem(padding, $singleSpace / 2 - .1 .2 $singleSpace / 2);
+					@include rem(font-size, $bodyFontSize - 0.1);
+				}
+
+				tr:last-child
+				{
+					td 
+					{
+						// Account for borders
+						@include rem(padding, $singleSpace / 2 - .1 .2);
+					}
+				}
+			}
+		}	
+	
+	}

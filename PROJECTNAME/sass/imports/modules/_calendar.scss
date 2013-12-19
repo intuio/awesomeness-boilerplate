@@ -1,0 +1,1209 @@
+//  ---------------------------------------------------------------------------
+//
+//  CALENDAR
+//
+//	The .cal--h-view component is well suited for a month view calendar. It 
+//	is made out of two nested orderered lists. The root ol is the list of table
+//	rows, which represent one week each. The nested ol is the list of table
+//	cells, which represent one day each.
+//
+//	Example with full calendar can be found at the bottom of this file
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$calHuge: 		$huge-width;
+	$calGiant: 		$giant-width;
+	$calMonstrous:	$monstrous-width;
+
+
+
+//	= COLORS
+//	---------------------------------------------------------------------------
+
+	$calBaseColor: 					$white; 
+	$highlightColor: 				$primaryAccent;
+	$calTextColor:					$textColor;
+	$calLinkColor:					$linkColor;
+
+	$calColHeadTextColor:			darken($calBaseColor, 14%);
+	$calRowHeadTextColor:			darken($calBaseColor, 14%);
+	$calRowBorderColor:				darken($calBaseColor, 4%);
+
+	$calTitleBorderColor:			$highlightColor;
+	$calEntryHoverColor:			darken($calBaseColor, 14%);
+
+	$calCurrentTextColor:			$highlightColor;
+	$calCurrentBackgroundColor:		desaturate(lighten($highlightColor, 36%), 3%);
+	$calCurrentHoverColor:			desaturate(lighten($highlightColor, 30%), 3%);	
+
+	$calOutofdateTextColor:			darken($calBaseColor, 14%);
+
+
+
+//	= CALENDAR
+//	---------------------------------------------------------------------------
+
+	// Set the grid gutter width to zero
+	@include with-grid-settings($gutter: 0em) 
+	{
+		.l-cal__cell
+		{
+
+		//  = HUGE SCREEN
+		//  ---------------------------------------------------------------------------
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				
+				// set the width of the rows to 1/7
+				// make a new row after 7 elements
+				@include span-columns(1, 7);
+
+				// The last child in a row (day 7)
+				// must float right and have no margin
+				&:nth-child(7n)
+				{
+					@include omega;
+				}
+
+				// In case of cells with different heights
+				// in one row, the first cell of each row
+				// must clear all floats to avoid layout problems
+				&:nth-child(8n)
+				{
+					clear:both;
+				}
+			}
+		}
+
+		.l-cal__col-head__cell
+		{
+
+		//  = HUGE SCREEN
+		//  ---------------------------------------------------------------------------	
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				// The first column of the header row contains
+				// the week number, so there is one more column
+				// than in the data table below which resembles
+				// 7 days per row. However, the first column 
+				// should be narrower than the others; One third
+				// of the normal cell width. The grid is divided
+				// by 22 and the equation goes as follows:
+				// 1 * 1/22 + 7 * 3/22 = 22/22 = 1
+				@include span-columns(3, 22);
+
+				// The last child must float  
+				// right and have no margin
+				&:nth-child(8n)
+				{
+					@include omega;
+				}
+
+				// The first column is only one third
+				// as wide as the other columns
+				&:first-child
+				{
+					@include span-columns(1, 22);
+				}
+			}
+		}
+
+		.l-cal__row-head
+		{
+
+		//  = HUGE SCREEN
+		//  ---------------------------------------------------------------------------	
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				@include span-columns(1, 22);
+			}
+		}
+
+		.l-cal__rows
+		{
+
+		//  = HUGE SCREEN
+		//  ---------------------------------------------------------------------------	
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				@include span-columns(21 omega,22);
+			}
+		}
+	}
+
+//  ---------------------------------------------------------------------------
+//
+//  CALENDAR
+// 	Styling Classes
+//
+//  ---------------------------------------------------------------------------
+
+
+//	= Shared Styles
+//  ---------------------------------------------------------------------------
+
+	.cal__cells
+	{
+		margin: 0;
+	}
+
+	.cal--h-view, 
+	.cal--v-view
+	{
+		
+		@extend .cf;
+
+		font-family:$sansFontFamily;
+
+		ol 
+		{
+			padding:0;
+			list-style-type: none;
+			margin: 0;
+		}
+	}
+
+	.cal__head
+	{
+		font-family:$headingsFontFamily;
+		font-weight:$headingsFontWeight;
+		color:$headingsColor;
+		text-rendering:optimizelegibility;
+		@include hyphens(none);
+		@include setType($h3Size, $h3LineHeight);
+
+		display:block;
+		text-align:center;
+	}
+
+
+//  = Calendar 
+//	= horizontal view
+//  ---------------------------------------------------------------------------
+
+	.cal--h-view
+	{
+		.cal__col-head,
+		.cal__row-head
+		{
+			display:none;
+
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				display:block;
+			}
+		}
+	}
+
+	.cal__col-head
+	{
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			color:$calColHeadTextColor;
+
+			.cal__cell
+			{
+				@include rem(padding, 0 0 0 $singleSpace);
+				height:auto;
+				border-color:transparent;
+			}
+
+			.l-cal__col-head__cell:first-child .cal__cell
+			{
+				padding:0;
+				text-align:center;
+			}
+		}
+	}
+
+	ol.cal__row-head // specificity
+	{
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			@include rem(padding-top, $borderMedium);
+
+			.cal__cell
+			{
+				@include rem(margin-bottom, $borderMedium);
+				padding-right:0;
+				padding-left:0;
+				border-color:transparent;
+				text-align:center;
+				color:$calRowHeadTextColor;
+				@include rem(font-size, $h4Size);
+			}
+		}
+	}
+
+	.cal__row 
+	{
+		@extend .cf;
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			border-bottom:0 solid $calRowBorderColor;
+			@include rem(border-bottom-width, $borderMedium);
+
+			&:first-child
+			{
+				border-top:0 solid $calRowBorderColor;
+				@include rem(border-top-width, $borderMedium);
+			}
+		}
+
+	}
+
+	.cal__cell
+	{
+		.cal__cell__overflow,
+		.cal__show-more
+		{
+			display:none;
+		}
+
+		&.cal__cell--current
+		{
+			@include background($calCurrentBackgroundColor);
+
+			.cal__entry:hover
+			{
+				@include background($calCurrentHoverColor);
+			}
+		}
+
+		@include at-breakpoint($calHuge) 
+		{
+			
+			@include rem(padding, $singleSpace);
+			border-right:0 solid $calRowBorderColor;
+			@include rem(border-right-width, $borderMedium);
+
+			@include rem(height, $doubleSpace * 6);
+
+			.cal__cell__inner
+			{
+				position:relative;
+				max-height:100%;
+				overflow:hidden;
+			}
+
+			.cal__cell__overflow,
+			.cal__show-more
+			{
+				display:block;
+				position:absolute;
+				width:100%;
+			}
+
+			.cal__cell__overflow
+			{
+				@include rem(bottom, $baseLineHeight + $singleSpace);
+				@include rem(height, $baseLineHeight / 2);
+				@include background(linear-gradient(rgba(255,255,255,0), $calBaseColor));
+			}
+
+			.cal__show-more
+			{
+				bottom:0;
+				@include rem(padding-top, $singleSpace);
+				background:$calBaseColor;
+				@include setType($smallFontSize, $baseLineHeight);
+				text-align:center;
+
+				&:hover
+				{
+					color:$calLinkColor;
+					text-decoration:underline;
+					background:$calBaseColor;
+				}
+			}
+
+			&.cal__cell--current
+			{
+				color:$calCurrentTextColor;
+				@include background($calCurrentBackgroundColor);
+
+				.cal__entry:hover
+				{
+					@include background(none);
+				}
+			}
+
+			&.cal__cell--out-of-date
+			{
+				color:$calOutofdateTextColor;
+
+				.cal__entry__period,
+				.cal__entry__title
+				{
+					color:$calOutofdateTextColor;
+				}
+
+			}
+		}
+	}
+
+	.cal__cell--is-empty
+	{
+		display:none;
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			display:block;
+		}
+	}
+
+	.l-cal__cell:first-child .cal__cell
+	{
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			border-left:0 solid $calRowBorderColor;
+			@include rem(border-left-width, $borderMedium);
+		}
+	}
+
+	.cal__cell__title
+	{
+		font-family:$headingsFontFamily;
+		font-weight:$headingsFontWeight;
+		color:$headingsColor;
+		text-rendering:optimizelegibility;
+		@include hyphens(none);
+		@include setType($h4Size, $h4LineHeight);
+
+		display:block;
+		@include rem(margin-bottom, $bodyLineHeight - $borderMedium);
+		border-bottom:0 solid $calTitleBorderColor;
+		@include rem(border-bottom-width, $borderMedium);
+		text-transform:uppercase;
+		font-weight:$normalFontWeight;
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			@include rem(margin-bottom, $singleSpace / 2);
+			border:0 none;
+		}	
+	}
+
+	.cal__additional-info
+	{
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			display:none;
+		}
+	}
+
+	.cal__entries
+	{
+		margin-bottom:0;
+	}
+
+	.cal__entry
+	{	
+		@include rem(margin-bottom, $doubleSpace - $borderMedium);
+		border-bottom:0 solid $calRowBorderColor;
+		@include rem(border-bottom-width, $borderMedium);
+
+		&:last-child
+		{
+			border-bottom:0 none;
+			@include rem(margin-bottom, $doubleSpace * 2 - $borderMedium);
+		}
+
+		&:hover
+		{
+			@include background($calEntryHoverColor);
+
+			@include at-breakpoint($calHuge no-mq) 
+			{
+				@include background(transparent);
+			}
+
+		}
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			margin-bottom:0;
+			border-bottom:0 none;
+			@include rem(line-height, $bodyLineHeight - 0.6);
+		}
+	}
+
+	.cal__entry__title, 
+	.cal__entry__period
+	{
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			@include inline-block;
+			@include rem(margin-left, -.4); // display inline-block margin
+			vertical-align: top;
+		}
+	}
+
+	.cal__entry__period
+	{
+		margin-bottom:0;
+		@include setType($bodyFontSize, $bodyLineHeight);
+		font-weight:$normalFontWeight;
+		color:$calTextColor;
+
+		.to::before
+		{
+			content:" - ";
+		}
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			width:60%;
+			text-align:right;
+			@include setType($smallFontSize, $baseLineHeight);
+			white-space:nowrap;
+			
+			.to
+			{
+				display:none;
+			}
+		}	
+
+		@include at-breakpoint($calGiant) 
+		{
+			width:41%;
+		}
+
+		@include at-breakpoint($calMonstrous no-mq) 
+		{
+			width:30%;
+		}
+	}
+
+	.cal__entry__title
+	{
+		color:$grayLight;
+
+		@include at-breakpoint($calHuge no-mq) 
+		{
+			margin-bottom:0;
+			@include rem(padding-left, .5);
+			width:40%;
+			overflow:hidden;
+
+			@include setType($smallFontSize, $baseLineHeight);
+			white-space: nowrap;
+			text-overflow: ellipsis;
+		}
+
+		@include at-breakpoint($calGiant) 
+		{
+			width:59%;
+		}
+
+		@include at-breakpoint($calMonstrous no-mq) 
+		{
+			width:70%;
+		}
+	}
+
+
+
+//	= HTML EXAMPLE CODE
+//
+//	HTML structure:
+//	<section class="cal--h-view">
+//		<time class="cal__head" datetime="2013-07">
+//			July 2013
+//		</time>
+//	
+//		<ol class="cal__col-head">
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">WK</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">MON</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">TUE</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">WED</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">THU</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">FRI</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">SAT</div></li>
+//			<li class="l-cal__col-head__cell"><div class="cal__cell">SUN</div></li>					
+//		</ol>
+//	
+//		<div class="l-cal__row-head">
+//			<ol class="cal__row-head">
+//				<li class="l-cal__row-head__cell"><div class="cal__cell">1</div></li>
+//				<li class="l-cal__row-head__cell"><div class="cal__cell">2</div></li>
+//				<li class="l-cal__row-head__cell"><div class="cal__cell">3</div></li>
+//				<li class="l-cal__row-head__cell"><div class="cal__cell">4</div></li>
+//				<li class="l-cal__row-head__cell"><div class="cal__cell">5</div></li>
+//			</ol>
+//		</div>
+//		<div class="l-cal__rows">
+//			<ol class="cal__rows">
+//				<li class="cal__row">
+//				
+//				<ol class="cal__cells">
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-01"> 1 <span class="cal__additional-info">Mon</span></time>
+//								
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">11:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">0:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Eat</p>
+//									</li>
+//								</ol>
+//							</div>
+//						</div>		
+//					</li>	
+//	
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-02">2 <span class="cal__additional-info">Tue</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-03">3 <span class="cal__additional-info">Wed</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-04">4 <span class="cal__additional-info">Thu</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-05">5 <span class="cal__additional-info">Fri</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-06">6 <span class="cal__additional-info">Sat</span></time>
+//							</div>	
+//						</div>
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-07">7 <span class="cal__additional-info">Sunday</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//				</ol>	
+//			</li>	
+//			<li class="cal__row">
+//				
+//				<ol class="cal__cells">
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-01">8 <span class="cal__additional-info">Mon</span></time>
+//								
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//								<div class="cal__cell__overflow">
+//								</div>
+//								<a class="cal__show-more" href="">Show All</a>
+//							</div>
+//						</div>		
+//					</li>	
+//	
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-02">9 <span class="cal__additional-info">Tue</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--current">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-03">10 <span class="cal__additional-info">Wed</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-04">11 <span class="cal__additional-info">Thu</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-05">12 <span class="cal__additional-info">Fri</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-06">13 <span class="cal__additional-info">Sat</span></time>
+//							</div>	
+//						</div>
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-07">14 <span class="cal__additional-info">Sunday</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//				</ol>	
+//			</li>
+//			
+//			<li class="cal__row">
+//				
+//				<ol class="cal__cells">
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-01">15 <span class="cal__additional-info">Mon</span></time>
+//								
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//								<div class="cal__cell__overflow">
+//								</div>
+//								<a class="cal__show-more" href="">Show All</a>
+//							</div>
+//						</div>		
+//					</li>	
+//	
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-02">16 <span class="cal__additional-info">Tue</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-03">17 <span class="cal__additional-info">Wed</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-04">18 <span class="cal__additional-info">Thu</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-05">19 <span class="cal__additional-info">Fri</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-06">20 <span class="cal__additional-info">Sat</span></time>
+//							</div>	
+//						</div>
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-07">21 <span class="cal__additional-info">Sunday</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//				</ol>	
+//			</li>
+//			<li class="cal__row">
+//				
+//				<ol class="cal__cells">
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-01">22 <span class="cal__additional-info">Mon</span></time>
+//							</div>
+//						</div>		
+//					</li>	
+//	
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-02">23 <span class="cal__additional-info">Tue</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-03">24 <span class="cal__additional-info">Wed</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-04">25 <span class="cal__additional-info">Thu</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-05">26 <span class="cal__additional-info">Fri</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-06">27 <span class="cal__additional-info">Sat</span></time>
+//							</div>	
+//						</div>
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-07">28 <span class="cal__additional-info">Sunday</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//				</ol>	
+//			</li>
+//			<li class="cal__row">
+//				
+//				<ol class="cal__cells">
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-01">29 <span class="cal__additional-info">Mon</span></time>
+//								
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//								<div class="cal__cell__overflow">
+//								</div>
+//								<a class="cal__show-more" href="">Show All</a>
+//							</div>
+//						</div>		
+//					</li>	
+//	
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--is-empty">
+//							<time class="cal__cell__title" datetime="2013-07-02">30 <span class="cal__additional-info">Tue</span></time>
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-03">31 <span class="cal__additional-info">Wed</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//								<div class="cal__cell__overflow">
+//								</div>
+//								<a class="cal__show-more" href="">Show All</a>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--out-of-date">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-04">1 <span class="cal__additional-info">Thu</span></time>
+//								<ol class="cal__entries">
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 09:00">9:00</time>
+//											<time class="to" datetime="2013-07-01 10:00">10:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Kill Obi Wan</p>
+//									</li>	
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 12:00">12:00</time>
+//											<time class="to" datetime="2013-07-01 13:00">1:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Train Jedi Skills</p>
+//									</li>
+//									<li class="cal__entry">
+//										<h4 class="cal__entry__period">
+//											<time class="from" datetime="2013-07-01 18:00">6:00</time>
+//											<time class="to" datetime="2013-07-01 20:00">8:00</time>
+//										</h4>	
+//										<p class="cal__entry__title">Rescue Princess Lea</p>
+//									</li>
+//								</ol>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--out-of-date cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-05">2 <span class="cal__additional-info">Fri</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--out-of-date cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-06">3 <span class="cal__additional-info">Sat</span></time>
+//							</div>	
+//						</div>
+//					</li>
+//					<li class="l-cal__cell">
+//						<div class="cal__cell cal__cell--out-of-date cal__cell--is-empty">
+//							<div class="cal__cell__inner">
+//								<time class="cal__cell__title" datetime="2013-07-07">4 <span class="cal__additional-info">Sunday</span></time>
+//							</div>	
+//						</div>	
+//					</li>
+//				</ol>	
+//			</li>
+//			</ol>
+//		</div>
+//	</section>

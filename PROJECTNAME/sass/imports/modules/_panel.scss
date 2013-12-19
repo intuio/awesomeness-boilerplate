@@ -1,0 +1,60 @@
+//  ---------------------------------------------------------------------------
+//	
+//	PANEL MODULE
+//
+//	Panels can be used to highlight different kinds of content and especially
+//	highlight the content's Heading
+//
+//	Example with a simple panel:
+//	
+//	HTML structure:
+//	<div class="panel">
+//		<div class="panel__head">
+//			Panel Title …
+//		</div>	
+//		<p>Content goes here …</p>
+//	</div>
+//
+//  ---------------------------------------------------------------------------	
+
+
+
+//	= COLORS
+//  ---------------------------------------------------------------------------
+
+	$panelHeadTextColor:			$white;
+	$panelHeadBackgroundColor:		$primaryAccent;
+
+
+
+//  = PANEL
+//  ---------------------------------------------------------------------------
+
+	.panel
+	{
+		@extend .box;
+
+		position:relative;
+		@include rem(padding, $doubleSpace * 3 - $borderThin $doubleSpace $singleSpace);
+		box-shadow: 1px 2px 4px rgba(0,0,0, 0.1);
+	}
+
+	.panel__head
+	{
+		@extend h4;
+		
+		position:absolute;
+		top:0;
+		left:0;
+		width:100%;
+		
+		@include rem(padding, $singleSpace);
+		background:$panelHeadBackgroundColor;
+		color:$panelHeadTextColor;
+
+		[class*="icon-"]
+		{
+			@include rem(font-size, $h4Size);
+			float:right;
+		}
+	}

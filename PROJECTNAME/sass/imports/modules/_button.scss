@@ -1,0 +1,345 @@
+//  ---------------------------------------------------------------------------
+//
+//  Button styles for <a>, <input type="submit">, <input type="button" and
+//	<button> elements
+//
+//  ---------------------------------------------------------------------------
+
+
+//  = GENERIC BUTTON
+//  ---------------------------------------------------------------------------
+
+	// Change these
+	$btnBaseColor:						$white;
+	$btnBorderWidth:					$borderThin;
+	$btnBorderRadius:					2px;
+
+	// Don't change these
+	$btnBackgroundColorLight:			$btnBaseColor;
+	$btnBackgroundColorDark:			darken($btnBackgroundColorLight, 5%);
+	$btnBorderColor:      				darken($btnBackgroundColorDark, 10%);
+
+
+	.btn
+	{
+		@include inline-block;
+
+		@include rem(padding, $baseLineHeight / 2 $singleSpace);
+		@include rem(margin, 0 $singleSpace $doubleSpace 0);
+
+		border:0 solid $btnBorderColor;
+		@include rem(border-width, $btnBorderWidth);
+		border-radius:$btnBorderRadius;
+
+		background-color:$btnBackgroundColorDark;
+		@include background(linear-gradient($btnBackgroundColorLight, $btnBackgroundColorDark));
+		
+		font-family:$headingsFontFamily;
+		font-weight:$headingsFontWeight;
+		@include rem(font-size, $bodyFontSize);
+		text-align:center;
+		vertical-align:baseline;
+		color:$textColor;
+
+		@include transition(all .1s linear);
+
+		cursor:pointer;
+
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+	}
+
+	.btn:focus
+	{
+		border-color:$primaryAccent;
+		outline:0 none;
+	}
+
+	.no-touch .btn:hover
+	{
+		background-color: lighten($btnBackgroundColorDark, 3%);
+		@include background(linear-gradient(lighten($btnBackgroundColorLight, 2%), darken($btnBackgroundColorDark, 2%)));
+		border-color:darken($btnBorderColor, 7%);
+		box-shadow:0 1px 2px rgba($black,.2), inset 0 1px 0 1px rgba($white,.8);
+		color:$textColor;
+	}
+
+	.touch .btn:active,
+	.no-touch .btn:active
+	{
+		background-color: darken($btnBackgroundColorDark, 6%);
+		@include background(linear-gradient($btnBackgroundColorDark, $btnBackgroundColorDark));
+		box-shadow:inset 0 1px 3px rgba(0,0,0,.1);
+		color:$textColor;
+	}
+
+
+
+//  = BUTTONS WITH ICONS
+//  ---------------------------------------------------------------------------
+
+	.btn--with-icon
+	{
+		.fa
+		{
+			@include rem(margin-right, $singleSpace / 2);
+			@include rem(font-size, $bodyFontSize);
+		}
+	}
+
+
+
+//  = BUTTON SIZES
+//  ---------------------------------------------------------------------------
+
+	.btn--large
+	{
+		@include rem(padding, $bodyLineHeight - $btnBorderWidth $doubleSpace);
+		@include rem(font-size, $h4Size);
+	}
+
+	.btn--huge
+	{
+		@include rem(padding, $baseLineHeight * 3 - $btnBorderWidth $doubleSpace * 2);
+		@include setType($h3Size, $h3LineHeight);
+	}
+
+
+
+//  = BUTTON ALIGNMENT
+//  ---------------------------------------------------------------------------
+
+	.btn--right-aligned
+	{
+		// If the button is the aligned on the 
+		// right side it should not have a margin
+		margin-right:0;
+	}
+
+
+
+//  = PRIMARY ACTION
+//  ---------------------------------------------------------------------------
+
+	// Change these
+	$btnPrimaryBaseColor:				$primaryAccent;
+	$btnPrimaryColor:					$white;
+	
+	// Don't change these
+	$btnPrimaryBackgroundColorLight:	lighten($btnPrimaryBaseColor, 2%);
+	$btnPrimaryBackgroundColorDark:		darken($btnPrimaryBaseColor, 3%);
+
+
+	.btn--primary
+	{
+		border-color:darken($btnPrimaryBackgroundColorDark, 5%);
+		background:$btnPrimaryBackgroundColorDark;
+		@include background(linear-gradient($btnPrimaryBackgroundColorLight, $btnPrimaryBackgroundColorDark));
+		color:$btnPrimaryColor;
+	}
+
+	.no-touch .btn--primary:hover 
+	{
+		background-color: lighten($btnPrimaryBackgroundColorDark, 6%);
+		@include background(linear-gradient(lighten($btnPrimaryBackgroundColorLight, 6%), darken($btnPrimaryBackgroundColorDark, 8%)));					
+		box-shadow:0 1px 3px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.2);
+		border-color:darken($btnPrimaryBackgroundColorDark, 8%);
+		color:$btnPrimaryColor;
+	}
+
+	.no-touch .btn--primary:active,
+	.touch .btn--primary:active
+	{
+		background-color: darken($btnPrimaryBackgroundColorDark, 6%);
+		@include background(linear-gradient($btnPrimaryBackgroundColorDark, $btnPrimaryBackgroundColorDark));
+		box-shadow:inset 0 1px 3px rgba(0,0,0,.1);
+		color:$btnPrimaryColor;
+	}
+
+
+
+//  = SUCCESS ACTION
+//  ---------------------------------------------------------------------------
+
+	// Change these
+	$btnSuccessBaseColor:				$green;
+	$btnSuccessColor:					$textColor;
+	
+	// Don't change these
+	$btnSuccessBackgroundColorLight:	lighten($btnSuccessBaseColor, 2%);
+	$btnSuccessBackgroundColorDark:		darken($btnSuccessBaseColor, 3%);
+
+
+	.btn--success
+	{
+		border-color:darken($btnSuccessBackgroundColorDark, 5%);
+		background:$btnSuccessBackgroundColorDark;
+		@include background(linear-gradient($btnSuccessBackgroundColorLight, $btnSuccessBackgroundColorDark));
+		color:$btnSuccessColor;
+	}
+
+	.no-touch .btn--success:hover 
+	{
+		background-color: lighten($btnSuccessBackgroundColorDark, 10%);
+		@include background(linear-gradient(lighten($btnSuccessBackgroundColorLight, 6%), darken($btnSuccessBackgroundColorDark, 8%)));					
+		box-shadow:0 1px 3px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.2);
+		border-color:darken($btnSuccessBackgroundColorDark, 8%);
+		color:$btnSuccessColor;
+	}
+
+	.no-touch .btn--success:active,
+	.touch .btn--success:active
+	{
+		background-color: darken($btnSuccessBackgroundColorDark, 6%);
+		background:$btnSuccessBackgroundColorDark;
+		@include background(linear-gradient($btnSuccessBackgroundColorDark, $btnSuccessBackgroundColorDark));
+		box-shadow:inset 0 1px 3px rgba(0,0,0,.1);
+		color:$btnSuccessColor;
+	}
+
+
+
+//  = DESTROY ACTION
+//  ---------------------------------------------------------------------------
+
+	// Change these
+	$btnDestroyBaseColor:				$red;
+	$btnDestroyColor:					$white;
+	
+	// Don't change these
+	$btnDestroyBackgroundColorLight:	lighten($btnDestroyBaseColor, 2%);
+	$btnDestroyBackgroundColorDark:		darken($btnDestroyBaseColor, 3%);
+
+
+	.btn--destroy
+	{
+		border-color:darken($btnDestroyBackgroundColorDark, 5%);
+		background:$btnDestroyBackgroundColorDark;
+		@include background(linear-gradient($btnDestroyBackgroundColorLight, $btnDestroyBackgroundColorDark));
+		color:$btnDestroyColor;
+	}
+
+	.no-touch .btn--destroy:hover 
+	{
+		background: lighten($btnDestroyBackgroundColorDark, 6%);
+		@include background(linear-gradient(lighten($btnDestroyBackgroundColorLight, 6%), darken($btnDestroyBackgroundColorDark, 8%)));					
+		box-shadow:0 1px 3px rgba(0,0,0,.2), inset 0 1px 0 rgba(255,255,255,.2);
+		border-color:darken($btnDestroyBackgroundColorDark, 8%);
+		color:$btnDestroyColor;
+	}
+
+	.no-touch .btn--destroy:active,
+	.touch .btn--destroy:active
+	{
+		background: darken($btnDestroyBackgroundColorDark, 6%);
+		background:$btnDestroyBackgroundColorDark;
+		@include background(linear-gradient($btnDestroyBackgroundColorDark, $btnDestroyBackgroundColorDark));
+		box-shadow:inset 0 1px 3px rgba(0,0,0,.1);
+		color:$btnDestroyColor;
+	}
+
+
+
+//  = DISABLED ACTION
+//  ---------------------------------------------------------------------------
+
+	.btn--disabled,
+	.no-touch .btn--disabled:hover,
+	.no-touch .btn--disabled:active,
+	.touch .btn--disabled:active,
+	{
+		background:$white;
+		border-color:hsl(0, 0, 90%);
+		box-shadow:none;
+		color:hsl(0, 0, 80%);
+		cursor:not-allowed;
+	}
+
+
+
+//  = BUTTON GROUP
+//  ---------------------------------------------------------------------------	
+
+	.btn--in-group
+	{
+		border-radius:0;
+		margin-right:0;
+		float:left;
+
+		&:first-child
+		{
+			@include border-left-radius;
+			border-right-width:0;
+		}
+
+		&:last-child
+		{
+			@include border-right-radius;
+			@include rem(margin-right, $singleSpace);
+			border-left-width:0;
+		}
+	}
+
+
+
+//  = BUTTON DROPDOWN
+//  ---------------------------------------------------------------------------	
+
+	.btn-dropdown
+	{
+		position:relative;
+		@include inline-block;
+	}
+
+	.btn-dropdown__menu
+	{
+		display:none;
+		position:absolute;
+		top:100%;
+		@include rem(left, .5);
+		z-index:1000;
+		@include rem(margin-top, -$doubleSpace);
+		padding:0;
+		border:0 solid $btnBorderColor;
+		@include rem(border-width, $btnBorderWidth);
+		border-radius:2px;
+		background:$white;
+		vertical-align:baseline; // Fix alignment
+		box-shadow:0 2px 1px rgba(0,0,0,.1);
+		list-style:none;
+	}
+
+	.btn-dropdown__item
+	{
+		display:block;
+		cursor:pointer;
+		@include rem(padding, $singleSpace / 2 $singleSpace);
+		border-bottom:0 solid lighten($btnBorderColor, 8%);
+		@include rem(border-bottom-width, $btnBorderWidth);
+		font-family:$headingsFontFamily;
+		color:$textColor;
+		white-space:nowrap;
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+	}
+
+	.no-touch .btn-dropdown__item:hover
+	{
+		background:lighten($btnBorderColor, 8%);
+		color:$textColor;
+	}
+
+	.no-touch .btn-dropdown__item:active,
+	.touch .btn-dropdown__item:active
+	{
+		background:$btnBorderColor;
+		color:$textColor;
+	}
+
+	.open 
+	{
+  		*z-index: 1000;
+  		
+		& > .btn-dropdown__menu 
+		{
+			display: block;
+		}
+	}

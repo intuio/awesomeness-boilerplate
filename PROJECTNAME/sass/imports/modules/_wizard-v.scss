@@ -1,0 +1,114 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  VERTICAL WIZARD
+//
+//	HTML structure:
+//	<div class="l-wizard-v">
+//		<ul class="wizard-v">
+//			<li class="wizard-v__step">
+//				<h3>First Step</h3>
+//				<p>Step 1 contains of some other steps that can be defined here.</p>
+//			</li>
+//			<li class="wizard-v__step">
+//				<h3>Second Step </h3>
+//				<p>Feel free to add some more HTML stuff into this div.</p>
+//			</li>
+//			<li class="wizard-v__step">
+//				<h3>Third Step</h3>
+//				<p>The end is near. Go further to see what happens</p>
+//			</li>
+//		</ul>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+
+	$wizardBackground:	$whiteSmoke;
+	$wizardBorderColor:	$primaryAccent;
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+	.wizard-v
+	{
+		@extend .box;
+		list-style-type:none;
+		@include rem(margin, 0 0 $doubleSpace 0);
+		@include rem(padding, $singleSpace);
+		background:$wizardBackground;
+	}
+
+	// This is a generic container
+	// element that has a down-facing
+	// arrow element (except last-child)
+	.wizard-v__step
+	{
+		position: relative;
+		@include rem(margin-bottom, $doubleSpace - .1);
+		border-bottom: 0 solid $wizardBorderColor;
+		@include rem(border-bottom-width, $borderMedium);
+		
+		// The before and after elements
+		// create the down arrow
+		&::after,
+		&::before
+		{
+			content: " ";
+			position: absolute;
+			top: 100%;
+			width: 0;
+			height: 0;
+			border: solid transparent;
+			pointer-events: none;
+		}
+
+		// This arrow has background color
+		// and is an overlay to the ::before
+		// arrow to simulate an arrow line
+		&::after 
+		{
+			left: 50%;
+			@include rem(margin-left, -$singleSpace);
+			border-top-color:$wizardBackground;
+			@include rem(border-width, $singleSpace);
+		}
+
+		// This arrow is darker and together 
+		// with the ::after arrow creates a line
+		&::before 
+		{
+			left: 50%;
+			@include rem(margin-left, -$singleSpace - .3);
+			border-top-color:$wizardBorderColor;	
+			@include rem(border-width, $singleSpace + .3);
+		}
+
+		// Reset the border for the 
+		// last child section
+		&:last-child
+		{
+			border-bottom:none;
+		}
+
+		// Reset the arrows for the
+		// last child section
+		&:last-child::after,
+		&:last-child::before
+		{
+			content:none;
+		}
+	}
+
+	.selection-section:last-child
+	{
+		@include rem(margin-bottom, $bodyLineHeight);
+	}

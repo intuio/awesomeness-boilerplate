@@ -1,0 +1,26 @@
+//  ---------------------------------------------------------------------------
+//
+//  CSS file for framework demo page
+//
+//  ---------------------------------------------------------------------------
+
+
+//  = IMPORTS
+//  ---------------------------------------------------------------------------
+	
+	// Common base
+	@import "base";
+
+	// Code highlighting
+	@import "imports/prism";
+
+	// Modules
+	@import "imports/modules/msg";
+
+	// It's just a demo, don't judge me ;)
+	body
+	{
+		@include rem(max-width, 85);
+		margin:0 auto;
+		@include rem(padding, $doubleSpace * 2 0);
+	}

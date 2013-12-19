@@ -1,0 +1,66 @@
+//  ---------------------------------------------------------------------------
+//
+//  Defines the styles for the pagination.
+//
+//	HTML structure:
+//	<ol class="nav pagination">
+//		<li class="pagination__item pagination__item--prev">
+//			<a class="pagination__link" href><i class="fa fa-chevron-left"></i></a>
+//		</li>
+//		<li class="pagination__item pagination__item--first">
+//			<a class="pagination__link" href>1</a>
+//		</li>
+//		<li class="pagination__item">
+//			<a class="pagination__link" href>2</a>
+//		</li>
+//		<li class="pagination__item pagination__item--active">
+//			<a class="pagination__link" href>3</a>
+//		</li>
+//		<li class="pagination__item">
+//			<a class="pagination__link" href>4</a>
+//		</li>
+//		<li class="pagination__item pagination__item--last">
+//			<a class="pagination__link" href>5</a>
+//		</li>
+//		<li class="pagination__item pagination__item--next">
+//			<a class="pagination__link" href><i class="fa fa-chevron-right"></i></a>
+//		</li>
+//	</ol>
+//
+//  ---------------------------------------------------------------------------	
+
+	.pagination
+	{
+		padding:0;
+
+		.pagination__item
+		{
+			display:none;
+
+			@include at-breakpoint($medium-width no-mq)
+			{
+				@include inline-block;
+			} 
+		}
+
+		.pagination__item--prev,
+		.pagination__item--next, 
+		.pagination__item--active,
+		.pagination__item--first, 
+		.pagination__item--last
+		{
+			@include inline-block;
+		}
+
+		.pagination__item--active .pagination__link
+		{
+			@extend .btn--primary;
+		}
+
+		.pagination__link 
+		{
+			@extend .btn;
+			// reset margin of button
+			@include rem(margin, 0);
+		}
+	}

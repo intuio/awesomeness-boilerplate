@@ -1,0 +1,114 @@
+//  ---------------------------------------------------------------------------
+//  
+//  SPINNER MODULE
+//
+//  Spinners, also called Loading Wheels, can be used to indicate loading 
+//  content and also show the current status of the loading process
+//
+//  Example with a circular spinner
+//
+//  HTML structure: 
+//  <div class="spinner">
+//      <span class="spinner__side spinner--left">
+//          <span class="spinner__fill"></span>
+//      </span>
+//      <span class="spinner__side spinner--right">
+//          <span class="spinner__fill"></span>
+//      </span>
+//  </div>
+//
+//  Example with a donut-like spinner:
+//  
+//  HTML structure:
+//  <div class="spinner--has-hole">
+//      <div class="spinner">
+//          <span class="spinner__side spinner--left">
+//              <span class="spinner__fill"></span>
+//          </span>
+//          <span class="spinner__side spinner--right">
+//              <span class="spinner__fill"></span>
+//          </span>
+//      </div>
+//  </div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+
+    $spinner-hole-color:        transparent;
+    $spinner-size:              46px;
+    $spinner-background:        $whiteSmoke;
+    $spinner-fill:              $blue;
+
+
+
+//  = ANIMATION PARAMETER
+//  ---------------------------------------------------------------------------
+    $spinner-function:          linear;
+    $spinner-opacity:           .8;
+    $spinner-duration:          3s;
+    $spinner-count:             infinite;
+    $spinner-rotate-left:       spinner-rotate-left;
+    $spinner-rotate-right:      spinner-rotate-right;
+
+
+
+//  = ANIMATIONS
+//  ---------------------------------------------------------------------------
+
+    @include keyframe($spinner-rotate-right)
+    {
+        0% {    @include experimental(transform, rotate(0deg)); }
+        25% {   @include experimental(transform, rotate(180deg)); }
+        50% {   @include experimental(transform, rotate(180deg)); }
+        75% {   @include experimental(transform, rotate(360deg)); }
+        100% {  @include experimental(transform, rotate(360deg)); }
+    }
+
+    @include keyframe($spinner-rotate-left)
+    {
+         0% {   @include experimental(transform, rotate(0deg)); }
+        25% {   @include experimental(transform, rotate(0deg)); }
+        50% {   @include experimental(transform, rotate(180deg)); }
+        75% {   @include experimental(transform, rotate(180deg)); }
+        100% {  @include experimental(transform, rotate(360deg)); }
+    }
+
+
+
+// = SPINNER
+// --------------------------------------------------------------------------
+
+    // Default spinner
+    @include spinner;
+
+    // Spinner with hole
+    .spinner--has-hole 
+    {
+        @include spinner($bodyBackground);
+    }
+
+
+
+//  = Fallback with GIF for IE Versions <IE10
+// --------------------------------------------------------------------------
+
+    .no-cssanimations .spinner 
+    {
+        background: url(../img/throbber.gif) no-repeat center center !important;
+        min-width: 32px;
+        min-height: 32px;
+        
+        &:after 
+        {
+            display: none !important;
+        }
+
+        .spinner__side 
+        {
+            display: none !important;
+        }
+    }

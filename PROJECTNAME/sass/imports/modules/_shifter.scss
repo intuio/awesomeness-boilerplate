@@ -1,0 +1,32 @@
+//  ---------------------------------------------------------------------------
+//
+//  Describes the layout for the Hero module
+//
+//  ---------------------------------------------------------------------------
+
+//  Variables
+//  ---------------------------------------------------------------------------
+
+	.shifter 
+	{
+		width: 100%;
+		overflow-x: hidden;
+		position: relative;
+	}
+
+	.shifter__elem {
+		@include transition(all .2s ease-out);
+		position: absolute;
+	}
+
+	.shifter--left
+	{
+		@include transform(translateX(-10%) scale(1.1));
+		opacity:0;
+	}
+
+	.shifter--right
+	{
+		@include transform(translateX(10%) scale(1.1));
+		opacity:0;
+	}

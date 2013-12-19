@@ -1,0 +1,273 @@
+//  ---------------------------------------------------------------------------
+//	
+//	FEATURE MODULE
+//
+//	Layout module for elements on a page that are similar to a feature in a
+//	newspaper.
+//
+//	Example with two elements, each with two sub-elements:
+//	
+//	HTML structure:
+//	<div class="feature-container">
+//	<h2>Was kann der NQR für Sie tun?</h2>
+//		<div class="l-one-fourth--with-heading">
+//			<div class="feature">
+//				<img class="feature__image" src="../img/arbeitgeber.jpg" alt="Arbeitgeber">
+//				<h2 class="feature__title">...</h2>
+//				<p class="feature__desc">...</p>  
+//				<a class="feature__link" href="#">Lesen Sie mehr.</a> 
+//			</div> 
+//		</div>
+//		<div class="l-one-fourth--with-heading"> 
+//			<div class="feature">  
+//				<img class="feature__image" src="../img/arbeitnehmer.jpg" alt="Mitarbeiter">
+//				<h2 class="feature__title">...</h2>
+//				<p class="feature__desc">...</p>  
+//				<a class="feature__link" href="#">Lesen Sie mehr.</a>
+//			</div> 
+//		</div> 
+//		<div class="l-one-fourth--with-heading">   
+//			<div class="feature">
+//				<img class="feature__image" src="../img/ausbilder.jpg" alt="Ausbilder">
+//				<h2 class="feature__title">...</h2>
+//				<p class="feature__desc">...</p>  
+//				<a class="feature__link" href="#">Lesen Sie mehr.</a>
+//			</div>
+//		</div>
+//		<div class="l-one-fourth--with-heading">
+//			<div class="feature">
+//				<img class="feature__image" src="../img/studenten.jpg" alt="Studenten">
+//				<h2 class="feature__title">...</h2>
+//				<p class="feature__desc">...</p>  
+//				<a class="feature__link" href="#">Lesen Sie mehr.</a>
+//			</div>
+//		</div>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$featureLarge: 		$large-width;
+	$featureHuge: 		$huge-width;
+	$featureGiant: 		$giant-width;
+
+
+
+//  = COLORS
+//  --------------------------------------------------------------------------- 
+	
+	$featureBaseColor: 						$white;
+	$featureHighlight:						$primaryAccent;
+
+	// TOUCH
+	$featureLinkBackgroundColorTouch:		$featureHighlight;
+	$featureLinkColorTouch:					$featureBaseColor;
+
+	// ACTIVE
+	$featureLinkTouchActiveBackgroundColor:	darken($featureHighlight, 8);
+	$featureLinkTouchActiveColor:			$featureBaseColor;
+
+	
+
+//  = FEATURE
+//  ---------------------------------------------------------------------------
+	
+	@include with-grid-settings($columns: 4, $gutter: .5em) 
+	{	
+		.l-one-fourth--with-heading
+		{
+
+		//  = LARGE SCREEN
+		//  ---------------------------------------------------------------------------			
+			@include at-breakpoint($large-width)
+			{
+				@include span-columns(1,2);
+				@include nth-omega(2n);
+			}
+
+		//  = HUGE SCREEN
+		//  ---------------------------------------------------------------------------	
+			@include at-breakpoint($huge-width iemq)
+			{
+				@include remove-nth-omega(2n, $context:4);
+				@include span-columns(1,4);
+				@include nth-omega(5n);
+			}
+		}
+	}
+
+//  ---------------------------------------------------------------------------
+//
+//  Describes the visual styling for the feature module
+//
+//  ---------------------------------------------------------------------------
+
+	.feature-container
+	{
+		@extend .cf;
+		@include bleed;
+		background-color:$featureBaseColor;
+
+		> h2
+		{
+			@include rem(padding-top, $doubleSpace);
+			border-top:1px solid $grayVeryLight;
+
+			@include at-breakpoint($huge-width iemq)
+			{
+				border:0 none;
+			}
+		}
+	}
+
+	.feature
+	{
+		@include rem(margin-bottom, $singleSpace * 3);
+		border-bottom:1px solid $grayVeryLight;
+
+		@extend space-lover;
+
+		@include at-breakpoint($large-width iemq)
+		{
+			border:0 none;
+		}
+	}
+
+	.l-one-fourth--with-heading:last-child .feature
+	{
+		margin-bottom:0;
+		border:0 none;
+	}
+
+	.feature__icon
+	{
+		display: block;
+		margin: 0 auto;
+		@include rem(margin-bottom, $doubleSpace);
+		border: 0 solid darken($featureHighlight, 45%);
+		border-radius: 50%;
+		color: $featureHighlight;
+		@include setType($bodyFontSize * 5, $bodyLineHeight * 4);
+	}
+
+	.feature__image
+	{
+		@include rem(margin-bottom, $singleSpace);
+	}
+
+	.feature__title
+	{
+		font-family: $headingsFontFamily;
+		font-weight: $headingsFontWeight;
+		color: $headingsColor;
+		text-rendering:optimizelegibility;
+		@include hyphens(none);
+		@include setType($h3Size, $h3LineHeight);
+	}
+
+	.feature__title--huge
+	{
+
+		margin-bottom: 0;
+		@include setType($h1Size, $singleSpace * 4);
+		
+		@include at-breakpoint($large-width) 
+		{
+			@include setType(7.2, $singleSpace * 6);
+		}
+	}
+
+	.feature__desc
+	{
+		text-align: left;
+		@include hyphens(auto);
+
+
+		@include at-breakpoint($featureLarge)
+		{
+			@include rem(min-height, $doubleSpace * 5);
+		}
+
+		@include at-breakpoint($featureHuge iemq)
+		{
+			@include rem(min-height, $doubleSpace * 8);
+		}
+
+		@include at-breakpoint($featureGiant)
+		{
+			@include rem(min-height, $doubleSpace * 6);
+		}
+	}
+
+	.feature__desc--huge
+	{
+		min-height: 0;
+		margin-bottom: 0;
+		@include rem(padding-bottom, $doubleSpace - $borderThick * 2);
+		text-align: center;
+		font-weight: 100;
+		@include at-breakpoint($large-width)
+		{
+			@include setType($h2Size, $h2LineHeight);
+			border-bottom:0 solid $featureHighlight;
+			@include rem(border-bottom-width, $borderThick);
+		}
+	}
+
+	.feature__link
+	{
+		@include rem(margin-bottom, $doubleSpace);
+		@include inline-block;
+	}
+
+	.touch .feature__link
+	{
+		@include rem(line-height, $touchSize);
+		@include rem(padding, 0 $singleSpace);
+		@include inline-block;
+		background-color:$featureLinkBackgroundColorTouch;
+		color:$featureLinkColorTouch;
+
+		&:active
+		{
+			background-color:$featureLinkTouchActiveBackgroundColor;
+			color:$white;
+		}
+	}
+
+	@include with-grid-settings($columns: 4, $gutter: .5em) 
+	{	
+		.l-one-fourth--with-heading
+		{
+			@include at-breakpoint($featureLarge)
+			{
+				@include span-columns(1,2);
+				@include nth-omega(2n);
+
+				&:nth-child(2n+2)
+				{
+					clear:both;
+				}
+			}
+
+			@include at-breakpoint($featureHuge iemq)
+			{
+				@include remove-nth-omega(2n, $context:4);
+				@include span-columns(1,4);
+				@include nth-omega(5n);
+
+				&:nth-child(2n+2)
+				{
+					clear:none;
+				}
+			}
+		}
+	} 

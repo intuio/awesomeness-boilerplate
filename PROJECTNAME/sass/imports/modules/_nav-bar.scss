@@ -1,0 +1,213 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  TOP FIXED NAVIGATION BAR
+//
+//  ---------------------------------------------------------------------------
+
+
+	
+//  BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$navSmall: 		$small-width;
+	$navMedium: 	$medium-width;
+	$navLarge: 		$large-width;
+	$navHuge: 		$huge-width;
+	$navGiant: 		$giant-width;
+	$navMonstrous:	$monstrous-width;
+
+
+//  COLORS
+//  ---------------------------------------------------------------------------
+	
+	// Change only the base color. All the other
+	// colors are calculated and adjusted automatically
+	$navBaseColor:				$primaryAccent;
+	$navColor:					$white;
+
+	// Don't change these
+	$navBackgroundColor:		$navBaseColor;
+	$navBackgroundColorActive:	lighten($navBaseColor, 5%);
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+	
+
+//  BAR
+//  ---------------------------------------------------------------------------
+
+	.nav-bar 
+	{
+
+		@include bleed;
+		@include rem(margin-bottom, $doubleSpace);
+		background-color:$navBackgroundColor;
+		color:$navColor;
+
+		@include at-breakpoint($navHuge no-mq)
+		{
+			position:fixed;
+			top:0;
+			right:0;
+			left:0;
+			margin:0;
+			@include rem(padding, 0 $r-grid-padding);
+			box-shadow:0 0 3px rgba(#000, .2);
+			z-index:900;
+
+			line-height:0; // fixes a bug in IE & Firefox where the .nav-bar container height is too large
+		}
+
+		.collapse-bd
+		{
+
+			@include bleed;
+			clear:both;
+			background:darken($navBackgroundColor, 20%);
+
+			@include at-breakpoint($navHuge no-mq)
+			{
+				@include inline-block;
+				margin:0;
+				padding:0;
+				background:none;
+				height:auto!important;
+			}
+		}
+	}
+
+
+
+//  BRAND
+//  ---------------------------------------------------------------------------
+
+	.nav-bar__brand
+	{
+		display:block;
+		float:left;
+		@include rem(margin, 0 $singleSpace 0 0);
+		@include rem(padding, $singleSpace 0);
+		@include rem(font-size, $h2Size);
+
+		a
+		{
+			color:$navColor;
+			
+			&:hover
+			{
+				background:none;
+			}
+		}
+
+		@include at-breakpoint($navMedium no-mq)
+		{
+			@include rem(font-size, $h1Size);
+		}
+	}
+
+
+
+//  LIST OF MENU ENTRIES
+//  ---------------------------------------------------------------------------
+
+	.nav-bar__entries
+	{
+		@extend .h4;
+		margin:0;
+		padding:0;
+		@include rem(line-height, $h1LineHeight);
+	}
+
+
+
+//  MENU ENTRY LINKS
+//  ---------------------------------------------------------------------------
+
+	.nav-bar__link
+	{
+		display:block;
+		@include bleed;
+		@include rem(padding, $singleSpace $r-grid-padding * 2);
+		color:$navColor;
+		@include transition(all .1s linear);
+		-webkit-tap-hightlight-color:rgba(0,0,0,0);
+
+		@include at-breakpoint($navHuge no-mq)
+		{
+			margin:0;
+		}
+	}
+
+	.no-touch .nav-bar__link:hover,
+	.touch .nav-bar__link:active,
+	.nav-bar__link--is-active
+	{
+		background:$navBackgroundColorActive;
+	}
+
+	.no-touch .nav-bar__link:active,
+	.touch .nav-bar__link:active
+	{
+		background:darken($navBaseColor, 5%);
+	}
+
+
+
+//  MENU TOGGLE
+//  ---------------------------------------------------------------------------
+
+	.nav-bar__toggle
+	{
+		@extend .h4;
+		@include inline-block;
+		float: right;
+		@include rem(min-width, $doubleSpace * 2.5);
+		@include rem(margin-right, -$r-grid-padding);
+		@include rem(padding, $singleSpace $r-grid-padding);
+		background:darken($navBackgroundColor, 20%);
+		@include rem(line-height, $h1LineHeight);
+		color:$navColor;
+		text-align:center;
+
+		@include at-breakpoint($navHuge no-mq)
+		{
+			display:none;
+		}
+	}
+
+
+
+//  COMMON
+//  ---------------------------------------------------------------------------
+
+	.nav-bar__brand,
+	.nav-bar__entries,
+	.nav-bar__entry
+	{
+		@include at-breakpoint($navHuge no-mq)
+		{
+			@include inline-block;
+		}
+	}
+
+
+
+//  TOUCH
+//  ---------------------------------------------------------------------------
+	
+	/* handle menu mouseover and touch events properly */
+	.no-touch .nav-bar .nav-bar__toggle:hover,
+	.touch .nav-bar .nav-bar__toggle:active
+	{
+		background:$navBackgroundColorActive;	
+	}

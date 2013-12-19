@@ -1,0 +1,844 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  HORIZONTAL TABS
+//
+//	HTML structure:
+//	<section class="tabs" data-tab-group-parent>
+//		<div class="tabs__toggle" data-collapse-target-group="tab-nav"><a><span data-tab-toggle-text>Fluid Grids</span> <i class="icon-chevron-down"></i></a></div>
+//		<div class="collapse-bd" data-collapse-group="tab-nav">
+//			<ul class="tabs__nav collapse-inner">
+//				<li class="tabs__nav-item--active" data-tab-target-group="tab-example" data-tab-target-member="grid"><a>Fluid Grids</a></li>
+//				<li class="tabs__nav-item" data-tab-target-group="tab-example" data-tab-target-member="img"><a>Flexible Images</a></li>
+//				<li class="tabs__nav-item" data-tab-target-group="tab-example" data-tab-target-member="mq"><a>Media Queries</a></li>
+//				<li class="tabs__nav-item--disabled"><a>Disabled Tab</a></li> 
+//			</ul>
+//		</div>
+//		<section class="tabs__content is-shown" data-tab-group="tab-example" data-tab-member="grid">
+//			<!-- Tab content here -->
+//		</section>
+//		<section class="tabs__content" data-tab-group="tab-example" data-tab-member="img">
+//			<!-- Tab content here -->
+//		</section>
+//		<section class="tabs__content" data-tab-group="tab-example" data-tab-member="mq">
+//			<!-- Tab content here -->
+//		</section>
+//	</section>
+//
+//  ---------------------------------------------------------------------------
+
+
+	
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$tabSmall: 		$small-width;
+	$tabMedium: 	$medium-width;
+	$tabLarge: 		$large-width;
+	$tabHuge: 		$huge-width;
+	$tabGiant: 		$giant-width;
+	$tabMonstrous:	$monstrous-width;
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+	
+	$tabBaseColor:				$primaryAccent;
+	$tabBorderColor:			$grayVeryLight;
+	$tabInactiveBorderColor:	hsl(hue($tabBorderColor), 50, 80);
+
+
+//  = BORDER
+//  ---------------------------------------------------------------------------
+	
+	$tabBorderWidth:			$borderThin;
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+// 	TABS LEFT
+//	---------------------------------------------------------------------------
+
+	@include with-grid-settings($gutter: 0em) 
+	{
+
+		.tabs--left {
+
+			.collapse-bd
+			{
+
+			//  = HUGE SCREEN
+			//  ---------------------------------------------------------------------------	
+				@include at-breakpoint($tabHuge no-mq)
+				{
+					@include span-columns(4, $huge-cols); 
+				}
+
+			//  = GIANT SCREEN
+			//  ---------------------------------------------------------------------------		
+				@include at-breakpoint($tabGiant)
+				{
+					@include span-columns(4, $giant-cols); 
+				}
+			}	
+
+			.tabs__content
+			{
+
+			//  = HUGE SCREEN
+			//  ---------------------------------------------------------------------------		
+				@include at-breakpoint($tabHuge no-mq)
+				{
+					@include span-columns(8, $huge-cols); 
+				}
+
+			//  = GIANT SCREEN
+			//  ---------------------------------------------------------------------------	
+				@include at-breakpoint($tabGiant)
+				{
+					@include span-columns(12, $giant-cols); 
+				}
+			}
+
+		}	
+
+		.tabs--right {
+
+			.collapse-bd
+			{
+
+			//  = HUGE SCREEN
+			//  ---------------------------------------------------------------------------		
+				@include at-breakpoint($tabHuge no-mq)
+				{
+					@include span-columns(4 omega, $huge-cols); 
+				}
+
+			//  = GIANT SCREEN
+			//  ---------------------------------------------------------------------------
+				@include at-breakpoint($tabGiant)
+				{
+					@include span-columns(4 omega, $giant-cols); 
+				}
+			}	
+
+			.tabs__content
+			{
+
+			//  = HUGE SCREEN
+			//  ---------------------------------------------------------------------------		
+				@include at-breakpoint($tabHuge no-mq)
+				{
+					@include span-columns(8 omega, $huge-cols); 
+				}
+
+			//  = GIANT SCREEN
+			//  ---------------------------------------------------------------------------
+				@include at-breakpoint($tabGiant)
+				{
+					@include span-columns(12 omega, $giant-cols); 
+				}
+			}
+		}
+	}
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  TABS
+//
+//  ---------------------------------------------------------------------------	
+	
+	.tabs 
+	{
+		@include rem(margin-bottom, $doubleSpace);
+
+		.collapse-bd
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				height:auto!important;
+
+				.collapse-inner
+				{
+					padding:0;
+				}
+			}
+		}
+	}
+
+
+	.tabs__toggle,
+	.tabs__nav
+	{
+		margin-bottom:0;
+		border-bottom:1px solid $tabBorderColor;
+		@include rem(border-bottom-width, $tabBorderWidth);
+	}
+
+	.tabs__toggle a
+	{
+		@extend .h4;
+
+		@include inline-block;
+		@include rem(margin, 0 0 (-$tabBorderWidth) $singleSpace / 2 - $tabBorderWidth);
+		@include rem(padding, $singleSpace / 2);
+		border:1px solid $tabBorderColor;
+		@include rem(border-width, $tabBorderWidth);
+		border-bottom-color:$white;
+		@include rem(border-radius, $borderRadius $borderRadius 0 0);
+		color:$tabBaseColor;
+
+		&:hover
+		{
+			background:none;
+			color:$tabBaseColor;
+		}
+	}
+
+	.tabs__toggle
+	{
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			display:none;
+		}
+	}
+
+	.tabs__nav
+	{
+		list-style-type:none;
+		@include rem(padding, 0 $singleSpace - $tabBorderWidth);
+		border-right:1px solid $tabBorderColor;
+		border-left:1px solid $tabBorderColor;
+		@include rem(border-right-width, $tabBorderWidth);
+		@include rem(border-left-width, $tabBorderWidth);
+		border-bottom-style:dashed;
+		margin-left:0;
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			border-right:none;
+			border-left:none;
+			border-bottom-style:solid;
+			
+		}
+	}
+
+	.tabs__nav-item
+	{
+
+		a
+		{
+			@extend .h4;
+			display:block;
+			@include rem(line-height, $bodyLineHeight * 2);
+			color:$grayLight;
+
+			&:hover
+			{
+				background:none;
+				color:$tabBaseColor;
+			}
+		}
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			@include inline-block;
+
+			a 
+			{
+				@include rem(padding, $singleSpace - $tabBorderWidth $singleSpace $singleSpace);
+				border:0 solid transparent;
+				@include rem(border-width, $tabBorderWidth $tabBorderWidth 0);
+				@include rem(border-radius, $borderRadius $borderRadius 0 0);
+				line-height:1;
+
+				&:hover
+				{
+					background:transparent;
+				}
+			}
+		}
+	}
+
+	.tabs__nav-item--is-active
+	{
+
+		a
+		{
+			color:$tabBaseColor;
+			cursor:default;
+		}
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			@include inline-block;
+
+			a 
+			{
+				border-style:solid;
+				border-color:$tabBorderColor $tabBorderColor $white;
+				@include rem(border-width, $tabBorderWidth);
+				@include rem(margin-bottom, -$tabBorderWidth);
+				cursor:default;
+
+				&:hover
+				{
+					background:none;
+				}
+			}
+		}
+		
+	}
+
+	.tabs__nav-item--is-disabled
+	{
+		a 
+		{
+			color:$grayVeryLight;
+			cursor:not-allowed;
+
+			&:hover
+			{
+				color:$grayVeryLight;
+			}
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				border-color:transparent;
+			}
+		}
+	}
+
+	.tabs__content
+	{
+		display:none;
+		@include rem(padding, $singleSpace);
+		border-style:solid;
+		@include rem(border-width, $tabBorderWidth);
+		border-color:$tabBorderColor;
+		border-top:none;
+	}
+
+//  ---------------------------------------------------------------------------
+//
+//  TABS LEFT ALIGNED
+//
+//  ---------------------------------------------------------------------------
+
+	.tabs--left
+	{
+		@extend .cf;
+
+		.collapse-bd 
+		{
+			position:relative;
+			z-index:2;
+		}
+
+		.tabs__nav
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				border:none;
+				
+			}
+		}
+
+		.tabs__nav-item
+		{
+			display:block; 
+
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+
+				@include rem(margin-bottom, $singleSpace);
+
+				a
+				{
+					border-color:transparent;
+					@include rem(border-width, $tabBorderWidth);
+					@include rem(border-radius, $borderRadius 0 0 $borderRadius);
+					margin-bottom:0;
+					margin-right:2px;
+				}
+			}
+		}
+
+		.tabs__nav-item--is-active
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				display:block;
+
+				a
+				{
+					border-color:$tabBorderColor $white $tabBorderColor $tabBorderColor;
+					@include rem(border-width, $tabBorderWidth);
+					@include rem(border-radius, $borderRadius 0 0 $borderRadius);
+					margin-bottom:0;
+					margin-right:0;
+				}
+			}
+		}	
+
+		.tabs__content
+		{
+			position:relative;
+			z-index:1;
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				@include rem(margin-left, -$tabBorderWidth);
+				border-top:0 solid $tabBorderColor;
+				@include rem(border-top-width, $tabBorderWidth);
+			}
+			
+		}
+	}
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  TABS RIGHT ALIGNED
+//
+//  ---------------------------------------------------------------------------
+
+	.tabs--right
+	{
+		@extend .tabs--left;
+		@extend .cf;
+
+		.tabs__nav-item
+		{
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+
+				a
+				{
+					border-color:transparent;
+					@include rem(border-width, $tabBorderWidth);
+					@include rem(border-radius, 0 $borderRadius $borderRadius 0);
+					margin-right:0;
+					margin-left:2px;
+					text-align:right;
+				}
+			}
+		}
+
+		.tabs__nav-item--is-active
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+
+				a
+				{
+					border-color:$tabBorderColor $tabBorderColor $tabBorderColor $white;
+					@include rem(border-width, $tabBorderWidth);
+					@include rem(border-radius, 0 $borderRadius $borderRadius 0);
+					margin-left:0;
+				}
+			}
+		}	
+
+		.tabs__content
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				@include rem(margin-right, -$tabBorderWidth);		
+			}
+			margin-left:0;	
+		}
+	}
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  ALTERNATE TABS
+//
+//  ---------------------------------------------------------------------------	
+	
+	.tabs--alt
+	{
+		@include rem(margin-bottom, $doubleSpace);
+
+		.tabs__nav
+		{
+			position:relative;
+			padding:0;
+			border:none;
+			border-bottom:0 solid $tabBaseColor;
+			@include rem(border-bottom-width, $borderThick);
+
+			// The before and after elements
+			// create the down arrow
+			&::after,
+			&::before
+			{
+				content: " ";
+				position: absolute;
+				top: 100%;
+				width: 0;
+				height: 0;
+				border: solid transparent;
+				pointer-events: none;
+
+				@include at-breakpoint($tabHuge no-mq)
+				{
+					content:none;
+				}
+			}
+
+			// This arrow has background color
+			// and is an overlay to the ::before
+			// arrow to simulate an arrow line
+			&::after 
+			{
+				left: 50%;
+				@include rem(margin-left, $singleSpace / -2 - $borderThick);
+				// @include rem(margin-top, $singleSpace - .2);
+				border-top-color:$tabBaseColor;
+				@include rem(border-width, $singleSpace / 2 + $borderThick);
+			}
+
+			// This arrow is darker and together 
+			// with the ::after arrow creates a line
+			&::before 
+			{
+				left: 50%;
+				@include rem(margin-left, $singleSpace / -2 - $borderThick - .2);
+				@include rem(margin-top, $borderThick);
+				border-top-color:$tabBaseColor;
+				@include rem(border-width, $singleSpace / 2 + $borderThick + .2);
+			}
+		}
+
+		.tabs__nav-item a
+		{
+			text-align:center;
+
+			&:hover
+			{
+				background:none;
+				color:$tabBaseColor;
+			}
+		}
+
+		.tabs__content
+		{
+			@include rem(padding, $doubleSpace $singleSpace 0);
+			border:none;
+		}
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			.tabs__nav-item a
+			{
+				margin:0;
+				border:none;
+			}
+
+			.tabs__nav-item--is-active
+			{
+				position:relative;
+
+				// The before and after elements
+				// create the down arrow
+				&::after,
+				&::before
+				{
+					content: " ";
+					position: absolute;
+					top: 100%;
+					width: 0;
+					height: 0;
+					border: solid transparent;
+					pointer-events: none;
+				}
+	
+				// This arrow has background color
+				// and is an overlay to the ::before
+				// arrow to simulate an arrow line
+				&::after 
+				{
+					left: 50%;
+					@include rem(margin-left, $singleSpace / -2 - $borderThick);
+					// @include rem(margin-top, $singleSpace - .2);
+					border-top-color:$white;
+					@include rem(border-width, $singleSpace / 2 + $borderThick);
+				}
+	
+				// This arrow is darker and together 
+				// with the ::after arrow creates a line
+				&::before 
+				{
+					left: 50%;
+					@include rem(margin-left, $singleSpace / -2 - $borderThick - .2);
+					@include rem(margin-top, $borderThick);
+					border-top-color:$tabBaseColor;
+					@include rem(border-width, $singleSpace / 2 + $borderThick + .2);
+				}
+			}
+		}
+	}
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  TABS TO ACCORDION
+//
+//  ---------------------------------------------------------------------------	
+
+	.tabs--acc
+	{
+		@include rem(margin-bottom, $doubleSpace);
+
+		.collapse-bd
+		{
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				height:auto!important;
+			}
+
+		}
+	}
+
+	.tabs--acc__toggle
+	{
+		margin-bottom:0;
+		border-bottom:0 solid $tabBorderColor;
+		@include rem(border-bottom-width, $tabBorderWidth);
+
+	}
+
+	.tabs--acc__toggle a
+	{
+		@extend .h4;
+
+		display:inline-block;
+		@include rem(margin, 0 0 (-$tabBorderWidth) $singleSpace / 2 - $tabBorderWidth);
+		@include rem(padding, $singleSpace / 2);
+		border:0 solid $tabBorderColor;
+		@include rem(border-width, $tabBorderWidth);
+		border-bottom-color:$white;
+		@include rem(border-radius, $borderRadius $borderRadius 0 0);
+		color:$tabBaseColor;
+
+		&:hover
+		{
+			background:none;
+		}
+	}
+
+	.tabs--acc__toggle
+	{
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			display:none;
+		}
+	}
+
+	.tabs--acc__strip
+	{
+
+		display:none;
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			padding:0;
+			margin:0;
+			border-bottom:none;
+
+			li 
+			{
+				list-style-type:none;
+			}
+
+			a
+			{
+				display:block;
+				color:$grayLight;
+
+				&:hover
+				{
+					background:none;
+					color:$tabBaseColor;
+				}
+			}
+			display:block;
+			background:none;
+			border-bottom-style:solid;
+			border-bottom:0 solid $tabBorderColor;
+			@include rem(border-width, $tabBorderWidth);
+		}
+	}
+
+			
+
+	.tabs--acc__strip-item
+	{
+		@extend .tabs__nav-item;
+	}
+
+	.tabs--acc__strip-item--is-active
+	{
+		@extend .tabs__nav-item--is-active;
+
+		a
+		{
+			color:$tabBaseColor;
+			cursor:default;
+		}		
+	}
+
+	.tabs--acc__strip-item--is-disabled
+	{
+		@extend .tabs__nav-item;
+		
+		a 
+		{
+			color:$grayVeryLight;
+			cursor:not-allowed;
+
+			&:hover
+			{
+				color:$grayVeryLight;
+			}
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				border-color:transparent;
+			}
+		}
+	}
+
+	.tabs--acc__acc-container {
+
+		@extend .box;
+
+		padding:0;
+		// margin-left:0;
+		border-bottom:none;
+
+		li 
+		{
+			list-style-type:none;
+		}
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			border-color:transparent;
+			border: 0 none;
+		}
+
+	}
+
+	.tabs--acc__acc-item
+	{
+		@extend %h4;
+		border-top:1px solid $whiteSoft;
+		border-bottom:1px solid $grayVeryLight;
+		position:relative;
+		display:block;
+
+		@include rem(padding, 0 $singleSpace - $tabBorderWidth);
+		@include rem(line-height, $bodyLineHeight * 2);
+
+		a
+		{
+			display:block;
+			color:$tabBaseColor;
+
+			&:hover
+			{
+				background:none;
+				color:$tabBaseColor;
+			}
+		}
+
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			display:none;
+		}
+
+	}
+
+
+	.tabs--acc__acc-item--is-active
+	{
+		@extend .tabs__nav-item;
+
+		a
+		{
+			color:$tabBaseColor;
+			cursor:default;
+		}
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			display:none;
+		}
+
+	}
+
+	.tabs--acc__acc-item--is-disabled
+	{
+		@extend .tabs__nav-item;
+		
+		a 
+		{
+			color:$grayVeryLight;
+			cursor:not-allowed;
+
+			&:hover
+			{
+				color:$grayVeryLight;
+			}
+
+			@include at-breakpoint($tabHuge no-mq)
+			{
+				border-color:transparent;
+			}
+		}
+	}
+
+	.tabs--acc__content
+	{
+		@include rem(padding, $singleSpace);
+		border-top:none;
+		background:$white;
+		box-shadow:inset 0 0 3px rgba(#000, .1);
+
+		border-bottom:1px solid $grayVeryLight;
+
+		@include at-breakpoint($tabHuge no-mq)
+		{
+			box-shadow:none;
+			display:none;
+			border-style:solid;
+			@include rem(border-width, $tabBorderWidth);
+			border-color:$tabBorderColor;
+			border-top:0;
+			@include rem(padding, $singleSpace);
+		}
+	}
+
+
+
+

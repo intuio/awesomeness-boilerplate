@@ -1,0 +1,143 @@
+//  ---------------------------------------------------------------------------
+//	
+//	Entry module
+//
+//	Lets an element appear on screen with a fancy animation. Used for elements 
+//	like overlay menus, alert boxes etc. 
+//
+//	Example with one clickable element showing the hidden element:
+//	
+//	HTML structure:
+//	<a href="#target-node" class="js-entry__toggle">Jump to …</a>
+//	<div id="target-node" class="entry__container">
+//		Content goes here
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = COMMON
+//  ---------------------------------------------------------------------------
+	
+	.entry__toggle--fixed,
+	.entry__container
+	{
+		position:fixed;
+		box-shadow:0 3px 5px rgba(0,0,0,.5);
+	}
+
+
+
+//  = ENTRY OVERLAY BACKDROP
+//  ---------------------------------------------------------------------------
+
+	.entry__overlay
+	{
+		position:fixed;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
+		z-index:900;
+		background:rgba($black, .5);
+		opacity:0;
+		pointer-events:none;
+		@include transition(opacity .3s linear);
+
+		&.entry--is-shown
+		{
+			opacity:1;
+			pointer-events:auto;
+			@include transition(opacity .2s linear);
+		}
+	}
+
+
+
+//  = TOGGLE BUTTON 
+//  ---------------------------------------------------------------------------
+
+	.entry__toggle
+	{
+		padding-top:0;
+		padding-bottom:0;
+		@include rem(line-height, $touchSize);
+	}
+
+
+
+//  = TOGGLE BUTTON FIXED TOP RIGHT
+//  ---------------------------------------------------------------------------
+
+	.entry__toggle--fixed
+	{
+		@include rem(top, $singleSpace);
+		@include rem(right, $r-grid-padding);
+		z-index:901;
+	}
+
+
+
+//  = ENTRY CONTAINER AS OVERLAY
+//  ---------------------------------------------------------------------------
+
+	.entry__container
+	{
+		display:none;
+		@include rem(top, $singleSpace * 2 + $touchSize);
+		@include rem(right, $r-grid-padding);
+		@include rem(bottom, $singleSpace);
+		@include rem(left, $r-grid-padding);
+		background:$bodyBackground;
+		z-index:902;
+		overflow-y:scroll;
+		-webkit-overflow-scrolling:touch;
+	}
+
+
+
+//  = FADE IN EFFECT
+//  ---------------------------------------------------------------------------
+
+	.entry__fx--fade
+	{
+		opacity:0;
+		@include transform(translate3d(0,50%,0));
+		@include transition(transform .3s ease-out, opacity .3s cubic-bezier(.24,.83,.21,1));
+
+		&.entry--is-shown
+		{
+			opacity:1;
+			@include transform(translate3d(0,0,0));
+			@include transition(transform .2s ease-in, opacity .2s cubic-bezier(.6,.01,.65,.15));
+		}
+	}
+
+
+
+//  = SLIDE FROM TOP EFFECT
+//  ---------------------------------------------------------------------------
+
+	.entry__fx--from-top
+	{
+		&.entry--is-shown
+		{
+			
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

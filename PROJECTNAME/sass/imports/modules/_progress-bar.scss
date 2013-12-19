@@ -1,0 +1,109 @@
+//  ---------------------------------------------------------------------------
+//	
+//	PROGRESS MODULE
+//
+//	Progress bars can be used to indicate loading content and also show the 
+//	current status of the loading process
+//
+//	Example with a classic progress bar
+//
+//	HTML structure: 
+//	<div class="progress">
+//		<div class="progress__bar" style="width:60%;"></div>
+//	</div>
+//
+//	Example with a stripped progress bar:
+//	
+//	HTML structure:
+//	<div class="progress progress--striped progress--active">
+//		<div class="progress__bar" style="width:30%;"></div>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//	= COLORS
+//	---------------------------------------------------------------------------
+
+	$progessBackgroundColor:		$white;
+	$progressFillColor:				$blue;
+
+
+
+//	= ANIMATION PARAMETER
+//	---------------------------------------------------------------------------
+
+	$progress-delay: 			0;
+	$progress-duration: 		2s;
+	$progress-function: 		linear;
+	$progress-name: 			progress-bar-stripes;
+	$progress-count: 			infinite;
+
+
+
+//	= ANIMATIONS
+//	---------------------------------------------------------------------------
+
+	@include keyframe($progress-name)
+	{
+		from 
+		{
+	    	@include experimental(background-position, 40px 0);
+	   	}
+	   	to 
+	   	{
+	     	@include experimental(background-position, 0 0);
+	   	}
+	}
+
+
+
+//	= PROGRESS BAR
+//	---------------------------------------------------------------------------
+
+	.progress
+	{
+		overflow: hidden;
+		@include rem(height, $doubleSpace);
+		@include rem(margin-bottom, $doubleSpace);
+		background-color: $progessBackgroundColor;
+		box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+		border-radius: 2px;
+		
+		&.progress--striped
+		{
+			.progress__bar
+			{
+				background-color: $progressFillColor;
+				@include background-image(linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent));
+				@include background-size(40px 40px);
+			}
+		}
+	
+		&.progress--active
+		{
+			.progress__bar
+			{
+				@include experimental(animation-delay, $progress-delay);
+				@include experimental(animation-duration, $progress-duration);
+				@include experimental(animation-timing-function, $progress-function);
+				@include experimental(animation-name, $progress-name);
+				@include experimental(animation-iteration-count, $progress-count);
+	
+			}
+		}
+	}
+	
+	.progress__bar
+	 {
+	 	width: 0%;
+		height: 100%;
+		float: left;
+		text-align: center;
+		text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
+		background-color: $progressFillColor;
+		box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.15);
+		@include box-sizing(border-box);
+		@include transition(width, 0.6s ease);
+	}

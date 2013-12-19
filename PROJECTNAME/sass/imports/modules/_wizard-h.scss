@@ -1,0 +1,287 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  HORIZONTAL WIZARD
+//
+//	HTML structure:
+//	<div class="l-wizard-h">
+//		<ul class="wizard-h">
+//			<div class="l-wizard-h-step">
+//				<li class="wizard-h__step--previous">
+//					<i class="icon-ok"></i>
+//					<span>First Step</span>
+//				</li>
+//			</div>
+//			<div class="l-wizard-h-step">
+//				<li class="wizard-h__step--current">
+//					<i class="icon-leaf"></i>
+//					<span>Second Step</span>
+//				</li>
+//			</div>
+//			<div class="l-wizard-h-step">
+//				<li class="wizard-h__step">
+//					<i class="icon-heart"></i>
+//					<span>Third Step</span>
+//				</li>
+//			</div>
+//		</ul>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+	
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$wizardSmall: 		$small-width;
+	$wizardMedium: 		$medium-width;
+	$wizardLarge: 		$large-width;
+	$wizardHuge: 		$huge-width;
+	$wizardGiant: 		$giant-width;
+	$wizardMonstrous:	$monstrous-width;
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+	
+	$wizardActiveBackground:			$primaryAccent;
+	$wizardActiveColor:					$white;
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+
+//  = LAYOUT
+//  ---------------------------------------------------------------------------
+	
+	.l-wizard-h 
+	{
+		// The .wizard class makes use of the
+		// ::before element which means it cannot
+		// extend the clearfix. That's why the 
+		// layout class extends the clearfix and 
+		// we must then remove the bottom margin
+		// from the .wizard and put it onto the 
+		// layout class
+		@extend .cf;
+		@include rem(margin-bottom, $doubleSpace);
+	}
+
+	.l-wizard-h-step
+	{
+		display:block;
+		@include rem(margin-right, 1);
+		
+		&:last-child
+		{
+			margin-right:0;
+		}
+
+	//	= MEDIUM SCREEN
+	//  ---------------------------------------------------------------------------
+
+		@include at-breakpoint($wizardMedium)
+		{
+			display: inline-block;
+		}
+
+
+	//  = LARGE SCREEN
+	//  ---------------------------------------------------------------------------
+
+		@include at-breakpoint($wizardLarge no-mq)
+		{
+			@include span-columns(1, 5);
+
+			&:nth-child(5n)
+			{
+				@include omega;
+			}
+		}
+	}
+
+
+
+//  = VISUAL STYLES
+//  ---------------------------------------------------------------------------
+
+	.wizard-h
+	{
+		@extend .cf;
+
+		// Override list padding
+		padding:0;
+
+		// Inherit stuff
+		@extend .nav;
+
+
+		position:relative;
+		margin-bottom:0;
+
+		// Elements are gray as per
+		// default. Current and previous
+		// wizard steps differ.
+		color:$grayLight;
+
+		.wizard-h__step
+		{
+
+			display:inline-block;
+
+			// Set as container for 
+			// absolute positioned children
+			position:relative;
+
+			// Add some margin between list elements
+			// since they are stacked on top of each other
+			@include rem(margin-bottom, $singleSpace);
+			@include rem(height, $doubleSpace);
+			@include setType($bodyFontSize, $bodyLineHeight);
+
+			.fa
+			{
+				// Set width and height according to
+				// the line height and make it a circle.
+				@include rem(width, $doubleSpace);
+				@include rem(height, $doubleSpace);
+				
+				background:$whiteSmoke;
+				@include rem(border-radius, $doubleSpace);
+				@include rem(line-height, $bodyLineHeight);
+				text-align:center;
+			}
+
+			span
+			{
+				@include at-breakpoint($wizardMedium no-mq)
+				{
+					display: none;
+				}
+			}
+		}
+
+		// These are the already
+		// completed wizard steps
+		.wizard-h__step--previous
+		{
+			@extend .wizard-h__step;
+
+			color:$textColor;
+
+			.fa
+			{
+				border:1px solid $whiteSmoke;
+				// Since borders add up to width and height
+				// we need to reduce these by 2px
+				@include rem(width, $doubleSpace - .2);
+				@include rem(height, $doubleSpace - .2);
+				background:$whiteSmoke;
+			}
+
+		}
+		
+		// The current wizard step
+		.wizard-h__step--current
+		{
+			@extend .wizard-h__step;
+
+			color:$wizardActiveBackground;
+			font-weight:700;
+
+			.fa
+			{
+				// The current wizard  
+				// step is colored 
+				background:$wizardActiveBackground;
+				color:$wizardActiveColor;
+				@include rem(margin-right, $singleSpace / 2);
+			}
+
+			span
+			{
+				display:inline-block;
+			}
+		}
+
+		& > :last-child
+		{
+			// The last wizard step must not
+			// have a bottom margin or the
+			// vertical rhythm will break
+			margin-bottom:0;
+		}
+
+		
+
+	//  = LARGE SCREEN
+	//  ---------------------------------------------------------------------------
+
+		@include at-breakpoint($wizardLarge no-mq)
+		{
+
+			.wizard-h__step
+			{
+				// Override the .nav inline-block
+				display:block;
+				
+				// Reset styles that only apply
+				// for a stacked block layout
+				height:auto;
+				margin-bottom:0;
+				text-align:center;
+
+				.fa
+				{
+					// The icon becomes a block element
+					// so that the text is positionend
+					// below. The left position and 
+					// negative margin center the icon
+					display:block;
+					position:relative;
+					left:50%;
+					margin-top:0;
+					margin-right:0;
+					@include rem(margin-left, -$singleSpace * 1.5);
+					@include rem(margin-bottom, $singleSpace);
+
+					// Adjust the size of the icons
+					@include rem(width, $singleSpace * 3);
+					@include rem(height, $singleSpace * 3 - .1);
+					@include setType($bodyFontSize * 1.5, $bodyLineHeight * 1.5);
+				}
+
+				span
+				{
+					display:inline-block;
+				}
+			}
+
+			// This is the line between steps
+			&::before
+			{
+				content:"";
+				position:absolute;
+				top:0;
+				bottom:0;
+				@include rem(left, $singleSpace - .3);
+				width:6px;
+				background:$grayVeryLight;
+				@include rem(top, $singleSpace * 1.5 - .3);
+				left:6%;
+				width:88%;
+				height:6px;
+			}
+		}
+	}
+

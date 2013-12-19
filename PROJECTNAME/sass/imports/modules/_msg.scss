@@ -1,0 +1,166 @@
+//  ---------------------------------------------------------------------------
+//	
+//	MESSAGE MODULE
+//
+//	Boxes can be used to visually highlight different kinds of content.
+//	They can also be selected using the class box--selectable
+//
+//	Example with basic message
+//	
+//	HTML structure:
+//	<div class="msg">
+//		<h1 class="msg__title">Note</h1>
+//		<p class="msg__text">Lorem...</p>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BORDER
+//  ---------------------------------------------------------------------------
+	
+	$msgBorderWidth:				$borderThin;
+	$msgBorderRadius:				.4; // = 4px
+
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+	
+	// INFO MESSAGE
+	$msgInfoBaseColor:				$blue;
+
+	// SUCCESS MESSAGE
+	$msgSuccessBaseColor:			$green;
+
+	// WARNING MESSAGE
+	$msgWarningBaseColor:			$yellow;
+
+	// ERROR MESSAGE
+	$msgErrorBaseColor:				$red;
+	
+
+
+	// Don't change these
+	$msgBaseColor:					$white;
+	$msgColor:						hsl(hue($msgBaseColor), 0, 25);
+	$msgBorderColor:				hsl(hue($msgBaseColor), 0, 85);
+
+	$msgInfoBackground:				hsl(hue($msgInfoBaseColor), 50, 92);
+	$msgInfoColor:					hsl(hue($msgInfoBackground), 60, 30);
+	$msgInfoBorderColor:			hsl(hue($msgInfoBackground), 50, 80);
+	
+	$msgSuccessBackground:			hsl(hue($msgSuccessBaseColor), 70, 80);
+	$msgSuccessColor:				hsl(hue($msgSuccessBackground), 80, 20);
+	$msgSuccessBorderColor:			hsl(hue($msgSuccessBackground), 60, 50);
+	
+	$msgWarningBackground:			hsl(hue($msgWarningBaseColor), 95, 85);
+	$msgWarningColor:				hsl(hue($msgWarningBackground), 70, 25);
+	$msgWarningBorderColor:			hsl(hue($msgWarningBackground), 60, 60);
+	
+	$msgErrorBackground:			hsl(hue($msgErrorBaseColor), 95, 88);
+	$msgErrorColor:					hsl(hue($msgErrorBackground), 70, 30);
+	$msgErrorBorderColor:			hsl(hue($msgErrorBackground), 50, 70);
+
+
+	
+	
+//  = GENERIC MESSAGE 
+//  ---------------------------------------------------------------------------
+
+	.msg
+	{
+		// Subtract borders from bottom margin 
+		// to perfectly match the vertical rhythm
+		@include rem(margin-bottom, $doubleSpace - $msgBorderWidth * 2); 
+		@include rem(padding, $singleSpace);
+		background:$msgBaseColor;
+		border:0 solid $msgBorderColor;
+		@include rem(border-width, $msgBorderWidth);
+		@include rem(border-radius, $msgBorderRadius);
+		font-family:$sansFontFamily;
+		color:$msgColor;
+	}
+
+	.msg__title
+	{
+		@extend .h4;
+		margin-bottom:0;
+		// @include rem(margin-bottom, $singleSpace);
+
+		.fa 
+		{
+			@include rem(margin-right, $singleSpace / 2);
+		}
+	}
+
+	.msg__bd
+	{
+		margin-bottom:0;
+	}
+
+	.msg--has-icon .msg__bd
+	{
+		@include rem(margin-left, 2.7 + $singleSpace / 2); // 27px is the width of fixed-width fontawesome icons
+	}
+
+
+
+//  = INFO MESSAGE
+//  ---------------------------------------------------------------------------
+
+	.msg--info
+	{
+		background:$msgInfoBackground;
+		border-color:$msgInfoBorderColor;
+		color:$msgInfoColor;
+	}
+
+
+
+//  = SUCCESS MESSAGE
+//  ---------------------------------------------------------------------------
+
+	.msg--success
+	{
+		background:$msgSuccessBackground;
+		border-color:$msgSuccessBorderColor;
+		color:$msgSuccessColor;
+	}
+
+
+
+//  = WARNING MESSAGE
+//  ---------------------------------------------------------------------------
+
+	.msg--warning
+	{
+		background:$msgWarningBackground;
+		border-color:$msgWarningBorderColor;
+		color:$msgWarningColor;
+	}
+
+
+
+//  = ERROR MESSAGE
+//  ---------------------------------------------------------------------------
+
+	.msg--error
+	{
+		background:$msgErrorBackground;
+		border-color:$msgErrorBorderColor;
+		color:$msgErrorColor;
+	}
+
+
+
+
+
+
+
+
+
+
+
+

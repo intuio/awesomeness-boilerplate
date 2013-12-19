@@ -1,0 +1,158 @@
+//  ---------------------------------------------------------------------------
+//  
+//  SPINNER MODULE
+//
+//  prism.js default theme for JavaScript, CSS and HTML
+//	Based on dabblet (http://dabblet.com)
+//	@author Lea Verou
+//
+//	customized by @intuio
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BASE
+//  ---------------------------------------------------------------------------
+
+	code,
+	code[class*="language-"],
+	pre[class*="language-"] {
+		background:transparent;
+		color:$black;
+		font-family: Consolas, Monaco, 'Andale Mono', monospace;
+		direction: ltr;
+		text-align: left;
+		white-space: pre;
+		word-spacing: normal;
+
+		-moz-tab-size: 4;
+		-o-tab-size: 4;
+		tab-size: 4;
+
+		-webkit-hyphens: none;
+		-moz-hyphens: none;
+		-ms-hyphens: none;
+		hyphens: none;
+	}
+
+	@media print {
+		code,
+		code[class*="language-"],
+		pre[class*="language-"] {
+			text-shadow: none;
+		}
+	}
+
+
+
+//  = CODE BLOCKS
+//  ---------------------------------------------------------------------------
+
+	pre[class*="language-"]
+	{
+		@include rem(padding, $singleSpace);
+		@include rem(margin, 0 0 $doubleSpace);
+		overflow: auto;
+		word-wrap:normal;
+
+		// Uncomment if you want elastic scrolling
+		// of your code overflow. Beware, as it
+		// breaks the "Back-to-Top" functionality
+		// on the iOS7 system bar
+		// -webkit-overflow-scrolling: touch;
+	}
+
+	:not(pre) > code,
+	:not(pre) > code[class*="language-"],
+	pre[class*="language-"]
+	{
+		border:1px solid darken($sand, 10%);
+		background:$white;
+		@include rem(border-radius, .2);
+	}
+
+
+
+//  = INLINE CODE
+//  ---------------------------------------------------------------------------
+
+	:not(pre) > code,
+	:not(pre) > code[class*="language-"]
+	{
+		padding: .1em;
+		@include rem(padding-top, .3);
+		@include rem(border-radius, .2);
+	}
+
+
+
+//  = TOKENS
+//  ---------------------------------------------------------------------------
+
+	.token.comment,
+	.token.prolog,
+	.token.doctype,
+	.token.cdata
+	{
+		color: $gray;
+	}
+
+	.token.punctuation
+	{
+		color: $grayDark;
+	}
+
+	.namespace
+	{
+		opacity: .7;
+	}
+
+	.token.property,
+	.token.tag,
+	.token.boolean,
+	.token.number
+	{
+		color: $red;
+	}
+
+	.token.selector,
+	.token.attr-name,
+	.token.string
+	{
+		color: saturate(darken($green, 20%), 5%);
+	}
+
+	.token.operator,
+	.token.entity,
+	.token.url,
+	.language-css .token.string,
+	.style .token.string
+	{
+		color: #a67f59;
+		background: $whiteSmoke;
+	}
+
+	.token.atrule,
+	.token.attr-value,
+	.token.keyword
+	{
+		color: $blue;
+	}
+
+
+	.token.regex,
+	.token.important
+	{
+		color: $orange;
+	}
+
+	.token.important
+	{
+		font-weight: bold;
+	}
+
+	.token.entity
+	{
+		cursor: help;
+	}

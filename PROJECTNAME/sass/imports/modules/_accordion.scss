@@ -1,0 +1,158 @@
+//  ---------------------------------------------------------------------------
+//	
+//	ACCORDION MODULE
+//
+//	List of clickable Elements. Elements can be expanded and contain sub-elements.
+//
+//	Example with two elements, each with two sub-elements:
+//	
+//	HTML structure:
+//	<ul class="accordion">
+//		<li class="accordion__divider">
+//			<a href="#nav" data-collapse-target-group="accordion" data-collapse-target-member="fruits">Fruits</a>
+//		</li>
+//		<li class="collapse-bd is-expanded" data-collapse-group="accordion" data-collapse-member="fruits">
+//			<ul class="accordion__inner collapse-inner">
+//				<li class="accordion__inner-element"><a href="#">Strawberry</a></li>
+//				<li class="accordion__inner-element"><a href="#">Raspberry</a></li>
+//			</ul>
+//		</li>
+//		<li class="accordion__divider">
+//			<a href="#btn" data-collapse-target-group="accordion" data-collapse-target-member="vege">Vegetables</a>
+//		</li>
+//		<li class="collapse-bd" data-collapse-group="accordion" data-collapse-member="vege">
+//			<ul class="accordion__inner collapse-inner">
+//				<li class="accordion__inner-element"><a href="#">broccoli</a></li>
+//				<li class="accordion__inner-element"><a href="#">carrots</a></li>
+//			</ul>
+//		</li>
+//	</ul>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$accordionLarge: 		$large-width;
+	$accordionHuge: 		$huge-width;
+
+	
+
+//	= COLORS
+//	---------------------------------------------------------------------------
+
+	$accordionBaseColor: 					$whiteSmoke;
+	$accordionBorderColor:					darken($whiteSmoke, 10%);
+
+	$accordionLinkColor:					$textColor;
+	$accordionLinkHoverColor:				$primaryAccent;
+
+	$accordionDividerTopBorderColor:		lighten($whiteSmoke, 2%);
+	$accordionDividerBottomBorderColor:		darken($whiteSmoke, 10%);
+	$accordionDividerFontColor:				$headingsColor;
+
+	$accordionInnerBackgroundColor:			darken($accordionBaseColor, 1%);
+
+
+
+//	= ACCORDION
+//	---------------------------------------------------------------------------
+
+.l-accordion
+{
+
+//  = LARGE SCREEN
+//  ---------------------------------------------------------------------------
+
+	@include at-breakpoint($accordionLarge)
+	{
+		@include span-columns(3, $large-cols);
+	}
+
+
+//  = HUGE SCREEN
+//  ---------------------------------------------------------------------------
+
+	@include at-breakpoint($accordionHuge no-mq)
+	{
+		@include span-columns(3, $huge-cols);
+	}
+}
+
+//  ---------------------------------------------------------------------------
+//
+//  Defines the styling for the side navigation area.
+//
+//  ---------------------------------------------------------------------------
+
+	.accordion
+	{ 
+		padding:0;
+
+		// Remove 1px from bottom margin
+		// to account for the borders
+		@include rem(margin-bottom, $doubleSpace - $borderThin * 2);
+		margin-left:0;
+
+		border:0 solid $accordionBorderColor;
+		@include rem(border-width, $borderThin);
+		background:$accordionBaseColor;
+		border-bottom:none;
+
+		li 
+		{
+			list-style-type:none;
+		}
+
+		a
+		{
+			display:block;
+			color:$accordionLinkColor;
+
+			&:hover
+			{
+				background:none;
+				color:$accordionLinkHoverColor;
+			}
+		}
+	}
+
+	.accordion__divider
+	{
+		font-family:$headingsFontFamily;
+		font-weight:$headingsFontWeight;
+		color:$accordionDividerFontColor;
+		text-rendering:optimizelegibility;
+		@include hyphens(none);
+		@include setType($h4Size, $h4LineHeight);
+		border-top: 1px solid $accordionDividerTopBorderColor;
+		border-bottom: 1px solid $accordionDividerBottomBorderColor;
+		position:relative;
+	}
+
+	.accordion__inner
+	{
+		margin:0;
+		padding:0;
+		background: $accordionInnerBackgroundColor;
+		box-shadow: inset 0 0 3px rgba(#000, .1);;
+	}
+
+	.accordion__divider a,
+	.accordion__inner-element a
+	{
+		@include rem(padding, $singleSpace);
+	}
+
+	.accordion__divider [data-collapse-target-group]:after
+	{
+		position:absolute;
+		@include rem(right, $singleSpace);
+		content: "\002B";
+	}

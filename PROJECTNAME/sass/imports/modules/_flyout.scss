@@ -1,0 +1,615 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  FLYOUT NAVIGATION MENU LYING BEHIND CONTENT
+//
+//	<div class="flyout js-flyout">
+//		<nav class="flyout__nav js-flyout__nav">
+//			<div class="flyout__header">Social Media</div>
+//			<ul class="flyout__items">
+//				<li class="flyout__item"><a class="flyout__link" href title="Show me this"><i class="fa fa-w fa-facebook-sign"></i> Facebook</a></li>
+//				<li class="flyout__item"><a class="flyout__link flyout__link--is-active" href title="Show me this"><i class="fa fa-fw fa-twitter-sign"></i> Twitter</a></li>
+//				<li class="flyout__item"><a class="flyout__link" href title="Show me this"><i class="fa fa-w fa-google-plus-sign"></i> Google+</a></li>
+//				<li class="flyout__item"><a class="flyout__link" href title="Show me this"><i class="fa fa-w fa-pinterest-sign"></i> Pinterest</a></li>
+//			</ul>
+//		</nav>
+//		<div class="flyout__content js-flyout__content">
+//			<a href title="Show me this" class="flyout__toggle js-flyout__toggle"><i class="fa fa-bars"></i></a>
+//			<h3>Twitter</h3>
+//			<p>
+//				Twitter's origins lie in a "daylong brainstorming session" held by board members of the podcasting company Odeo.
+//			</p>
+//		</div>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+	
+//  BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$flyoutSmall: 		$small-width;
+	$flyoutMedium: 		$medium-width;
+	$flyoutLarge: 		$large-width;
+	$flyoutHuge: 		$huge-width;
+	$flyoutGiant: 		$giant-width;
+	$flyoutMonstrous:	$monstrous-width;
+
+
+//  BEHAVIOUR
+//  ---------------------------------------------------------------------------
+	
+	// Change flyout to sidebar on medium screens
+	$becomesSidebar:					true;
+	// Change flyout to top bar on large screens
+	$becomesTopBar:						false;
+
+
+//  COLORS
+//  ---------------------------------------------------------------------------
+	
+	// Change only base & toggle text color. All the other
+	// colors are calculated and adjusted automatically
+	$flyoutBaseColor:					$primaryAccent;
+	$flyoutToggleColor:					$white;
+
+	// Don't change these
+	$flyoutNavColor:					$white;
+	$flyoutNavBackgroundColor:			hsl(hue($flyoutBaseColor), 10%, 20%);
+	$flyoutNavBackgroundColorSidebar:	darken($flyoutBaseColor, 30%);
+	$flyoutContentBackground:			$bodyBackgroundColor;
+
+
+//  SIZES
+//  ---------------------------------------------------------------------------
+	
+	$flyoutSlideOpenDistance:			80%;
+	$flyoutLinkBorderWidth:				.1;
+	$flyoutLinkBorderRadius:			.6;
+	$flyoutLinkActiveArrowSize:			$singleSpace - .4;
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+
+//  WRAPPER & CONTENT
+//  ---------------------------------------------------------------------------
+
+	.flyout,
+	.flyout__content
+	{
+		position:relative;
+	}
+
+	.flyout
+	{
+		overflow:hidden;
+	}
+
+	.flyout__content
+	{
+		z-index:2;
+		background:$flyoutContentBackground;
+		@include transition(transform .3s ease-out);
+		-webkit-backface-visibility:hidden;
+
+		@if $becomesSidebar
+		{
+			@include at-breakpoint($flyoutHuge)
+			{
+				@include span-columns(9 omega, $huge-cols);
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				@include reset-columns;
+			}
+		}
+		@else
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				@include span-columns(13 omega, $giant-cols);
+			}
+
+			@include at-breakpoint($flyoutMonstrous)
+			{
+				@include span-columns(17 omega, $monstrous-cols);
+			}
+		}
+	}
+
+	@if $becomesSidebar
+	{
+		.flyout__content--main
+		{
+			@include at-breakpoint($flyoutHuge)
+			{
+				@include transition(transform .3s ease-out, width .3s ease-out);
+			}
+		}
+	}
+
+	@if $becomesSidebar
+	{
+		.sidebar--is-hidden .flyout__content--main
+		{
+			@include at-breakpoint($flyoutHuge)
+			{
+				width:100%;
+			}
+		}
+	}
+
+	.flyout--is-open .flyout__content
+	{
+		@include transform(translate3d($flyoutSlideOpenDistance,0,0));
+
+		@if $becomesSidebar
+		{
+			@include at-breakpoint($flyoutHuge)
+			{
+				@include transform(translate3d(0,0,0));
+			}
+		}
+	}
+
+
+//  MENU
+//  ---------------------------------------------------------------------------
+
+	// .l-flyout__nav
+	// {
+	// 	position:relative;
+	// }
+
+	.flyout__nav
+	{
+		position:absolute;
+		top:0;
+		right:100% - $flyoutSlideOpenDistance;
+		bottom:0;
+		left:0;
+		@include rem(padding, 0 $singleSpace $singleSpace $singleSpace / 2);
+		background:$flyoutNavBackgroundColor;
+		font-family:$sansFontFamily;
+		color:$flyoutNavColor;
+		@include transition(transform .3s ease-out);
+		@include transform-origin(0, 50%);
+
+		.fa
+		{
+			@include rem(margin-right, $singleSpace / 2);
+			font-size:120%;
+		}
+
+		.fa-fw
+		{
+			@include rem(width, $doubleSpace);
+		}
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					position:static;
+					@include span-columns(3, $huge-cols);
+					@include rem(padding, $singleSpace 0);
+					background:$flyoutContentBackground;
+					color:$textColor;
+				}
+			}
+			@else
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					position:absolute;
+					@include rem(top, $touchSize);
+					@include rem(padding-top, $doubleSpace);
+					right:auto;
+
+					@include span-columns(3, $huge-cols);
+					z-index:800;
+				}
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				@include reset-columns;
+				@include rem(padding-left, $singleSpace);
+			}
+		}
+		@else
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				@include span-columns(3, $giant-cols);
+			}
+			
+			@include at-breakpoint($flyoutMonstrous)
+			{
+				@include span-columns(3, $monstrous-cols);
+			}
+		}
+	}
+
+	@if $becomesSidebar
+	{
+		@include at-breakpoint($flyoutHuge)
+		{
+			.sidebar--is-hidden .flyout__nav
+			{
+				@include transform(translate3d(-120%,0,0));
+			}
+
+			.sidebar--is-detached .flyout__nav
+			{
+				display:none;
+			}
+		}
+	}
+	
+
+
+//  NAVIGATION ENTRIES
+//  ---------------------------------------------------------------------------
+	
+	.flyout__header
+	{
+		@include rem(margin-bottom, $singleSpace);
+		@include rem(padding, 0 ($singleSpace / 2 + .5));
+		border-bottom:0 solid darken($flyoutNavBackgroundColor, 2%);
+		@include rem(border-bottom-width, $flyoutLinkBorderWidth);
+		@include setType(2.2, $touchSize - .1);
+		font-weight:bold;
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					@include rem(margin-bottom, $singleSpace);
+					border-bottom:0 none;
+					@include rem(line-height, $h3LineHeight);
+				}
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				display:none;
+			}
+		}
+	}
+
+	.flyout__items
+	{
+		margin-left:0;
+		padding:0;
+	}
+
+	.flyout__sub-items
+	{
+		margin-left:0;
+		@include rem(padding-left, 4);
+	}
+
+	.flyout__item
+	{
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				display:inline;
+				@include rem(margin-right, $singleSpace);
+			}
+		}
+	}
+
+	.flyout__link,
+	.flyout__sub-link
+	{
+		display:block;
+		@include rem(padding, 0 $singleSpace / 2);
+		border:0 solid transparent;
+		@include rem(border-width, $flyoutLinkBorderWidth);
+		@include rem(border-radius, $flyoutLinkBorderRadius);
+		@include rem(line-height, $touchSize);
+		color:$flyoutNavColor;
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+		@include transition(border-color .2s linear, background-color .2s linear, opacity .2s linear);
+
+		.fa
+		{
+			color:lighten($flyoutNavBackgroundColor, 20%);
+			@include transition(color .2s linear);
+		}
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					color:$flyoutBaseColor;
+				}
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				display:inline-block;
+				padding:0;
+				border-radius:0;
+				border:0 none;
+				border-bottom:0 solid transparent;
+				@include rem(border-bottom-width, $flyoutLinkBorderWidth * 2);
+			}
+		}
+	}
+
+	.flyout__link
+	{
+		font-weight:bold;
+	}
+
+	.flyout__sub-link
+	{
+		opacity:.5;
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					color:$textColor;
+					opacity:.9;
+				}
+			}
+		}
+	}
+
+	.no-touch .flyout__link:hover,
+	.touch .flyout__link:active,
+	.no-touch .flyout__sub-link:hover,
+	.touch .flyout__sub-link:active 
+	{
+		background:darken($flyoutNavBackgroundColor, 2%);
+		opacity:1;
+
+		.fa
+		{
+			color:lighten($flyoutBaseColor, 10%);
+		}
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					background:desaturate(lighten($flyoutNavBackgroundColor, 75%), 30%);
+					color:$flyoutBaseColor;
+
+					.fa
+					{
+						color:$flyoutBaseColor;
+					}
+				}
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				background:none;
+				border-bottom-color:$flyoutBaseColor;
+			}
+		}
+	}
+
+	.no-touch .flyout__item:hover,
+	.touch .flyout__item:active
+	{
+		.fa
+		{
+			color:lighten($flyoutBaseColor, 10%);
+		}
+	}
+
+	.flyout__item--is-active
+	{
+		.fa
+		{
+			color:lighten($flyoutBaseColor, 10%);
+		}
+	}
+
+	.flyout__link--is-active
+	{
+		position:relative;
+		border-color:desaturate(lighten($flyoutNavBackgroundColor, 5%), 10%);
+		background:darken($flyoutNavBackgroundColor, 2%);
+		color:$flyoutNavColor;
+		opacity:1;
+
+		&:after
+		{
+			content:" ";
+			position:absolute;
+			top:50%;
+			@include rem(right, -$singleSpace - .1);
+			@include rem(margin-top, -$flyoutLinkActiveArrowSize);
+			height:0;
+			width:0;
+			border:0 solid transparent;
+			border-right-color:$flyoutContentBackground;
+			@include rem(border-width, $flyoutLinkActiveArrowSize);
+			pointer-events:none;
+
+			@if $becomesSidebar
+			{
+				@if $becomesTopBar
+				{
+					@include at-breakpoint($flyoutHuge)
+					{
+						content:none;
+					}
+				}
+			}
+		}
+
+		@if $becomesSidebar
+		{
+			@if $becomesTopBar
+			{
+				@include at-breakpoint($flyoutHuge)
+				{
+					background:desaturate(lighten($flyoutNavBackgroundColor, 75%), 30%);
+					border-color:desaturate(lighten($flyoutNavBackgroundColor, 65%), 30%);
+					color:$flyoutBaseColor;
+
+					.fa
+					{
+						color:$flyoutBaseColor;
+					}
+				}
+			}
+		}
+
+		@if $becomesTopBar
+		{
+			@include at-breakpoint($flyoutGiant)
+			{
+				background:none;
+				border-bottom-color:$flyoutBaseColor;
+			}
+		}
+	}
+
+
+//  TOGGLE BUTTON
+//  ---------------------------------------------------------------------------
+	
+	.flyout__toggle,
+	.sidebar__toggle
+	{
+		display:inline-block;
+		@include absbleed($singleSpace);
+		@include rem(font-size, 2.4);
+		@include rem(line-height, $touchSize);
+		color:$flyoutToggleColor;
+		@include transition(background-color .2s linear);
+
+		@if $becomesSidebar
+		{
+			@include at-breakpoint($flyoutHuge)
+			{
+				display:none;
+			}
+		}
+	}
+
+	.sidebar__toggle
+	{
+		display:none;
+		@include rem(width, 4.9);
+		@include rem(height, $touchSize);
+
+		@if $becomesSidebar
+		{
+
+			.fa-indent,
+			.fa-outdent
+			{
+				position:absolute;
+				top:50%;
+				@include rem(margin-top, -1.2);
+				@include transition(opacity .3s linear);
+			}
+
+			.fa-indent
+			{
+				opacity:0;
+			}
+
+			@include at-breakpoint($flyoutHuge)
+			{
+				display:inline-block;
+			}
+		}
+	}
+
+	.sidebar--is-hidden .sidebar__toggle
+	{
+		@if $becomesSidebar
+		{
+
+			.fa-indent
+			{
+				opacity:1;
+			}
+
+			.fa-outdent
+			{
+				opacity:0;
+			}
+		}
+	}
+
+	.no-touch .flyout__toggle:hover,
+	.touch .flyout__toggle:active,
+	.no-touch .sidebar__toggle:hover,
+	.touch .sidebar__toggle:active
+	{
+		background:$flyoutNavBackgroundColor;
+		color:$flyoutNavColor;
+	}
+
+
+	.no-toggle-menu 
+	{
+		.js-flyout__toggle, 
+		.js-sidebar__toggle 
+		{
+			display: none;
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+

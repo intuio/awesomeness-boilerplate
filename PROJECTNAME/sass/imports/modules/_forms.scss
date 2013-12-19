@@ -1,0 +1,687 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  FORMS
+//
+//  ---------------------------------------------------------------------------
+
+
+	
+//  = BREAKPOINTS
+//
+// 	These default to the global major breakpoints.
+//  You can adjust these breakpoints to have the 
+//  module better fit into a specific context.
+//  ---------------------------------------------------------------------------
+
+	$formsSmall: 		$small-width;
+	$formsMedium: 		$medium-width;
+	$formsLarge: 		$large-width;
+	$formsHuge: 		$huge-width;
+	$formsGiant: 		$giant-width;
+	$formsMonstrous:	$monstrous-width;
+
+
+//  = SIZES
+//  ---------------------------------------------------------------------------
+	
+	$inputHeightLarge:					$baseLineHeight * 4;
+	$inputHeight:						$baseLineHeight * 3;
+
+
+//  = COLORS
+//  ---------------------------------------------------------------------------
+		
+	$inputBorderColor:					$grayVeryLight;
+	$inputBorderRadius:					$borderRadius;
+	$inputFocusBorderColor:				$primaryAccent;
+
+	$inputRequiredColor:				$red;
+
+	$searchButtonHoverBackgroundColor:	$primaryAccent;
+	$searchButtonActiveBackgroundColor:	darken($primaryAccent, 10%);
+	$searchButtonHoverTextColor:		darken($primaryAccent, 40%);
+	
+	$placeholderTextColor:				$gray;
+	$disabledTextColor:					$grayVeryLight;
+		
+	$messageTextSize:					1.4;//px
+			
+	$errorTextColor:					$red; 
+	$errorBorderColor:					$red;  
+	$errorBackgroundColor:				lighten($errorBorderColor, 37%); 
+	$errorShadowColor:					transparentize(darken($red, 50%), .75);  
+	$errorIconColor:  					$red;  
+		
+	$successTextColor:					$green;
+	$successBorderColor:				$green;           
+	$successBackgroundColor:			lighten($successBorderColor, 16%);
+	$successIconColor:					$green;
+
+
+
+//  ---------------------------------------------------------------------------
+//
+//  STYLES
+//
+//  ---------------------------------------------------------------------------
+
+
+// = BASE ELEMENT STYLING
+// --------------------------------------------------
+	
+	// Reset groups
+	fieldset 
+	{
+		margin:0;
+		padding:0;
+		border:0;
+
+		legend 
+		{
+			font-family:$headingsFontFamily;
+			font-weight:$headingsFontWeight;
+			color:$headingsColor;
+			text-rendering:optimizelegibility;
+			@include hyphens(none);
+			@include setType($h3Size, $h3LineHeight);
+
+			// cannot use margins here since Safari is collapsing margins on legend elements
+			@include rem(padding-bottom, $singleSpace);
+		}
+	}
+
+	// Set font for forms
+	label,
+	input,
+	button,
+	select,
+	textarea,
+	{
+		@include setType($bodyFontSize, $bodyLineHeight); // Set size, weight, line-height here
+	}
+	
+	// Labels
+	label 
+	{	
+		display: block;
+		font-family:$headingsFontFamily;
+		font-weight:bold;
+		// add margin-bottom but maintain vertical rhythm
+		@include rem(line-height, $bodyLineHeight - $singleSpace / 2);
+		@include rem(padding-bottom, $singleSpace / 2);
+	}
+
+	input,
+	button,
+	select,
+	textarea 
+	{
+		font-family: $baseFontFamily; // And only set font-family here for those that need it (note the missing label element)
+		-webkit-tap-highlight-color:rgba(0,0,0,0);
+	}
+
+	// Reset width of input images, buttons, radios, checkboxes
+	input[type="file"],
+	input[type="image"],
+	input[type="submit"],
+	input[type="reset"],
+	input[type="button"],
+	input[type="radio"],
+	input[type="checkbox"] 
+	{
+		width: auto; // Override of generic input selector
+	}
+
+	// Disabled and read-only inputs
+	input[disabled],
+	select[disabled],
+	textarea[disabled],
+	input[readonly],
+	select[readonly],
+	textarea[readonly] 
+	{
+		cursor: default;
+	}
+	
+	// Explicitly reset the colors here
+	input[type="radio"][disabled],
+	input[type="checkbox"][disabled],
+	input[type="radio"][readonly],
+	input[type="checkbox"][readonly] 
+	{
+		background-color: transparent;
+	}
+
+	input[type="date"],
+	input[type="datetime"],
+	input[type="datetime-local"]
+	{
+		display:-webkit-inline-flex;
+	}
+
+	select 
+	{
+		@include rem(padding, .3 .4 .4);
+		// Make select elements obey height by applying a border
+		border: 1px solid $inputBorderColor;
+		background-color: $white; // Chrome on Linux and Mobile Safari need background-color
+	}
+
+	// Set the height of select and file controls to match text inputs
+	select,
+	input[type="file"] 
+	{
+		@include rem(height, $inputHeight); /* In IE7, the height of the select element cannot be changed by height, only font-size */
+		*margin-top: 4px; /* For IE7, add top margin to align select with labels */
+		@include rem(line-height, $inputHeight);
+		&:focus
+		{
+			@include tab-focus();
+		}
+	}
+	
+	// Make multiple select elements height not fixed
+	select[multiple],
+	select[size], 
+	textarea 
+	{
+		height: auto;
+	}
+	
+	// Position radios and checkboxes better
+	input[type="radio"],
+	input[type="checkbox"] 
+	{
+		*margin-top: 0; /* IE7 */
+		margin-top: 3px \9; /* IE8-9 */
+		line-height: normal;
+		&:focus
+		{
+			@include tab-focus();
+		}
+	}
+
+	// Prevent cut off radios
+	input[type="radio"]
+	{
+		margin-left:1px;
+	}
+
+	
+	// remove spin buttons in webkit browsers for number fields
+	input::-webkit-outer-spin-button,
+	input::-webkit-inner-spin-button 
+	{
+	  	// display: none; <- Crashes Chrome on hover
+	   	-webkit-appearance: none;
+	   	margin: 0; //Apparently some margin are still there even though it's hidden
+	}
+
+	textarea,
+	[type="text"],
+	[type="password"],
+	[type="datetime"],
+	[type="datetime-local"],
+	[type="date"],
+	[type="month"],
+	[type="time"],
+	[type="week"],
+	[type="number"],
+	[type="email"],
+	[type="url"],
+	[type="search"],
+	[type="tel"],
+	[type="color"]
+	{
+		-webkit-appearance:none;
+	}
+
+	// Shared size and type resets
+	select,
+	textarea,
+	[type="text"],
+	[type="password"],
+	[type="datetime"],
+	[type="datetime-local"],
+	[type="date"],
+	[type="month"],
+	[type="time"],
+	[type="week"],
+	[type="number"],
+	[type="email"],
+	[type="url"],
+	[type="search"],
+	[type="tel"],
+	[type="color"]
+	{
+		
+		// Layout and sizing
+		@include inline-block;
+		width:100%;
+		//@include rem(height, $inputHeight);
+		//@include rem(line-height, $inputHeight);
+		// @include rem(margin-bottom, $doubleSpace);
+		@include rem(padding, $singleSpace / 2);
+		vertical-align:top;
+		// Style
+		color: $textColor;
+		background-color: $white;
+		border: 1px solid $inputBorderColor;
+		border-radius:$inputBorderRadius;
+		border-top-color:darken($inputBorderColor, 10%);
+		@include transition(border linear .2s 0, box-shadow linear .2s 0, margin linear .2s 0);
+		
+
+		// Hover
+		&:hover
+		{
+			border-color:darken($inputBorderColor, 12%);
+			border-top-color:darken($inputBorderColor, 22%);
+			@include box-shadow(inset 0 1px 1px rgba(0,0,0,.1));
+		}
+
+		&[disabled], 
+		&[readonly] 
+		{
+			color:$disabledTextColor;
+			border: 1px solid $inputBorderColor;
+			@include box-shadow(none); 
+			// Focus & active
+			&:hover, 
+			&:active,
+			&:focus 
+			{			
+				border: 1px solid $inputBorderColor;
+				@include box-shadow(none); 
+			}
+		}
+		&[readonly] 
+		{
+			border:0 none;
+			background:transparent;
+			padding:0;
+			height:auto;
+
+			*height:#{$inputHeight * 10px}; /* IE7 */
+			height:#{$inputHeight * 10px}\9; /* IE8-9 */
+			
+			color:$textColor;
+			&:hover, 
+			&:active,
+			&:focus 
+			{			
+				border: 0 none;
+			}
+			
+		}
+		// Focus & active
+		&:active,
+		&:focus 
+		{			
+			border-color:lighten($inputFocusBorderColor, 5%);
+			border-top-color:$inputFocusBorderColor;
+			@include box-shadow(inset 0 1px 2px rgba(0,0,0,.2));
+			//remove outline border in IE LTE9
+			outline:none;
+			ie-dummy:expression(this.hideFocus=true);
+		}
+	}
+
+
+
+// = FORM CONTAINER ELEMENTS
+// --------------------------------------------------
+
+	.form-component
+	{
+		position:relative;
+		@include rem(margin-bottom, $doubleSpace);
+		@extend .cf;
+ 
+		
+		// Form-input-blocks can be mandatory
+		&.is-required
+		{
+			label:after 
+			{
+				color:$inputRequiredColor;
+				content:" *";
+			}
+
+			.media__img > label:after,
+			.media__bd > label:after
+			{
+				content:none;
+			}
+		}
+
+		// Message icons
+		[class*="fa-warning"],
+		[class*="fa-check"]
+		{
+			position:absolute;
+			@include rem(top, $bodyLineHeight);
+			@include rem(right, .8);
+			@include setType($bodyFontSize, $inputHeight);
+			@include opacity(0);
+			@include transition(opacity .2s linear);
+		}
+
+		[class*="fa-check"]
+		{
+			color:$successIconColor;
+		}
+
+		[class*="fa-warning"]
+		{
+			color:$errorIconColor;
+		}
+
+		// Form Error State
+		&.is-error
+		{
+			textarea,
+			[type="text"],
+			[type="password"],
+			[type="datetime"],
+			[type="datetime-local"],
+			[type="date"],
+			[type="month"],
+			[type="time"],
+			[type="week"],
+			[type="number"],
+			[type="email"],
+			[type="url"],
+			[type="search"],
+			[type="tel"],
+			[type="color"]
+			{
+				@include rem(padding-right, $singleSpace * 2.5); // Add padding to make room for the icon
+				border-color:lighten($errorBorderColor, 20%);
+				border-top-color:lighten($errorBorderColor, 15%);
+				background:$errorBackgroundColor;
+				color:$errorTextColor;
+				
+				&:hover,
+				&:focus
+				{
+					border-color:lighten($errorBorderColor, 10%);
+					border-top-color:$errorBorderColor;
+				}
+				
+				&:focus
+				{
+					@include box-shadow(inset 0 1px 2px $errorShadowColor);
+				}
+			}
+
+			// display error message and icon
+			.form-message,
+			[class*="fa-warning"]
+			{
+				@include opacity(1);
+			}
+		}
+
+		// Form OK State
+		&.is-ok
+		{	
+			textarea,
+			[type="text"],
+			[type="password"],
+			[type="datetime"],
+			[type="datetime-local"],
+			[type="date"],
+			[type="month"],
+			[type="time"],
+			[type="week"],
+			[type="number"],
+			[type="email"],
+			[type="url"],
+			[type="search"],
+			[type="tel"],
+			[type="color"]
+			{
+				@include rem(padding-right, $singleSpace * 2.5); // Add padding to make room for the icon
+			}
+
+			// display ok icon
+			.form-message,
+			[class*="fa-check"]
+			{
+				@include opacity(1);		
+			}
+		}
+
+		&:last-child
+		{
+			margin-bottom:0;
+		}
+
+	}
+
+	.form-component--group
+	{
+		@include rem(margin-bottom, $doubleSpace - $borderThin * 2); 
+		@include rem(padding, $singleSpace);
+		border:0 solid darken($white, 14%);
+		@include rem(border-width, $borderThin);
+		background:darken($white, 4%);
+
+		> :last-child
+		{
+			margin-bottom:0;
+		}
+	}
+
+	.input--inline
+	{
+		@include inline-block;
+		@include rem(margin-right, $r-gutter-width - .4);
+		vertical-align:top;
+	}
+
+
+
+// = SPECIAL KINDS OF INPUT
+// --------------------------------------------------
+
+	.input--search
+	{
+		position:relative;
+
+		.btn 
+		{
+			position:absolute;
+			top:0;
+			right:0;
+
+			margin:0;
+			border-color:transparent;
+			background:none;
+			background-color:transparent;
+
+			@include transition(color .1s linear, background-color .2s linear);
+
+			[class*="fa-search"]
+			{
+				@include rem(font-size, $bodyFontSize * 1.2);
+			}
+		}
+
+		.btn:focus
+		{
+			@include background(linear-gradient($primaryAccent, $primaryAccent));
+			color:$white;
+			box-shadow:none;
+			border-color:transparent;
+		}
+
+		input:focus + .btn
+		{
+			@include background(linear-gradient($primaryAccent, $primaryAccent));
+			color:$white;
+			box-shadow:none;
+			border-color:transparent;
+		}
+	}
+
+	.no-touch .input--search
+	{
+		.btn:hover
+		{
+			@include background(linear-gradient($primaryAccent, $primaryAccent));
+			color:$white;
+			box-shadow:none;
+			border-color:transparent;
+		}
+
+		.btn:active
+		{
+			@include background(linear-gradient(darken($primaryAccent, 5%), darken($primaryAccent, 5%)));
+			color:$white;
+			box-shadow:none;
+			border-color:transparent;
+		}
+	}
+
+	.touch .input--search
+	{
+		.btn:active
+		{
+			@include background(linear-gradient(darken($primaryAccent, 5%), darken($primaryAccent, 5%)));
+			color:$white;
+			box-shadow:none;
+			border-color:transparent;
+		}
+	}
+
+	.input--with-nested-element
+	{
+		input 
+		{
+			@include rem(margin-bottom, $singleSpace / 2);
+		}
+	}
+
+	.input--with-icon
+	{
+		position:relative;
+
+		[class*="fa-"]
+		{
+			position:absolute;
+			@include rem(left, $singleSpace);
+			@include setType($bodyFontSize * 1.5, $inputHeight);
+		}
+
+		input
+		{
+			@include rem(padding-left, $singleSpace * 3.5);
+		}
+	}
+
+	.input--with-icon--rev
+	{
+		@extend .input--with-icon;
+
+		[class*="fa-"]
+		{
+			left:initial;
+			left: auto;
+			@include rem(right, $singleSpace);
+		}
+
+		input
+		{
+			@include rem(padding-left, .5);
+			@include rem(padding-right, $singleSpace * 3.5);
+		}
+	}
+
+
+
+// = CHECKBOXES AND RADIO BUTTONS
+// --------------------------------------------------
+
+	.checkbox,
+	.radio
+	{
+		@include rem(margin-bottom, $singleSpace);
+
+		[type="checkbox"],
+		[type="radio"]
+		{
+			@include rem(margin-top, .6);
+		}
+
+		label
+		{
+			margin-bottom:0;
+			padding-bottom:0;
+			@include rem(line-height, $bodyLineHeight);
+		}
+	}
+
+
+	// initialize inline messages
+	.form-message
+	{
+		margin:0;
+		@include rem(padding, .4 0);
+		font-family:$headingsFontFamily;
+		font-weight:bold;
+		@include setType($messageTextSize, $bodyFontSize);
+		color:$errorTextColor;
+		overflow:hidden;
+		@include opacity(0);
+		@include transition(opacity .2s linear);
+	}
+
+	form
+	{
+		@include rem(margin-bottom, $bodyLineHeight * 2);
+	}
+
+
+
+// = INPUT SIZES 
+// --------------------------------------------------
+
+	body
+	{
+		@include at-breakpoint($formsSmall)
+		{
+			@include calc-input-widths($formsSmall);
+		}
+
+		@include at-breakpoint($formsMedium)
+		{
+			@include calc-input-widths($formsMedium);
+		}
+
+		@include at-breakpoint($formsLarge)
+		{
+			@include calc-input-widths($formsLarge);
+		}
+
+		@include at-breakpoint($formsHuge)
+		{
+			@include calc-input-widths($formsHuge);
+		}
+
+		@include at-breakpoint($formsGiant no-mq)
+		{
+			@include calc-input-widths($formsGiant);
+		}
+
+		@include at-breakpoint($formsMonstrous no-mq)
+		{
+			@include calc-input-widths($formsMonstrous);
+		}
+	}
+
+
+
+	

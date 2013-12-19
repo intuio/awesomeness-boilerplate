@@ -1,0 +1,318 @@
+//  ---------------------------------------------------------------------------
+//
+//  SLIDER
+//	
+//	Horizontal Slider with native vertical scrolling capabilities. 
+//
+//	*IMPORTANT*
+//	You have to specify, how many images are in the slider at the bottom of
+//	this sass file. More instructions are at the bottom
+//
+//	Example slider with two images:
+//	
+//	HTML structure:
+//	<div class="slider-container space-lover">
+//		<h2>But perhaps some of our projects do.</h2>
+//		<div class="slider">
+//			<ul class="slides slides--contains-2">
+//				<li class="slide">
+//					<!-- First slide -->
+//					<img class="slide__img" src="/img/slider-carrotcake.jpg" alt="Carrot Cake">
+//					<div class="slide__caption">
+//						<h3>Carrot Cake</h3>
+//						<p>Contains carrots</p>
+//						<a href="http://www.flickr.com/photos/stevenbrisson/4248069302/">StevenBrisson on Flickr</a>
+//					</div>
+//				</li>
+//
+//				<li class="slide">
+//					<!-- second slide -->
+//					<img class="slide__img" src="/img/slider-madleines.jpg" alt="A1 workforce management screenshot">
+//					<div class="slide__caption">
+//						<h3>Piggy Madeleines</h3>
+//						<p>Small, piggy shaped madeleines.</p>
+//						<a href="http://www.flickr.com/photos/bananagranola/4312761345/">bananagranola on Flickr</a>
+//					</div>
+//				</li>
+//
+//			</ul>
+//		</div>
+//		<ul class="slider__controls slider__controls--is-start">
+//			<li>
+//				<a class="slider__prev" href="#">
+//					<i class="fa fa-chevron-left"></i>
+//				</a>
+//			</li>
+//			<li>
+//				<a class="slider__next" href="#">
+//					<i class="fa fa-chevron-right"></i>
+//				</a>
+//			</li>
+//		</ul>
+//	</div>
+//
+//  ---------------------------------------------------------------------------
+
+
+
+//	= COLORS
+
+	$baseColor:			$white;
+	$borderColor: 		#e9e0d3;
+
+
+//	= BREAKPOINTS
+//  ---------------------------------------------------------------------------
+
+	$sliderLarge: 			$large-width;
+
+//	Special case to make the slider behave better on 1024px
+	$from-huge-width: 	64.0625em; // 1025px
+
+
+ 
+//	Browser Resets
+//  ---------------------------------------------------------------------------
+	.slider-container a:active,
+	.slider a:active,
+	.slider-container a:focus,
+	.slider a:focus
+	{
+		outline: none;
+	}
+
+	.slider-container
+	{
+		zoom:1;
+		position:relative
+	}
+
+	.slides,
+	.slider__controls 
+	{
+		margin: 0; 
+		padding: 0; 
+		list-style: none;
+	} 
+
+
+
+//	Slider
+//  ---------------------------------------------------------------------------
+	.slider 
+	{
+		
+		@include rem(margin-bottom, $singleSpace); 
+		// @include rem(padding, $singleSpace);
+		border:0 solid $borderColor;
+		@include rem(border-width, $borderThin);
+		background:$baseColor;
+
+		overflow-x:scroll;
+		-webkit-overflow-scrolling:touch;
+
+		&::-webkit-scrollbar
+		{
+	    	display: none; 
+		}
+
+		// Hides the scrollbar.
+		-ms-overflow-style: none;
+		
+		// Prevents Metro from swiping to the next tab or app.
+		-ms-scroll-chaining: none;
+
+		// Breakpoints
+		@include at-breakpoint($sliderLarge)
+		{
+			// @include rem(padding, $doubleSpace);
+		}
+	}
+
+	.slides
+	{
+		@extend .cf;
+		@include rem(padding, $singleSpace/2);	
+
+		@include at-breakpoint($sliderLarge)
+		{
+			@include rem(padding, $singleSpace);	
+		}
+	}
+
+	.slide__img
+	{
+		width: 100%; 
+		display: block;
+	}
+
+	.slide__caption
+	{
+		@include rem(padding-top,$singleSpace);
+
+		// Breakpoints
+		@include at-breakpoint($sliderLarge no-mq)
+		{
+			@include rem(padding-top, $doubleSpace);
+		}
+
+		@include at-breakpoint($from-huge-width no-mq)
+		{
+			position:absolute;
+			@include rem(padding, $singleSpace);
+			width:45%;
+			top:auto;
+			right:auto;
+			@include rem(bottom, $doubleSpace);
+			@include rem(left, $doubleSpace);
+			background: rgba($baseColor, 0.7); /* Old browsers */
+		}
+	}
+
+
+	
+//	= SLIDER CONTROLS
+//  ---------------------------------------------------------------------------
+
+	.slider__controls
+	{
+		*height: 0;
+		
+		li 
+		{
+			padding:0;
+			border:0;
+		}
+	}
+		
+	.slider__next,
+	.slider__prev
+	{
+		display: block;
+		position: absolute;
+		@include rem(width, $doubleSpace * 2);
+		@include rem(height, $doubleSpace * 2);
+		top: 50%;
+		z-index:10;
+		cursor: pointer;
+		
+		@include setType($doubleSpace, $doubleSpace * 2);
+		text-align:center;
+		text-shadow: 0 1px 0 rgba(0, 0, 0, .25);
+
+		color: darken($baseColor, 4%);
+		background: rgba(darken($baseColor, 70%), .65);
+		zoom:1;
+
+		border-radius: 50%;
+		@include box-shadow(0 2px 3px rgba(0, 0, 0, .25));
+		@include transition(opacity .3s ease-in-out, left .3s ease-in-out, right .3s ease-in-out);
+		margin: 0 auto 1px;
+
+		opacity:0;
+		
+		&:hover
+		{
+			background:rgba(darken($baseColor, 70%), .85);
+			opacity: 1;
+	  		zoom:1;
+		}
+
+		// Reset line height on font-awesome icons
+		.fa {
+			line-height: inherit;
+		}
+	}
+
+	.slider__next
+	{
+		@include rem(right, -$singleSpace); 
+
+		// Center Icons
+		.fa
+		{
+			@include rem(margin-left, .2); 
+		}
+	}
+
+	.slide__prev
+	{
+		@include rem(left, -$singleSpace); 
+		
+		// Center Icons
+		.fa
+		{
+			@include rem(margin-left, -.2); 
+		}
+	}
+
+
+
+//	HOVER STYLES OF SLIDER CONTROLS
+	.slider-container:hover {
+
+		.slider__next, 
+		.slider__prev
+		{
+
+			opacity: 0.8;
+		}	
+
+		.slider__next
+		{
+			@include rem(right, $singleSpace);
+		}
+
+		.slider__prev
+		{
+			@include rem(left, $singleSpace);
+		}
+
+		.slider__controls--is-start 
+		{
+			.slider__prev
+			{
+				opacity: 0;
+
+				left: 0;
+				pointer-events:none;
+				cursor:default;
+			}
+		}
+
+		.slider__controls--is-end 
+		{
+			.slider__next
+			{
+				opacity: 0;
+
+				right: 0; 
+				pointer-events:none;
+				cursor:default;
+			}
+		}
+	}
+
+
+
+//	HIDE SLIDER CONTROLS ON TOUCHSCREENS
+	.touch .slider__next,
+	.touch .slider__prev
+	{
+		display:none;
+	}
+
+
+
+//	THIS MIXIN GENERATES THE CONTAINERS FOR THE SLIDER BASED ON HOW MANY IMAGES 
+//	YOU WANT IN THE SLIDER. DEFAULTS TO THREE. PUT IN N FOR AS MANY IMAGES AS 
+//	YOU NEED. CLASSES, THAT GET GENERATED ARE NAMED LIKE slides--contains-n,
+//	HOWEVER THE PREFIX CLASS NAME CAN ALSO BE GIVEN AS A SECOND PARAMETER
+//  ---------------------------------------------------------------------------
+	@include slider-items(3, "slides--contains");
+	
+
+
+
+
+	
