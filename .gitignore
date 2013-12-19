@@ -2,3 +2,4 @@
 the-build/
 */.sass-cache/
 *.css
+!*demo.css
