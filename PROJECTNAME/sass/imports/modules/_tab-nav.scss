@@ -68,7 +68,7 @@
 // 	TABS LEFT
 //	---------------------------------------------------------------------------
 
-	@include with-grid-settings($gutter: 0em) 
+	@include with-layout(no-gutters) 
 	{
 
 		.tabs--left {
@@ -78,16 +78,16 @@
 
 			//  = HUGE SCREEN
 			//  ---------------------------------------------------------------------------	
-				@include at-breakpoint($tabHuge no-mq)
+				@include breakpoint($tabHuge, $no-query: '.no-mq')
 				{
-					@include span-columns(4, $huge-cols); 
+					@include span(4 of $huge-cols); 
 				}
 
 			//  = GIANT SCREEN
 			//  ---------------------------------------------------------------------------		
-				@include at-breakpoint($tabGiant)
+				@include breakpoint($tabGiant)
 				{
-					@include span-columns(4, $giant-cols); 
+					@include span(4 of $giant-cols); 
 				}
 			}	
 
@@ -96,16 +96,16 @@
 
 			//  = HUGE SCREEN
 			//  ---------------------------------------------------------------------------		
-				@include at-breakpoint($tabHuge no-mq)
+				@include breakpoint($tabHuge, $no-query: '.no-mq')
 				{
-					@include span-columns(8, $huge-cols); 
+					@include span(8 of $huge-cols); 
 				}
 
 			//  = GIANT SCREEN
 			//  ---------------------------------------------------------------------------	
-				@include at-breakpoint($tabGiant)
+				@include breakpoint($tabGiant)
 				{
-					@include span-columns(12, $giant-cols); 
+					@include span(12 of $giant-cols); 
 				}
 			}
 
@@ -118,16 +118,16 @@
 
 			//  = HUGE SCREEN
 			//  ---------------------------------------------------------------------------		
-				@include at-breakpoint($tabHuge no-mq)
+				@include breakpoint($tabHuge, $no-query: '.no-mq')
 				{
-					@include span-columns(4 omega, $huge-cols); 
+					@include span(last 4 of $huge-cols); 
 				}
 
 			//  = GIANT SCREEN
 			//  ---------------------------------------------------------------------------
-				@include at-breakpoint($tabGiant)
+				@include breakpoint($tabGiant)
 				{
-					@include span-columns(4 omega, $giant-cols); 
+					@include span(last 4 of $giant-cols); 
 				}
 			}	
 
@@ -136,16 +136,16 @@
 
 			//  = HUGE SCREEN
 			//  ---------------------------------------------------------------------------		
-				@include at-breakpoint($tabHuge no-mq)
+				@include breakpoint($tabHuge, $no-query: '.no-mq')
 				{
-					@include span-columns(8 omega, $huge-cols); 
+					@include span(last 8 of $huge-cols); 
 				}
 
 			//  = GIANT SCREEN
 			//  ---------------------------------------------------------------------------
-				@include at-breakpoint($tabGiant)
+				@include breakpoint($tabGiant)
 				{
-					@include span-columns(12 omega, $giant-cols); 
+					@include span(last 12 of $giant-cols); 
 				}
 			}
 		}
@@ -165,7 +165,7 @@
 
 		.collapse-bd
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				height:auto!important;
 
@@ -208,7 +208,7 @@
 
 	.tabs__toggle
 	{
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			display:none;
 		}
@@ -225,7 +225,7 @@
 		border-bottom-style:dashed;
 		margin-left:0;
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			border-right:none;
 			border-left:none;
@@ -251,7 +251,7 @@
 			}
 		}
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			@include inline-block;
 
@@ -280,7 +280,7 @@
 			cursor:default;
 		}
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			@include inline-block;
 
@@ -313,7 +313,7 @@
 				color:$grayVeryLight;
 			}
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				border-color:transparent;
 			}
@@ -348,7 +348,7 @@
 
 		.tabs__nav
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				border:none;
 				
@@ -360,7 +360,7 @@
 			display:block; 
 
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 
 				@include rem(margin-bottom, $singleSpace);
@@ -378,7 +378,7 @@
 
 		.tabs__nav-item--is-active
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				display:block;
 
@@ -398,7 +398,7 @@
 			position:relative;
 			z-index:1;
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				@include rem(margin-left, -$tabBorderWidth);
 				border-top:0 solid $tabBorderColor;
@@ -424,7 +424,7 @@
 		.tabs__nav-item
 		{
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 
 				a
@@ -441,7 +441,7 @@
 
 		.tabs__nav-item--is-active
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 
 				a
@@ -456,7 +456,7 @@
 
 		.tabs__content
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				@include rem(margin-right, -$tabBorderWidth);		
 			}
@@ -497,7 +497,7 @@
 				border: solid transparent;
 				pointer-events: none;
 
-				@include at-breakpoint($tabHuge no-mq)
+				@include breakpoint($tabHuge, $no-query: '.no-mq')
 				{
 					content:none;
 				}
@@ -544,7 +544,7 @@
 			border:none;
 		}
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			.tabs__nav-item a
 			{
@@ -610,7 +610,7 @@
 
 		.collapse-bd
 		{
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				height:auto!important;
 			}
@@ -647,7 +647,7 @@
 
 	.tabs--acc__toggle
 	{
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			display:none;
 		}
@@ -658,7 +658,7 @@
 
 		display:none;
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			padding:0;
 			margin:0;
@@ -720,7 +720,7 @@
 				color:$grayVeryLight;
 			}
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				border-color:transparent;
 			}
@@ -740,7 +740,7 @@
 			list-style-type:none;
 		}
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			border-color:transparent;
 			border: 0 none;
@@ -772,7 +772,7 @@
 		}
 
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			display:none;
 		}
@@ -790,7 +790,7 @@
 			cursor:default;
 		}
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			display:none;
 		}
@@ -811,7 +811,7 @@
 				color:$grayVeryLight;
 			}
 
-			@include at-breakpoint($tabHuge no-mq)
+			@include breakpoint($tabHuge, $no-query: '.no-mq')
 			{
 				border-color:transparent;
 			}
@@ -827,7 +827,7 @@
 
 		border-bottom:1px solid $grayVeryLight;
 
-		@include at-breakpoint($tabHuge no-mq)
+		@include breakpoint($tabHuge, $no-query: '.no-mq')
 		{
 			box-shadow:none;
 			display:none;

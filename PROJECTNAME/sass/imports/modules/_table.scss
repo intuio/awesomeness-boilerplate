@@ -182,7 +182,7 @@
 	//  = HUGE SCREEN
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($tableHuge no-mq)
+		@include breakpoint($tableHuge, $no-query: '.no-mq')
 		{
 			// Reset the display property to
 			// make the table act like a table again

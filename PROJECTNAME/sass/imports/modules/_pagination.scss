@@ -37,7 +37,7 @@
 		{
 			display:none;
 
-			@include at-breakpoint($medium-width no-mq)
+			@include breakpoint($medium-width, $no-query: '.no-mq')
 			{
 				@include inline-block;
 			} 

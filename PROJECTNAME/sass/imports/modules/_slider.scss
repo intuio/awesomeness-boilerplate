@@ -123,7 +123,7 @@
 		-ms-scroll-chaining: none;
 
 		// Breakpoints
-		@include at-breakpoint($sliderLarge)
+		@include breakpoint($sliderLarge)
 		{
 			// @include rem(padding, $doubleSpace);
 		}
@@ -134,7 +134,7 @@
 		@extend .cf;
 		@include rem(padding, $singleSpace/2);	
 
-		@include at-breakpoint($sliderLarge)
+		@include breakpoint($sliderLarge)
 		{
 			@include rem(padding, $singleSpace);	
 		}
@@ -151,12 +151,12 @@
 		@include rem(padding-top,$singleSpace);
 
 		// Breakpoints
-		@include at-breakpoint($sliderLarge no-mq)
+		@include breakpoint($sliderLarge, $no-query: '.no-mq')
 		{
 			@include rem(padding-top, $doubleSpace);
 		}
 
-		@include at-breakpoint($from-huge-width no-mq)
+		@include breakpoint($from-huge-width, $no-query: '.no-mq')
 		{
 			position:absolute;
 			@include rem(padding, $singleSpace);

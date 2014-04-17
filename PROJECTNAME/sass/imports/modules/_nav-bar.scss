@@ -54,7 +54,7 @@
 		background-color:$navBackgroundColor;
 		color:$navColor;
 
-		@include at-breakpoint($navHuge no-mq)
+		@include breakpoint($navHuge, $no-query: '.no-mq')
 		{
 			position:fixed;
 			top:0;
@@ -75,7 +75,7 @@
 			clear:both;
 			background:darken($navBackgroundColor, 20%);
 
-			@include at-breakpoint($navHuge no-mq)
+			@include breakpoint($navHuge, $no-query: '.no-mq')
 			{
 				@include inline-block;
 				margin:0;
@@ -109,7 +109,7 @@
 			}
 		}
 
-		@include at-breakpoint($navMedium no-mq)
+		@include breakpoint($navMedium, $no-query: '.no-mq')
 		{
 			@include rem(font-size, $h1Size);
 		}
@@ -142,7 +142,7 @@
 		@include transition(all .1s linear);
 		-webkit-tap-hightlight-color:rgba(0,0,0,0);
 
-		@include at-breakpoint($navHuge no-mq)
+		@include breakpoint($navHuge, $no-query: '.no-mq')
 		{
 			margin:0;
 		}
@@ -179,7 +179,7 @@
 		color:$navColor;
 		text-align:center;
 
-		@include at-breakpoint($navHuge no-mq)
+		@include breakpoint($navHuge, $no-query: '.no-mq')
 		{
 			display:none;
 		}
@@ -194,7 +194,7 @@
 	.nav-bar__entries,
 	.nav-bar__entry
 	{
-		@include at-breakpoint($navHuge no-mq)
+		@include breakpoint($navHuge, $no-query: '.no-mq')
 		{
 			@include inline-block;
 		}

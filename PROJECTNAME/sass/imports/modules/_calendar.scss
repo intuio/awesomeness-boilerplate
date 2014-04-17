@@ -53,19 +53,20 @@
 //	---------------------------------------------------------------------------
 
 	// Set the grid gutter width to zero
-	@include with-grid-settings($gutter: 0em) 
+	@include with-layout(no-gutters) 
 	{
 		.l-cal__cell
 		{
 
 		//  = HUGE SCREEN
 		//  ---------------------------------------------------------------------------
-			@include at-breakpoint($calHuge no-mq) 
+			//TODOBG
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
 				
 				// set the width of the rows to 1/7
 				// make a new row after 7 elements
-				@include span-columns(1, 7);
+				@include span(1/7*100%);
 
 				// The last child in a row (day 7)
 				// must float right and have no margin
@@ -89,7 +90,7 @@
 
 		//  = HUGE SCREEN
 		//  ---------------------------------------------------------------------------	
-			@include at-breakpoint($calHuge no-mq) 
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
 				// The first column of the header row contains
 				// the week number, so there is one more column
@@ -99,7 +100,7 @@
 				// of the normal cell width. The grid is divided
 				// by 22 and the equation goes as follows:
 				// 1 * 1/22 + 7 * 3/22 = 22/22 = 1
-				@include span-columns(3, 22);
+				@include span(3/22*100%);
 
 				// The last child must float  
 				// right and have no margin
@@ -112,7 +113,7 @@
 				// as wide as the other columns
 				&:first-child
 				{
-					@include span-columns(1, 22);
+					@include span(1/22*100%);
 				}
 			}
 		}
@@ -122,9 +123,9 @@
 
 		//  = HUGE SCREEN
 		//  ---------------------------------------------------------------------------	
-			@include at-breakpoint($calHuge no-mq) 
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
-				@include span-columns(1, 22);
+				@include span(1/22*100%);
 			}
 		}
 
@@ -133,9 +134,9 @@
 
 		//  = HUGE SCREEN
 		//  ---------------------------------------------------------------------------	
-			@include at-breakpoint($calHuge no-mq) 
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
-				@include span-columns(21 omega,22);
+				@include span(last 21/22*100%);
 			}
 		}
 	}
@@ -197,7 +198,7 @@
 		{
 			display:none;
 
-			@include at-breakpoint($calHuge no-mq) 
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
 				display:block;
 			}
@@ -206,7 +207,7 @@
 
 	.cal__col-head
 	{
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			color:$calColHeadTextColor;
 
@@ -227,7 +228,7 @@
 
 	ol.cal__row-head // specificity
 	{
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			@include rem(padding-top, $borderMedium);
 
@@ -248,7 +249,7 @@
 	{
 		@extend .cf;
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			border-bottom:0 solid $calRowBorderColor;
 			@include rem(border-bottom-width, $borderMedium);
@@ -280,7 +281,7 @@
 			}
 		}
 
-		@include at-breakpoint($calHuge) 
+		@include breakpoint($calHuge) 
 		{
 			
 			@include rem(padding, $singleSpace);
@@ -356,7 +357,7 @@
 	{
 		display:none;
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			display:block;
 		}
@@ -364,7 +365,7 @@
 
 	.l-cal__cell:first-child .cal__cell
 	{
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			border-left:0 solid $calRowBorderColor;
 			@include rem(border-left-width, $borderMedium);
@@ -387,7 +388,7 @@
 		text-transform:uppercase;
 		font-weight:$normalFontWeight;
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			@include rem(margin-bottom, $singleSpace / 2);
 			border:0 none;
@@ -396,7 +397,7 @@
 
 	.cal__additional-info
 	{
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			display:none;
 		}
@@ -423,14 +424,14 @@
 		{
 			@include background($calEntryHoverColor);
 
-			@include at-breakpoint($calHuge no-mq) 
+			@include breakpoint($calHuge, $no-query: '.no-mq') 
 			{
 				@include background(transparent);
 			}
 
 		}
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			margin-bottom:0;
 			border-bottom:0 none;
@@ -441,7 +442,7 @@
 	.cal__entry__title, 
 	.cal__entry__period
 	{
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			@include inline-block;
 			@include rem(margin-left, -.4); // display inline-block margin
@@ -461,7 +462,7 @@
 			content:" - ";
 		}
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			width:60%;
 			text-align:right;
@@ -474,12 +475,12 @@
 			}
 		}	
 
-		@include at-breakpoint($calGiant) 
+		@include breakpoint($calGiant) 
 		{
 			width:41%;
 		}
 
-		@include at-breakpoint($calMonstrous no-mq) 
+		@include breakpoint($calMonstrous, $no-query: '.no-mq') 
 		{
 			width:30%;
 		}
@@ -489,7 +490,7 @@
 	{
 		color:$grayLight;
 
-		@include at-breakpoint($calHuge no-mq) 
+		@include breakpoint($calHuge, $no-query: '.no-mq') 
 		{
 			margin-bottom:0;
 			@include rem(padding-left, .5);
@@ -501,12 +502,12 @@
 			text-overflow: ellipsis;
 		}
 
-		@include at-breakpoint($calGiant) 
+		@include breakpoint($calGiant) 
 		{
 			width:59%;
 		}
 
-		@include at-breakpoint($calMonstrous no-mq) 
+		@include breakpoint($calMonstrous, $no-query: '.no-mq') 
 		{
 			width:70%;
 		}

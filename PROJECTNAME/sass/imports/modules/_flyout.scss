@@ -105,29 +105,29 @@
 
 		@if $becomesSidebar
 		{
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
-				@include span-columns(9 omega, $huge-cols);
+				@include span(last 9 of $huge-cols);
 			}
 		}
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
-				@include reset-columns;
+				//@include reset-columns;
 			}
 		}
 		@else
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
-				@include span-columns(13 omega, $giant-cols);
+				@include span(last 13 of $giant-cols);
 			}
 
-			@include at-breakpoint($flyoutMonstrous)
+			@include breakpoint($flyoutMonstrous)
 			{
-				@include span-columns(17 omega, $monstrous-cols);
+				@include span(last 17 of $monstrous-cols);
 			}
 		}
 	}
@@ -136,7 +136,7 @@
 	{
 		.flyout__content--main
 		{
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
 				@include transition(transform .3s ease-out, width .3s ease-out);
 			}
@@ -147,7 +147,7 @@
 	{
 		.sidebar--is-hidden .flyout__content--main
 		{
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
 				width:100%;
 			}
@@ -160,7 +160,7 @@
 
 		@if $becomesSidebar
 		{
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
 				@include transform(translate3d(0,0,0));
 			}
@@ -205,10 +205,10 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					position:static;
-					@include span-columns(3, $huge-cols);
+					@include span(3 of $huge-cols);
 					@include rem(padding, $singleSpace 0);
 					background:$flyoutContentBackground;
 					color:$textColor;
@@ -216,14 +216,14 @@
 			}
 			@else
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					position:absolute;
 					@include rem(top, $touchSize);
 					@include rem(padding-top, $doubleSpace);
 					right:auto;
 
-					@include span-columns(3, $huge-cols);
+					@include span(3 of $huge-cols);
 					z-index:800;
 				}
 			}
@@ -231,29 +231,29 @@
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
-				@include reset-columns;
+				//@include reset-columns;
 				@include rem(padding-left, $singleSpace);
 			}
 		}
 		@else
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
-				@include span-columns(3, $giant-cols);
+				@include span(3 of $giant-cols);
 			}
 			
-			@include at-breakpoint($flyoutMonstrous)
+			@include breakpoint($flyoutMonstrous)
 			{
-				@include span-columns(3, $monstrous-cols);
+				@include span(3 of $monstrous-cols);
 			}
 		}
 	}
 
 	@if $becomesSidebar
 	{
-		@include at-breakpoint($flyoutHuge)
+		@include breakpoint($flyoutHuge)
 		{
 			.sidebar--is-hidden .flyout__nav
 			{
@@ -285,7 +285,7 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					@include rem(margin-bottom, $singleSpace);
 					border-bottom:0 none;
@@ -296,7 +296,7 @@
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
 				display:none;
 			}
@@ -319,7 +319,7 @@
 	{
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
 				display:inline;
 				@include rem(margin-right, $singleSpace);
@@ -350,7 +350,7 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					color:$flyoutBaseColor;
 				}
@@ -359,7 +359,7 @@
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
 				display:inline-block;
 				padding:0;
@@ -384,7 +384,7 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					color:$textColor;
 					opacity:.9;
@@ -410,7 +410,7 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					background:desaturate(lighten($flyoutNavBackgroundColor, 75%), 30%);
 					color:$flyoutBaseColor;
@@ -425,7 +425,7 @@
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
 				background:none;
 				border-bottom-color:$flyoutBaseColor;
@@ -476,7 +476,7 @@
 			{
 				@if $becomesTopBar
 				{
-					@include at-breakpoint($flyoutHuge)
+					@include breakpoint($flyoutHuge)
 					{
 						content:none;
 					}
@@ -488,7 +488,7 @@
 		{
 			@if $becomesTopBar
 			{
-				@include at-breakpoint($flyoutHuge)
+				@include breakpoint($flyoutHuge)
 				{
 					background:desaturate(lighten($flyoutNavBackgroundColor, 75%), 30%);
 					border-color:desaturate(lighten($flyoutNavBackgroundColor, 65%), 30%);
@@ -504,7 +504,7 @@
 
 		@if $becomesTopBar
 		{
-			@include at-breakpoint($flyoutGiant)
+			@include breakpoint($flyoutGiant)
 			{
 				background:none;
 				border-bottom-color:$flyoutBaseColor;
@@ -528,7 +528,7 @@
 
 		@if $becomesSidebar
 		{
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
 				display:none;
 			}
@@ -558,7 +558,7 @@
 				opacity:0;
 			}
 
-			@include at-breakpoint($flyoutHuge)
+			@include breakpoint($flyoutHuge)
 			{
 				display:inline-block;
 			}

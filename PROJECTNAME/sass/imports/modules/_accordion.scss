@@ -70,18 +70,19 @@
 //  = LARGE SCREEN
 //  ---------------------------------------------------------------------------
 
-	@include at-breakpoint($accordionLarge)
+	@include breakpoint($accordionLarge)
 	{
-		@include span-columns(3, $large-cols);
+		@include span(3 of $large-cols);
 	}
 
 
 //  = HUGE SCREEN
 //  ---------------------------------------------------------------------------
 
-	@include at-breakpoint($accordionHuge no-mq)
+//TODOBG
+	@include breakpoint($accordionHuge, $no-query: '.no-mq')
 	{
-		@include span-columns(3, $huge-cols);
+		@include span(3 of $huge-cols);
 	}
 }
 

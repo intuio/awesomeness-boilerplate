@@ -82,12 +82,11 @@
 
 	.container
 	{
-		@include with-grid-settings($padding: 0.625em) 
-		{
-			@include container;
-		}
+		//padding: 0 0.625em;
+		@include container;
 
-		// @include susy-grid-background;
+
+		// //@include susy-grid-background;
 	 // 	@include debugmessage("Tiny screen, " + $tiny-cols + " columns", $red);
 
 
@@ -95,11 +94,12 @@
 	//  = 320-UP
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($small-width $small-cols)
+		@include breakpoint($small-width)
 		{
-			
-			@include set-container-width;
-			// @include susy-grid-background;
+			//padding: 0 3.333em;
+			//@include set-container-width;
+			width: container($total-columns);
+			// //@include susy-grid-background;
 			// @include debugmessage("Small screen, " + $small-cols + " columns", $magenta);
 		}
 
@@ -108,10 +108,12 @@
 	//  = 480-UP
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($medium-width $medium-cols)
+		@include breakpoint($medium-width)
 		{
-			@include set-container-width;
-			// @include susy-grid-background;
+			//padding: 0 3.333em;
+			//@include set-container-width;
+			width: container($total-columns);
+			// //@include susy-grid-background;
 			// @include debugmessage("Medium screen, " + $medium-cols + " columns", $purple);
 		}
 
@@ -120,11 +122,11 @@
 	//  = 600-UP
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($large-width $large-cols)
+		@include breakpoint($large-width)
 		{
-			
+			//padding: 0 3.333em;
 			@include container;
-			// @include susy-grid-background;
+			// //@include susy-grid-background;
 			// @include debugmessage("Large screen, " + $large-cols + " columns", $blue);
 		}
 
@@ -133,14 +135,15 @@
 	//  = 1024-UP 
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($huge-width $huge-cols no-mq)
+		@include breakpoint($huge-width, $no-query: '.no-mq')
 		{
-			@include set-container-width;
-			// @include with-grid-settings($padding: 0.625em) 
+			//@include set-container-width;
+			width: container($total-columns);
+			// @include with-layout($padding: 0.625em) 
 			// {
 			// 	@include container;
 			// }
-			// @include susy-grid-background;
+			// //@include susy-grid-background;
 			// @include debugmessage("Huge screen, " + $huge-cols + " columns", $cyan);
 		}
 
@@ -149,10 +152,11 @@
 	//  = 1280-UP
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($giant-width $giant-cols)
+		@include breakpoint($giant-width)
 		{
-			@include set-container-width;
-			// @include susy-grid-background;
+			//@include set-container-width;
+			width: container($total-columns);
+			// //@include susy-grid-background;
 			// @include debugmessage("Giant screen, " + $giant-cols + " columns", $green);
 		}
 
@@ -161,10 +165,11 @@
 	//  = 1600-UP
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($monstrous-width $monstrous-cols)
+		@include breakpoint($monstrous-width)
 		{
-			@include set-container-width;
-			// @include susy-grid-background;
+			//@include set-container-width;
+			width: container($total-columns);
+			// //@include susy-grid-background;
 			// @include debugmessage("Monstrous screen, " + $monstrous-cols + " columns", $yellow);
 		}
 	}

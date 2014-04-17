@@ -90,7 +90,7 @@
 	//	= MEDIUM SCREEN
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($wizardMedium)
+		@include breakpoint($wizardMedium)
 		{
 			display: inline-block;
 		}
@@ -99,9 +99,9 @@
 	//  = LARGE SCREEN
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($wizardLarge no-mq)
+		@include breakpoint($wizardLarge, $no-query: '.no-mq')
 		{
-			@include span-columns(1, 5);
+			@include span(1 of 5);
 
 			&:nth-child(5n)
 			{
@@ -123,7 +123,7 @@
 		padding:0;
 
 		// Inherit stuff
-		@extend .nav;
+		@extend nav;
 
 
 		position:relative;
@@ -164,7 +164,7 @@
 
 			span
 			{
-				@include at-breakpoint($wizardMedium no-mq)
+				@include breakpoint($wizardMedium, $no-query: '.no-mq')
 				{
 					display: none;
 				}
@@ -227,7 +227,7 @@
 	//  = LARGE SCREEN
 	//  ---------------------------------------------------------------------------
 
-		@include at-breakpoint($wizardLarge no-mq)
+		@include breakpoint($wizardLarge, $no-query: '.no-mq')
 		{
 
 			.wizard-h__step

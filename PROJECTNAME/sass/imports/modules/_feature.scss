@@ -80,26 +80,32 @@
 //  = FEATURE
 //  ---------------------------------------------------------------------------
 	
-	@include with-grid-settings($columns: 4, $gutter: .5em) 
+	@include with-layout(4 .5em) 
 	{	
 		.l-one-fourth--with-heading
 		{
 
 		//  = LARGE SCREEN
 		//  ---------------------------------------------------------------------------			
-			@include at-breakpoint($large-width)
+			@include breakpoint($large-width)
 			{
-				@include span-columns(1,2);
-				@include nth-omega(2n);
+				@include span(1 of 2);
+				&:nth-child(2n) {
+					@include omega;
+				}
 			}
 
 		//  = HUGE SCREEN
 		//  ---------------------------------------------------------------------------	
-			@include at-breakpoint($huge-width iemq)
+			@include breakpoint($huge-width iemq)
 			{
-				@include remove-nth-omega(2n, $context:4);
-				@include span-columns(1,4);
-				@include nth-omega(5n);
+				&:nth-child(2n) {
+					clear: none;
+				}
+				@include span(1 of 4);
+				&:nth-child(5n) {
+					@include omega;
+				}
 			}
 		}
 	}
@@ -121,7 +127,7 @@
 			@include rem(padding-top, $doubleSpace);
 			border-top:1px solid $grayVeryLight;
 
-			@include at-breakpoint($huge-width iemq)
+			@include breakpoint($huge-width)
 			{
 				border:0 none;
 			}
@@ -133,9 +139,9 @@
 		@include rem(margin-bottom, $singleSpace * 3);
 		border-bottom:1px solid $grayVeryLight;
 
-		@extend space-lover;
+		@extend .space-lover;
 
-		@include at-breakpoint($large-width iemq)
+		@include breakpoint($large-width)
 		{
 			border:0 none;
 		}
@@ -179,7 +185,7 @@
 		margin-bottom: 0;
 		@include setType($h1Size, $singleSpace * 4);
 		
-		@include at-breakpoint($large-width) 
+		@include breakpoint($large-width) 
 		{
 			@include setType(7.2, $singleSpace * 6);
 		}
@@ -191,17 +197,17 @@
 		@include hyphens(auto);
 
 
-		@include at-breakpoint($featureLarge)
+		@include breakpoint($featureLarge)
 		{
 			@include rem(min-height, $doubleSpace * 5);
 		}
 
-		@include at-breakpoint($featureHuge iemq)
+		@include breakpoint($featureHuge iemq)
 		{
 			@include rem(min-height, $doubleSpace * 8);
 		}
 
-		@include at-breakpoint($featureGiant)
+		@include breakpoint($featureGiant)
 		{
 			@include rem(min-height, $doubleSpace * 6);
 		}
@@ -214,7 +220,7 @@
 		@include rem(padding-bottom, $doubleSpace - $borderThick * 2);
 		text-align: center;
 		font-weight: 100;
-		@include at-breakpoint($large-width)
+		@include breakpoint($large-width)
 		{
 			@include setType($h2Size, $h2LineHeight);
 			border-bottom:0 solid $featureHighlight;
@@ -243,14 +249,16 @@
 		}
 	}
 
-	@include with-grid-settings($columns: 4, $gutter: .5em) 
+	@include with-layout(4 .5em) 
 	{	
 		.l-one-fourth--with-heading
 		{
-			@include at-breakpoint($featureLarge)
+			@include breakpoint($featureLarge)
 			{
-				@include span-columns(1,2);
-				@include nth-omega(2n);
+				@include span(1 of 2);
+				&:nth-child(2n) {
+					@include omega;
+				}
 
 				&:nth-child(2n+2)
 				{
@@ -258,11 +266,15 @@
 				}
 			}
 
-			@include at-breakpoint($featureHuge iemq)
+			@include breakpoint($featureHuge iemq)
 			{
-				@include remove-nth-omega(2n, $context:4);
-				@include span-columns(1,4);
-				@include nth-omega(5n);
+				&:nth-child(2n) {
+					clear: none;
+				}
+				@include span(1 of 4);
+				&:nth-child(5n) {
+					@include omega;
+				}
 
 				&:nth-child(2n+2)
 				{

@@ -651,32 +651,32 @@
 
 	body
 	{
-		@include at-breakpoint($formsSmall)
+		@include breakpoint($formsSmall)
 		{
 			@include calc-input-widths($formsSmall);
 		}
 
-		@include at-breakpoint($formsMedium)
+		@include breakpoint($formsMedium)
 		{
 			@include calc-input-widths($formsMedium);
 		}
 
-		@include at-breakpoint($formsLarge)
+		@include breakpoint($formsLarge)
 		{
 			@include calc-input-widths($formsLarge);
 		}
 
-		@include at-breakpoint($formsHuge)
+		@include breakpoint($formsHuge)
 		{
 			@include calc-input-widths($formsHuge);
 		}
 
-		@include at-breakpoint($formsGiant no-mq)
+		@include breakpoint($formsGiant, $no-query: '.no-mq')
 		{
 			@include calc-input-widths($formsGiant);
 		}
 
-		@include at-breakpoint($formsMonstrous no-mq)
+		@include breakpoint($formsMonstrous, $no-query: '.no-mq')
 		{
 			@include calc-input-widths($formsMonstrous);
 		}
