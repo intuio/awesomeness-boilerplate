@@ -1,0 +1,31 @@
+{
+  "name": "awesomeness-boilerplate",
+  "version": "0.1.0",
+  "description": "A modular and flexible responsive framework",
+  "keywords": [
+    "sass", "responsive", "susy"
+  ],
+  "homepage": "http://awesomeness.intuio.at/",
+  "authors": [
+    {"name": "Thomas Zahler"},
+    {"name": "Thomas Piribauer"},
+    {"name": "Thomas Nägele"},
+    {"name": "Carina Skladal"},
+    {"name": "Daniel Stein"}
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/intuio/awesomeness-boilerplate.git"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": "https://github.com/intuio/awesomeness-boilerplate/blob/master/LICENSE"
+    }
+  ],
+  "dependencies": {
+  	"html5shiv": "~3.7.0",
+    "jquery": "~2.1.0",
+    "prism": "gh-pages"
+  }
+}
