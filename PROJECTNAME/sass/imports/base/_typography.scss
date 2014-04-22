@@ -202,7 +202,7 @@
 		height: $singleSpace;
 		@include rem(font-size, 4.2);
 
-		@include at-breakpoint($large-width)
+		@include breakpoint($large-width)
 		{
 			@include rem(padding-bottom, $singleSpace * 2 - $borderThick);
 			@include rem(margin-bottom, $singleSpace * 4);
