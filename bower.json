@@ -39,6 +39,7 @@
     "html5shiv": "~3.7.0",
     "jquery": "~2.1.0",
     "prism": "gh-pages",
-    "requirejs": "~2.1.11"
+    "requirejs": "~2.1.11",
+    "font-awesome": "~4.0.3"
   }
 }
