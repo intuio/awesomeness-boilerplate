@@ -1,5 +1,6 @@
 .DS_Store
 the-build/
+bower_components/
 */.sass-cache/
 *.css
 !*demo.css

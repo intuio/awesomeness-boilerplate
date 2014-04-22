@@ -3,15 +3,27 @@
   "version": "0.1.0",
   "description": "A modular and flexible responsive framework",
   "keywords": [
-    "sass", "responsive", "susy"
+    "sass",
+    "responsive",
+    "susy"
   ],
   "homepage": "http://awesomeness.intuio.at/",
   "authors": [
-    {"name": "Thomas Zahler"},
-    {"name": "Thomas Piribauer"},
-    {"name": "Thomas Nägele"},
-    {"name": "Carina Skladal"},
-    {"name": "Daniel Stein"}
+    {
+      "name": "Thomas Zahler"
+    },
+    {
+      "name": "Thomas Piribauer"
+    },
+    {
+      "name": "Thomas Nägele"
+    },
+    {
+      "name": "Carina Skladal"
+    },
+    {
+      "name": "Daniel Stein"
+    }
   ],
   "repository": {
     "type": "git",
@@ -24,8 +36,9 @@
     }
   ],
   "dependencies": {
-  	"html5shiv": "~3.7.0",
+    "html5shiv": "~3.7.0",
     "jquery": "~2.1.0",
-    "prism": "gh-pages"
+    "prism": "gh-pages",
+    "requirejs": "~2.1.11"
   }
 }
