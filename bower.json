@@ -5,7 +5,8 @@
   "keywords": [
     "sass",
     "responsive",
-    "susy"
+    "susy",
+    "patterns"
   ],
   "homepage": "http://awesomeness.intuio.at/",
   "authors": [
@@ -17,6 +18,9 @@
     },
     {
       "name": "Thomas Nägele"
+    },
+    {
+      "name": "Björn Ganslandt"
     },
     {
       "name": "Carina Skladal"
