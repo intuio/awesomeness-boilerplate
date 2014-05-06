@@ -432,7 +432,7 @@
 		width: #{100 / $slideCount + "%"};
 		@include rem(padding, $singleSpace/2);	
 
-		@include at-breakpoint($large-width)
+		@include breakpoint($large-width)
 		{
 			@include rem(padding, $singleSpace);	
 		}
