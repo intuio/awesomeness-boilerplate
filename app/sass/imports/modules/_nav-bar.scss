@@ -14,12 +14,12 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$navSmall: 		$small-width;
-	$navMedium: 	$medium-width;
-	$navLarge: 		$large-width;
-	$navHuge: 		$huge-width;
-	$navGiant: 		$giant-width;
-	$navMonstrous:	$monstrous-width;
+	$navSmall: 		$small-width !default;
+	$navMedium: 	$medium-width !default;
+	$navLarge: 		$large-width !default;
+	$navHuge: 		$huge-width !default;
+	$navGiant: 		$giant-width !default;
+	$navMonstrous:	$monstrous-width !default;
 
 
 //  COLORS
@@ -27,12 +27,12 @@
 	
 	// Change only the base color. All the other
 	// colors are calculated and adjusted automatically
-	$navBaseColor:				$primaryAccent;
-	$navColor:					$white;
+	$navBaseColor:				$primaryAccent !default;
+	$navColor:					$white !default;
 
 	// Don't change these
-	$navBackgroundColor:		$navBaseColor;
-	$navBackgroundColorActive:	lighten($navBaseColor, 5%);
+	$navBackgroundColor:		$navBaseColor !default;
+	$navBackgroundColorActive:	lighten($navBaseColor, 5%) !default;
 
 
 //  ---------------------------------------------------------------------------

@@ -57,17 +57,17 @@
 
 //	= COLORS
 
-	$baseColor:			$white;
-	$borderColor: 		#e9e0d3;
+	$baseColor:			$white !default;
+	$borderColor: 		#e9e0d3 !default;
 
 
 //	= BREAKPOINTS
 //  ---------------------------------------------------------------------------
 
-	$sliderLarge: 			$large-width;
+	$sliderLarge: 			$large-width !default;
 
 //	Special case to make the slider behave better on 1024px
-	$from-huge-width: 	64.0625em; // 1025px
+	$from-huge-width: 	64.0625em !default; // 1025px
 
 
  

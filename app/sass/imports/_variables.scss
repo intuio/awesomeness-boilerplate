@@ -9,113 +9,113 @@
 //  = GRAYS
 //  ---------------------------------------------------------------------------
 
-	$black: 							#292929; 	//  16% white
-	$grayVeryDark:						#4d4d4d; 	//  30% white
-	$grayDarker:						#585858; 	//  35% white
-	$grayDark:							#707070; 	//  44% white
-	$gray:								#949494; 	//  58% white
-	$grayLight:							#b8b8b8; 	//  72% white
-	$grayVeryLight:						#dbdbdb; 	//  86% white
+	$black: 							#292929 !default; 	//  16% white
+	$grayVeryDark:						#4d4d4d !default; 	//  30% white
+	$grayDarker:						#585858 !default; 	//  35% white
+	$grayDark:							#707070 !default; 	//  44% white
+	$gray:								#949494 !default; 	//  58% white
+	$grayLight:							#b8b8b8 !default; 	//  72% white
+	$grayVeryLight:						#dbdbdb !default; 	//  86% white
 			
-	$whiteSmoke:						#f5f5f5;	//	96% white
-	$whiteSoft:							#fbfbfb;	//	98% white
-	$white: 							#fff; 		// 100% white
+	$whiteSmoke:						#f5f5f5 !default;	//	96% white
+	$whiteSoft:							#fbfbfb !default;	//	98% white
+	$white: 							#fff !default; 		// 100% white
 			
-	$sand:								#FAF8F5;
+	$sand:								#FAF8F5 !default;
 
 
 
 //  = ACCENT COLORS
 //  ---------------------------------------------------------------------------
 
-	$red:								#e05a5a; // intuio red
-	$green:								#bfe05a;
-	$blue: 								#3890bd;
-	$magenta:							#ea4c88;
-	$purple:							#939;
-	$cyan:								#6cc;
-	$yellow:							#fff2bf;
-	$orange:							#f90;
+	$red:								#e05a5a !default; // intuio red
+	$green:								#bfe05a !default;
+	$blue: 								#3890bd !default;
+	$magenta:							#ea4c88 !default;
+	$purple:							#939 !default;
+	$cyan:								#6cc !default;
+	$yellow:							#fff2bf !default;
+	$orange:							#f90 !default;
 			
-	$primaryAccent:						$blue;
-	$secondaryAccent:					$red;
+	$primaryAccent:						$blue !default;
+	$secondaryAccent:					$red !default;
 
 
 
 //  = SCAFFOLDING
 //  ---------------------------------------------------------------------------
 
-	$bodyBackground:					$sand;
-	$bodyBackgroundColor:				$sand;
-	$textColor:							$grayVeryDark;
+	$bodyBackground:					$sand !default;
+	$bodyBackgroundColor:				$sand !default;
+	$textColor:							$grayVeryDark !default;
 
 
 
 //  = LINKS
 //  ---------------------------------------------------------------------------
 
-	$linkColor:							$secondaryAccent;
-	$linkColorHover:					darken($linkColor, 8);
-	$linkColorVisited:					darken($linkColor, 16%);
-	$linkColorInvisible:				$textColor;	
+	$linkColor:							$secondaryAccent !default;
+	$linkColorHover:					darken($linkColor, 8) !default;
+	$linkColorVisited:					darken($linkColor, 16%) !default;
+	$linkColorInvisible:				$textColor !default;	
 
 
 
 //  = TYPOGRAPHY
 //  ---------------------------------------------------------------------------
 
-	$sansFontFamily:        			"proxima-nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif;
-	$serifFontFamily:       			"ff-meta-serif-web-pro", "Georgia", "Geneva", "Times New Roman", serif;
-	$monoFontFamily:        			"Menlo", "Monaco", "Consolas", "Courier New", monospace;
+	$sansFontFamily:        			"proxima-nova", "Helvetica Neue", "Helvetica", "Arial", sans-serif !default;
+	$serifFontFamily:       			"ff-meta-serif-web-pro", "Georgia", "Geneva", "Times New Roman", serif !default;
+	$monoFontFamily:        			"Menlo", "Monaco", "Consolas", "Courier New", monospace !default;
 			
-	$htmlFontSize:          			62.5%;	
-	$htmlLineHeight:        			1;
-	$baseLineHeight:					1.4;//px
-	$bodyFontSize:          			1.8;//px
-	$bodyLineHeight:        			$baseLineHeight * 2;
-	$baseFontFamily:        			$serifFontFamily;
-	$altFontFamily:         			$sansFontFamily;
+	$htmlFontSize:          			62.5% !default;	
+	$htmlLineHeight:        			1 !default;
+	$baseLineHeight:					1.4 !default;//px
+	$bodyFontSize:          			1.8 !default;//px
+	$bodyLineHeight:        			$baseLineHeight * 2 !default;
+	$baseFontFamily:        			$serifFontFamily !default;
+	$altFontFamily:         			$sansFontFamily !default;
 			
-	$smallFontSize:						$baseLineHeight - 0.2;
+	$smallFontSize:						$baseLineHeight - 0.2 !default;
 
-	$normalFontWeight:					400;
-	$boldFontWeight:					700;
+	$normalFontWeight:					400 !default;
+	$boldFontWeight:					700 !default;
 
-	$headingsFontFamily:    			$sansFontFamily; 	// empty to use BS default, $baseFontFamily
-	$headingsFontWeight:    			700;	 			// same as browser default, bold
-	$headingsColor:         			inherit;			// empty to use BS default, $textColor
+	$headingsFontFamily:    			$sansFontFamily !default; 	// empty to use BS default, $baseFontFamily
+	$headingsFontWeight:    			700 !default;	 			// same as browser default, bold
+	$headingsColor:         			inherit !default;			// empty to use BS default, $textColor
 			
-	$h1Size:							4.2;//px
-	$h1LineHeight:						4.2;//px
+	$h1Size:							4.2 !default;//px
+	$h1LineHeight:						4.2 !default;//px
 			
-	$h2Size:							3.4;//px
-	$h2LineHeight:						4.2;//px
+	$h2Size:							3.4 !default;//px
+	$h2LineHeight:						4.2 !default;//px
 				
-	$h3Size:							2.6;//px
-	$h3LineHeight:						2.8;//px
+	$h3Size:							2.6 !default;//px
+	$h3LineHeight:						2.8 !default;//px
 			
-	$h4Size:							2.1;//px
-	$h4LineHeight:						2.8;//px
+	$h4Size:							2.1 !default;//px
+	$h4LineHeight:						2.8 !default;//px
 
 
 
 //  = BORDERS
 //  ---------------------------------------------------------------------------
 
-	$borderRadius:						.2;//px
-	$borderThin:						.1;//px
-	$borderMedium:						.2;//px
-	$borderThick:						.4;//px
-	$borderVeryThick:					$baseLineHeight;
+	$borderRadius:						.2 !default;//px
+	$borderThin:						.1 !default;//px
+	$borderMedium:						.2 !default;//px
+	$borderThick:						.4 !default;//px
+	$borderVeryThick:					$baseLineHeight !default;
 
 
 
 //  = SPACING AND ALIGNMENT
 //  ---------------------------------------------------------------------------
 
-	$singleSpace:						$baseLineHeight;
-	$doubleSpace:						$singleSpace * 2;
-	$touchSize:							$singleSpace * 3;
+	$singleSpace:						$baseLineHeight !default;
+	$doubleSpace:						$singleSpace * 2 !default;
+	$touchSize:							$singleSpace * 3 !default;
 
 
 

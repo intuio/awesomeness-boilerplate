@@ -20,8 +20,8 @@
 //  = BORDER
 //  ---------------------------------------------------------------------------
 	
-	$msgBorderWidth:				$borderThin;
-	$msgBorderRadius:				.4; // = 4px
+	$msgBorderWidth:				$borderThin !default;
+	$msgBorderRadius:				.4 !default; // = 4px
 
 
 
@@ -29,39 +29,39 @@
 //  ---------------------------------------------------------------------------
 	
 	// INFO MESSAGE
-	$msgInfoBaseColor:				$blue;
+	$msgInfoBaseColor:				$blue !default;
 
 	// SUCCESS MESSAGE
-	$msgSuccessBaseColor:			$green;
+	$msgSuccessBaseColor:			$green !default;
 
 	// WARNING MESSAGE
-	$msgWarningBaseColor:			$yellow;
+	$msgWarningBaseColor:			$yellow !default;
 
 	// ERROR MESSAGE
-	$msgErrorBaseColor:				$red;
+	$msgErrorBaseColor:				$red !default;
 	
 
 
 	// Don't change these
 	$msgBaseColor:					$white;
-	$msgColor:						hsl(hue($msgBaseColor), 0, 25);
-	$msgBorderColor:				hsl(hue($msgBaseColor), 0, 85);
+	$msgColor:						hsl(hue($msgBaseColor), 0, 25) !default;
+	$msgBorderColor:				hsl(hue($msgBaseColor), 0, 85) !default;
 
-	$msgInfoBackground:				hsl(hue($msgInfoBaseColor), 50, 92);
-	$msgInfoColor:					hsl(hue($msgInfoBackground), 60, 30);
-	$msgInfoBorderColor:			hsl(hue($msgInfoBackground), 50, 80);
+	$msgInfoBackground:				hsl(hue($msgInfoBaseColor), 50, 92) !default;
+	$msgInfoColor:					hsl(hue($msgInfoBackground), 60, 30) !default;
+	$msgInfoBorderColor:			hsl(hue($msgInfoBackground), 50, 80) !default;
 	
-	$msgSuccessBackground:			hsl(hue($msgSuccessBaseColor), 70, 80);
-	$msgSuccessColor:				hsl(hue($msgSuccessBackground), 80, 20);
-	$msgSuccessBorderColor:			hsl(hue($msgSuccessBackground), 60, 50);
+	$msgSuccessBackground:			hsl(hue($msgSuccessBaseColor), 70, 80) !default;
+	$msgSuccessColor:				hsl(hue($msgSuccessBackground), 80, 20) !default;
+	$msgSuccessBorderColor:			hsl(hue($msgSuccessBackground), 60, 50) !default;
 	
-	$msgWarningBackground:			hsl(hue($msgWarningBaseColor), 95, 85);
-	$msgWarningColor:				hsl(hue($msgWarningBackground), 70, 25);
-	$msgWarningBorderColor:			hsl(hue($msgWarningBackground), 60, 60);
+	$msgWarningBackground:			hsl(hue($msgWarningBaseColor), 95, 85) !default;
+	$msgWarningColor:				hsl(hue($msgWarningBackground), 70, 25) !default;
+	$msgWarningBorderColor:			hsl(hue($msgWarningBackground), 60, 60) !default;
 	
-	$msgErrorBackground:			hsl(hue($msgErrorBaseColor), 95, 88);
-	$msgErrorColor:					hsl(hue($msgErrorBackground), 70, 30);
-	$msgErrorBorderColor:			hsl(hue($msgErrorBackground), 50, 70);
+	$msgErrorBackground:			hsl(hue($msgErrorBaseColor), 95, 88) !default;
+	$msgErrorColor:					hsl(hue($msgErrorBackground), 70, 30) !default;
+	$msgErrorBorderColor:			hsl(hue($msgErrorBackground), 50, 70) !default;
 
 
 	

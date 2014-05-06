@@ -38,21 +38,21 @@
 //  = COLORS
 //  ---------------------------------------------------------------------------
 
-    $spinner-hole-color:        transparent;
-    $spinner-size:              46px;
-    $spinner-background:        $whiteSmoke;
-    $spinner-fill:              $blue;
+    $spinner-hole-color:        transparent !default;
+    $spinner-size:              46px !default;
+    $spinner-background:        $whiteSmoke !default;
+    $spinner-fill:              $blue !default;
 
 
 
 //  = ANIMATION PARAMETER
 //  ---------------------------------------------------------------------------
-    $spinner-function:          linear;
-    $spinner-opacity:           .8;
-    $spinner-duration:          3s;
-    $spinner-count:             infinite;
-    $spinner-rotate-left:       spinner-rotate-left;
-    $spinner-rotate-right:      spinner-rotate-right;
+    $spinner-function:          linear !default;
+    $spinner-opacity:           .8 !default;
+    $spinner-duration:          3s !default;
+    $spinner-count:             infinite !default;
+    $spinner-rotate-left:       spinner-rotate-left !default;
+    $spinner-rotate-right:      spinner-rotate-right !default;
 
 
 

@@ -10,14 +10,14 @@
 //  ---------------------------------------------------------------------------
 
 	// Change these
-	$btnBaseColor:						$white;
-	$btnBorderWidth:					$borderThin;
-	$btnBorderRadius:					2px;
+	$btnBaseColor:						$white !default;
+	$btnBorderWidth:					$borderThin !default;
+	$btnBorderRadius:					2px !default;
 
 	// Don't change these
 	$btnBackgroundColorLight:			$btnBaseColor;
-	$btnBackgroundColorDark:			darken($btnBackgroundColorLight, 5%);
-	$btnBorderColor:      				darken($btnBackgroundColorDark, 10%);
+	$btnBackgroundColorDark:			darken($btnBackgroundColorLight, 5%) !default;
+	$btnBorderColor:      				darken($btnBackgroundColorDark, 10%) !default;
 
 
 	.btn
@@ -121,8 +121,8 @@
 //  ---------------------------------------------------------------------------
 
 	// Change these
-	$btnPrimaryBaseColor:				$primaryAccent;
-	$btnPrimaryColor:					$white;
+	$btnPrimaryBaseColor:				$primaryAccent !default;
+	$btnPrimaryColor:					$white !default;
 	
 	// Don't change these
 	$btnPrimaryBackgroundColorLight:	lighten($btnPrimaryBaseColor, 2%);
@@ -161,8 +161,8 @@
 //  ---------------------------------------------------------------------------
 
 	// Change these
-	$btnSuccessBaseColor:				$green;
-	$btnSuccessColor:					$textColor;
+	$btnSuccessBaseColor:				$green !default;
+	$btnSuccessColor:					$textColor !default;
 	
 	// Don't change these
 	$btnSuccessBackgroundColorLight:	lighten($btnSuccessBaseColor, 2%);
@@ -202,8 +202,8 @@
 //  ---------------------------------------------------------------------------
 
 	// Change these
-	$btnDestroyBaseColor:				$red;
-	$btnDestroyColor:					$white;
+	$btnDestroyBaseColor:				$red !default;
+	$btnDestroyColor:					$white !default;
 	
 	// Don't change these
 	$btnDestroyBackgroundColorLight:	lighten($btnDestroyBaseColor, 2%);

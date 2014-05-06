@@ -14,49 +14,49 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$formsSmall: 		$small-width;
-	$formsMedium: 		$medium-width;
-	$formsLarge: 		$large-width;
-	$formsHuge: 		$huge-width;
-	$formsGiant: 		$giant-width;
-	$formsMonstrous:	$monstrous-width;
+	$formsSmall: 		$small-width !default;
+	$formsMedium: 		$medium-width !default;
+	$formsLarge: 		$large-width !default;
+	$formsHuge: 		$huge-width !default;
+	$formsGiant: 		$giant-width !default;
+	$formsMonstrous:	$monstrous-width !default;
 
 
 //  = SIZES
 //  ---------------------------------------------------------------------------
 	
-	$inputHeightLarge:					$baseLineHeight * 4;
-	$inputHeight:						$baseLineHeight * 3;
+	$inputHeightLarge:					$baseLineHeight * 4 !default;
+	$inputHeight:						$baseLineHeight * 3 !default;
 
 
 //  = COLORS
 //  ---------------------------------------------------------------------------
 		
-	$inputBorderColor:					$grayVeryLight;
-	$inputBorderRadius:					$borderRadius;
-	$inputFocusBorderColor:				$primaryAccent;
+	$inputBorderColor:					$grayVeryLight !default;
+	$inputBorderRadius:					$borderRadius !default;
+	$inputFocusBorderColor:				$primaryAccent !default;
 
-	$inputRequiredColor:				$red;
+	$inputRequiredColor:				$red !default;
 
-	$searchButtonHoverBackgroundColor:	$primaryAccent;
-	$searchButtonActiveBackgroundColor:	darken($primaryAccent, 10%);
-	$searchButtonHoverTextColor:		darken($primaryAccent, 40%);
+	$searchButtonHoverBackgroundColor:	$primaryAccent !default;
+	$searchButtonActiveBackgroundColor:	darken($primaryAccent, 10%) !default;
+	$searchButtonHoverTextColor:		darken($primaryAccent, 40%) !default;
 	
-	$placeholderTextColor:				$gray;
-	$disabledTextColor:					$grayVeryLight;
+	$placeholderTextColor:				$gray !default;
+	$disabledTextColor:					$grayVeryLight !default;
 		
-	$messageTextSize:					1.4;//px
+	$messageTextSize:					1.4 !default;//px
 			
-	$errorTextColor:					$red; 
-	$errorBorderColor:					$red;  
-	$errorBackgroundColor:				lighten($errorBorderColor, 37%); 
-	$errorShadowColor:					transparentize(darken($red, 50%), .75);  
-	$errorIconColor:  					$red;  
+	$errorTextColor:					$red !default; 
+	$errorBorderColor:					$red !default;  
+	$errorBackgroundColor:				lighten($errorBorderColor, 37%) !default; 
+	$errorShadowColor:					transparentize(darken($red, 50%), .75) !default;  
+	$errorIconColor:  					$red !default;  
 		
-	$successTextColor:					$green;
-	$successBorderColor:				$green;           
-	$successBackgroundColor:			lighten($successBorderColor, 16%);
-	$successIconColor:					$green;
+	$successTextColor:					$green !default;
+	$successBorderColor:				$green !default;           
+	$successBackgroundColor:			lighten($successBorderColor, 16%) !default;
+	$successIconColor:					$green !default;
 
 
 

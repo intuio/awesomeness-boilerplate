@@ -41,32 +41,32 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$tableHuge: 		$huge-width;
+	$tableHuge: 		$huge-width !default;
 
 
 
 //	= COLORS
 //	---------------------------------------------------------------------------
 
-	$tableBaseColor: 					$white;
-	$table2ndBaseColor: 				$blue;
+	$tableBaseColor: 					$white !default;
+	$table2ndBaseColor: 				$blue !default;
 
-	$tableBorderColor: 					darken($tableBaseColor, 4%);
-	$table2ndBorderColor:				desaturate(lighten($table2ndBaseColor, 30%), 3%);
+	$tableBorderColor: 					darken($tableBaseColor, 4%) !default;
+	$table2ndBorderColor:				desaturate(lighten($table2ndBaseColor, 30%), 3%) !default;
 	
-	$table2ndBackgroundColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%);
-	$table2ndHoverBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%);
+	$table2ndBackgroundColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%) !default;
+	$table2ndHoverBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%) !default;
 	
-	$tableDividerBorderColor:			darken($tableBaseColor, 42%);
+	$tableDividerBorderColor:			darken($tableBaseColor, 42%) !default;
 
-	$tableLasteditedBackgroundColor:	desaturate(lighten(adjust-hue($table2ndBaseColor, -120deg), 36%), 3%);
+	$tableLasteditedBackgroundColor:	desaturate(lighten(adjust-hue($table2ndBaseColor, -120deg), 36%), 3%) !default;
 
-	$tableDisabledBackgroundColor:		darken($tableBaseColor, 4%);
-	$tableDisabledTextColor:			darken($tableBaseColor, 28%);
+	$tableDisabledBackgroundColor:		darken($tableBaseColor, 4%) !default;
+	$tableDisabledTextColor:			darken($tableBaseColor, 28%) !default;
 
-	$tableSelectedBorderColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%);
-	$tableSelectedBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%);
-	$tableSelectedShadowColor:			darken($table2ndBaseColor, 30%);
+	$tableSelectedBorderColor:			desaturate(lighten($table2ndBaseColor, 36%), 3%) !default;
+	$tableSelectedBackgroundColor:		desaturate(lighten($table2ndBaseColor, 30%), 3%) !default;
+	$tableSelectedShadowColor:			darken($table2ndBaseColor, 30%) !default;
 
 
 

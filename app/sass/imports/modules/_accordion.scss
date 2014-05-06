@@ -39,25 +39,25 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$accordionLarge: 		$large-width;
-	$accordionHuge: 		$huge-width;
+	$accordionLarge: 		$large-width !default;
+	$accordionHuge: 		$huge-width !default;
 
 	
 
 //	= COLORS
 //	---------------------------------------------------------------------------
 
-	$accordionBaseColor: 					$whiteSmoke;
-	$accordionBorderColor:					darken($whiteSmoke, 10%);
+	$accordionBaseColor: 					$whiteSmoke !default;
+	$accordionBorderColor:					darken($whiteSmoke, 10%) !default;
 
-	$accordionLinkColor:					$textColor;
-	$accordionLinkHoverColor:				$primaryAccent;
+	$accordionLinkColor:					$textColor !default;
+	$accordionLinkHoverColor:				$primaryAccent !default;
 
-	$accordionDividerTopBorderColor:		lighten($whiteSmoke, 2%);
-	$accordionDividerBottomBorderColor:		darken($whiteSmoke, 10%);
-	$accordionDividerFontColor:				$headingsColor;
+	$accordionDividerTopBorderColor:		lighten($whiteSmoke, 2%) !default;
+	$accordionDividerBottomBorderColor:		darken($whiteSmoke, 10%) !default;
+	$accordionDividerFontColor:				$headingsColor !default;
 
-	$accordionInnerBackgroundColor:			darken($accordionBaseColor, 1%);
+	$accordionInnerBackgroundColor:			darken($accordionBaseColor, 1%) !default;
 
 
 

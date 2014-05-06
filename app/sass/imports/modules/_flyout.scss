@@ -33,21 +33,21 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$flyoutSmall: 		$small-width;
-	$flyoutMedium: 		$medium-width;
-	$flyoutLarge: 		$large-width;
-	$flyoutHuge: 		$huge-width;
-	$flyoutGiant: 		$giant-width;
-	$flyoutMonstrous:	$monstrous-width;
+	$flyoutSmall: 		$small-width !default;
+	$flyoutMedium: 		$medium-width !default;
+	$flyoutLarge: 		$large-width !default;
+	$flyoutHuge: 		$huge-width !default;
+	$flyoutGiant: 		$giant-width !default;
+	$flyoutMonstrous:	$monstrous-width !default;
 
 
 //  BEHAVIOUR
 //  ---------------------------------------------------------------------------
 	
 	// Change flyout to sidebar on medium screens
-	$becomesSidebar:					true;
+	$becomesSidebar:					true !default;
 	// Change flyout to top bar on large screens
-	$becomesTopBar:						false;
+	$becomesTopBar:						false !default;
 
 
 //  COLORS
@@ -55,23 +55,23 @@
 	
 	// Change only base & toggle text color. All the other
 	// colors are calculated and adjusted automatically
-	$flyoutBaseColor:					$primaryAccent;
-	$flyoutToggleColor:					$white;
+	$flyoutBaseColor:					$primaryAccent !default;
+	$flyoutToggleColor:					$white !default;
 
 	// Don't change these
-	$flyoutNavColor:					$white;
-	$flyoutNavBackgroundColor:			hsl(hue($flyoutBaseColor), 10%, 20%);
-	$flyoutNavBackgroundColorSidebar:	darken($flyoutBaseColor, 30%);
-	$flyoutContentBackground:			$bodyBackgroundColor;
+	$flyoutNavColor:					$white !default;
+	$flyoutNavBackgroundColor:			hsl(hue($flyoutBaseColor), 10%, 20%) !default;
+	$flyoutNavBackgroundColorSidebar:	darken($flyoutBaseColor, 30%) !default;
+	$flyoutContentBackground:			$bodyBackgroundColor !default;
 
 
 //  SIZES
 //  ---------------------------------------------------------------------------
 	
-	$flyoutSlideOpenDistance:			80%;
-	$flyoutLinkBorderWidth:				.1;
-	$flyoutLinkBorderRadius:			.6;
-	$flyoutLinkActiveArrowSize:			$singleSpace - .4;
+	$flyoutSlideOpenDistance:			80% !default;
+	$flyoutLinkBorderWidth:				.1 !default;
+	$flyoutLinkBorderRadius:			.6 !default;
+	$flyoutLinkActiveArrowSize:			$singleSpace - .4 !default;
 
 
 

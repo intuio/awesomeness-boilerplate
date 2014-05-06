@@ -29,8 +29,8 @@
 //  = COLORS
 //  --------------------------------------------------------------------------- 
 
-	$phTextBackgroundColor:		$grayVeryLight;
-	$phImgBackgroundColor:		darken($phTextBackgroundColor, 14%);
+	$phTextBackgroundColor:		$grayVeryLight !default;
+	$phImgBackgroundColor:		darken($phTextBackgroundColor, 14%) !default;
 
 
 

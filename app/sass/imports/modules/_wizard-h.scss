@@ -38,19 +38,19 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$wizardSmall: 		$small-width;
-	$wizardMedium: 		$medium-width;
-	$wizardLarge: 		$large-width;
-	$wizardHuge: 		$huge-width;
-	$wizardGiant: 		$giant-width;
-	$wizardMonstrous:	$monstrous-width;
+	$wizardSmall: 		$small-width !default;
+	$wizardMedium: 		$medium-width !default;
+	$wizardLarge: 		$large-width !default;
+	$wizardHuge: 		$huge-width !default;
+	$wizardGiant: 		$giant-width !default;
+	$wizardMonstrous:	$monstrous-width !default;
 
 
 //  = COLORS
 //  ---------------------------------------------------------------------------
 	
-	$wizardActiveBackground:			$primaryAccent;
-	$wizardActiveColor:					$white;
+	$wizardActiveBackground:			$primaryAccent !default;
+	$wizardActiveColor:					$white !default;
 
 
 

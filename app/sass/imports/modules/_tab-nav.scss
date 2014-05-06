@@ -36,26 +36,26 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$tabSmall: 		$small-width;
-	$tabMedium: 	$medium-width;
-	$tabLarge: 		$large-width;
-	$tabHuge: 		$huge-width;
-	$tabGiant: 		$giant-width;
-	$tabMonstrous:	$monstrous-width;
+	$tabSmall: 		$small-width !default;
+	$tabMedium: 	$medium-width !default;
+	$tabLarge: 		$large-width !default;
+	$tabHuge: 		$huge-width !default;
+	$tabGiant: 		$giant-width !default;
+	$tabMonstrous:	$monstrous-width !default;
 
 
 //  = COLORS
 //  ---------------------------------------------------------------------------
 	
-	$tabBaseColor:				$primaryAccent;
-	$tabBorderColor:			$grayVeryLight;
-	$tabInactiveBorderColor:	hsl(hue($tabBorderColor), 50, 80);
+	$tabBaseColor:				$primaryAccent !default;
+	$tabBorderColor:			$grayVeryLight !default;
+	$tabInactiveBorderColor:	hsl(hue($tabBorderColor), 50, 80) !default;
 
 
 //  = BORDER
 //  ---------------------------------------------------------------------------
 	
-	$tabBorderWidth:			$borderThin;
+	$tabBorderWidth:			$borderThin !default;
 
 
 

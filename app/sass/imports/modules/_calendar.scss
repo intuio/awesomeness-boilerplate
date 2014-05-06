@@ -20,32 +20,32 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$calHuge: 		$huge-width;
-	$calGiant: 		$giant-width;
-	$calMonstrous:	$monstrous-width;
+	$calHuge: 		$huge-width !default;
+	$calGiant: 		$giant-width !default;
+	$calMonstrous:	$monstrous-width !default;
 
 
 
 //	= COLORS
 //	---------------------------------------------------------------------------
 
-	$calBaseColor: 					$white; 
-	$highlightColor: 				$primaryAccent;
-	$calTextColor:					$textColor;
-	$calLinkColor:					$linkColor;
+	$calBaseColor: 					$white !default; 
+	$highlightColor: 				$primaryAccent !default;
+	$calTextColor:					$textColor !default;
+	$calLinkColor:					$linkColor !default;
 
-	$calColHeadTextColor:			darken($calBaseColor, 14%);
-	$calRowHeadTextColor:			darken($calBaseColor, 14%);
-	$calRowBorderColor:				darken($calBaseColor, 4%);
+	$calColHeadTextColor:			darken($calBaseColor, 14%) !default;
+	$calRowHeadTextColor:			darken($calBaseColor, 14%) !default;
+	$calRowBorderColor:				darken($calBaseColor, 4%) !default;
 
-	$calTitleBorderColor:			$highlightColor;
-	$calEntryHoverColor:			darken($calBaseColor, 14%);
+	$calTitleBorderColor:			$highlightColor !default;
+	$calEntryHoverColor:			darken($calBaseColor, 14%) !default;
 
-	$calCurrentTextColor:			$highlightColor;
-	$calCurrentBackgroundColor:		desaturate(lighten($highlightColor, 36%), 3%);
-	$calCurrentHoverColor:			desaturate(lighten($highlightColor, 30%), 3%);	
+	$calCurrentTextColor:			$highlightColor !default;
+	$calCurrentBackgroundColor:		desaturate(lighten($highlightColor, 36%), 3%) !default;
+	$calCurrentHoverColor:			desaturate(lighten($highlightColor, 30%), 3%) !default;	
 
-	$calOutofdateTextColor:			darken($calBaseColor, 14%);
+	$calOutofdateTextColor:			darken($calBaseColor, 14%) !default;
 
 
 

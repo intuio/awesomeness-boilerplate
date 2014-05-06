@@ -26,19 +26,19 @@
 //	= COLORS
 //	---------------------------------------------------------------------------
 
-	$progessBackgroundColor:		$white;
-	$progressFillColor:				$blue;
+	$progessBackgroundColor:		$white !default;
+	$progressFillColor:				$blue !default;
 
 
 
 //	= ANIMATION PARAMETER
 //	---------------------------------------------------------------------------
 
-	$progress-delay: 			0;
-	$progress-duration: 		2s;
-	$progress-function: 		linear;
-	$progress-name: 			progress-bar-stripes;
-	$progress-count: 			infinite;
+	$progress-delay: 			0 !default;
+	$progress-duration: 		2s !default;
+	$progress-function: 		linear !default;
+	$progress-name: 			progress-bar-stripes !default;
+	$progress-count: 			infinite !default;
 
 
 

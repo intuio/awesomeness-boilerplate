@@ -19,25 +19,25 @@
 //  = COLORS
 //  ---------------------------------------------------------------------------
 
-	$boxBaseColor: 					$white;
-	$boxHighlight: 					$primaryAccent;
-	$boxHoverFontColor:				$textColor;
-	$boxBorderWidth:				$borderThin;
+	$boxBaseColor: 					$white !default;
+	$boxHighlight: 					$primaryAccent !default;
+	$boxHoverFontColor:				$textColor !default;
+	$boxBorderWidth:				$borderThin !default;
 	
 	// generic box
-	$boxBorderColor:				darken($white, 14%);
-	$boxBackgroundColor:			darken($white, 4%);
-	$boxBackgroundFallback:			darken($white, 2%);
-	$boxBackground:					linear-gradient($boxBaseColor, darken($boxBaseColor, 2%));
-	$boxHoverBackground:			linear-gradient(lighten($boxBaseColor, 1%), darken(darken($boxBaseColor, 2%), 1%));
-	$boxActiveBackground:			linear-gradient(darken($boxBaseColor, 2%), $boxBaseColor);
+	$boxBorderColor:				darken($white, 14%) !default;
+	$boxBackgroundColor:			darken($white, 4%) !default;
+	$boxBackgroundFallback:			darken($white, 2%) !default;
+	$boxBackground:					linear-gradient($boxBaseColor, darken($boxBaseColor, 2%)) !default;
+	$boxHoverBackground:			linear-gradient(lighten($boxBaseColor, 1%), darken(darken($boxBaseColor, 2%), 1%)) !default;
+	$boxActiveBackground:			linear-gradient(darken($boxBaseColor, 2%), $boxBaseColor) !default;
 	
 	// selected box
-	$boxSelectedLightColor:			lighten($boxHighlight, 30%);
-	$boxSelectedDarkColor:			lighten($boxHighlight, 28%);
-	$boxSelectedBorderColor:		$boxHighlight;
-	$boxSelectedBackground:			linear-gradient($boxSelectedLightColor, $boxSelectedDarkColor);
-	$boxSelectedHoverBackground:	linear-gradient($boxSelectedLightColor, $boxSelectedDarkColor);
+	$boxSelectedLightColor:			lighten($boxHighlight, 30%) !default;
+	$boxSelectedDarkColor:			lighten($boxHighlight, 28%) !default;
+	$boxSelectedBorderColor:		$boxHighlight !default;
+	$boxSelectedBackground:			linear-gradient($boxSelectedLightColor, $boxSelectedDarkColor) !default;
+	$boxSelectedHoverBackground:	linear-gradient($boxSelectedLightColor, $boxSelectedDarkColor) !default;
 
 	
 	

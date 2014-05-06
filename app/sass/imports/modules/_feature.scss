@@ -55,25 +55,25 @@
 //  module better fit into a specific context.
 //  ---------------------------------------------------------------------------
 
-	$featureLarge: 		$large-width;
-	$featureHuge: 		$huge-width;
-	$featureGiant: 		$giant-width;
+	$featureLarge: 		$large-width !default;
+	$featureHuge: 		$huge-width !default;
+	$featureGiant: 		$giant-width !default;
 
 
 
 //  = COLORS
 //  --------------------------------------------------------------------------- 
 	
-	$featureBaseColor: 						$white;
-	$featureHighlight:						$primaryAccent;
+	$featureBaseColor: 						$white !default;
+	$featureHighlight:						$primaryAccent !default;
 
 	// TOUCH
-	$featureLinkBackgroundColorTouch:		$featureHighlight;
-	$featureLinkColorTouch:					$featureBaseColor;
+	$featureLinkBackgroundColorTouch:		$featureHighlight !default;
+	$featureLinkColorTouch:					$featureBaseColor !default;
 
 	// ACTIVE
-	$featureLinkTouchActiveBackgroundColor:	darken($featureHighlight, 8);
-	$featureLinkTouchActiveColor:			$featureBaseColor;
+	$featureLinkTouchActiveBackgroundColor:	darken($featureHighlight, 8) !default;
+	$featureLinkTouchActiveColor:			$featureBaseColor !default;
 
 	
 
