@@ -76,95 +76,17 @@
 	$monstrous-cols			: 20 !default;
 
 
-
-//  = 0-UP
+//  = CONTAINER
 //  ---------------------------------------------------------------------------
-
 	.container
 	{
-		padding: 0 $grid-padding;
 		@include container;
+	}
 
-
-		// //@include susy-grid-background;
-	 // 	@include debugmessage("Tiny screen, " + $tiny-cols + " columns", $red);
-
-
-
-	//  = 320-UP
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($small-width)
-		{
-			//@include set-container-width;
-			width: container($total-columns);
-			// //@include susy-grid-background;
-			// @include debugmessage("Small screen, " + $small-cols + " columns", $magenta);
-		}
-
-
-
-	//  = 480-UP
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($medium-width)
-		{
-			//@include set-container-width;
-			width: container($total-columns);
-			// //@include susy-grid-background;
-			// @include debugmessage("Medium screen, " + $medium-cols + " columns", $purple);
-		}
-
-
-
-	//  = 600-UP
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($large-width)
-		{
-			@include container;
-			// //@include susy-grid-background;
-			// @include debugmessage("Large screen, " + $large-cols + " columns", $blue);
-		}
-
-
-
-	//  = 1024-UP 
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($huge-width, $no-query: '.no-mq')
-		{
-			width: container($total-columns);
-			// {
-			// 	@include container;
-			// }
-			// //@include susy-grid-background;
-			// @include debugmessage("Huge screen, " + $huge-cols + " columns", $cyan);
-		}
-
-
-
-	//  = 1280-UP
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($giant-width)
-		{
-			//@include set-container-width;
-			width: container($total-columns);
-			// //@include susy-grid-background;
-			// @include debugmessage("Giant screen, " + $giant-cols + " columns", $green);
-		}
-
-
-
-	//  = 1600-UP
-	//  ---------------------------------------------------------------------------
-
-		@include breakpoint($monstrous-width)
-		{
-			//@include set-container-width;
-			width: container($total-columns);
-			// //@include susy-grid-background;
-			// @include debugmessage("Monstrous screen, " + $monstrous-cols + " columns", $yellow);
+	.container--padded
+	{
+		padding: 0 0.625rem;
+		@include breakpoint($large-width) {
+			padding: 0 $grid-padding;
 		}
 	}
