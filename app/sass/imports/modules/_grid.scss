@@ -82,7 +82,7 @@
 
 	.container
 	{
-		//padding: 0 0.625em;
+		padding: 0 $grid-padding;
 		@include container;
 
 
@@ -96,7 +96,6 @@
 
 		@include breakpoint($small-width)
 		{
-			//padding: 0 3.333em;
 			//@include set-container-width;
 			width: container($total-columns);
 			// //@include susy-grid-background;
@@ -110,7 +109,6 @@
 
 		@include breakpoint($medium-width)
 		{
-			//padding: 0 3.333em;
 			//@include set-container-width;
 			width: container($total-columns);
 			// //@include susy-grid-background;
@@ -124,7 +122,6 @@
 
 		@include breakpoint($large-width)
 		{
-			//padding: 0 3.333em;
 			@include container;
 			// //@include susy-grid-background;
 			// @include debugmessage("Large screen, " + $large-cols + " columns", $blue);
@@ -137,9 +134,7 @@
 
 		@include breakpoint($huge-width, $no-query: '.no-mq')
 		{
-			//@include set-container-width;
 			width: container($total-columns);
-			// @include with-layout($padding: 0.625em) 
 			// {
 			// 	@include container;
 			// }
