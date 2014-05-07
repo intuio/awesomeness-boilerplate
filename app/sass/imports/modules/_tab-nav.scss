@@ -727,13 +727,11 @@
 		}
 	}
 
-	.tabs--acc__acc-container {
-
-		@extend .box;
-
-		padding:0;
-		// margin-left:0;
-		border-bottom:none;
+	.tabs--acc__acc-container
+	{
+		border:0 solid $boxBorderColor;
+		@include rem(border-width, $boxBorderWidth $boxBorderWidth 0 $boxBorderWidth);
+		@include rem(margin-bottom, $doubleSpace - $borderThin * 2);
 
 		li 
 		{
