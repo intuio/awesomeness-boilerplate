@@ -114,7 +114,7 @@ $ grunt build
 ```
 Grunt will compile the optimized application to the directory /dist/
 
-*You have to define new modules for RequireJS in your .Gruntfile.js. There you must include the JavaScript modules which need to be available in production stage, like so:*
+*You have to define new modules for RequireJS in your Gruntfile.js. There you must include the JavaScript modules which need to be available in production stage, like so:*
 
 ```javascript
 modules: [
