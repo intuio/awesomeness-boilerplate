@@ -1,6 +1,6 @@
 # Awesomeness Boilerplate
 
-> Awesomeness is a a modular and flexible responsive framework 
+> Awesomeness is a a modular and flexible responsive framework
 
 ## Getting Started
 
@@ -45,9 +45,9 @@ The best way to get started wi th a new Awesomeness-prject is to use the Yeoman 
 $ gem install sass compass:1.0.0.alpha.19 compass-normalize susy breakpoint
 ```
 - Install [Node.js](http://nodejs.org/)
-- Install the awesomeness generator. This programm will set up your Awesomeness project for you
+- Install the awesomeness generator. This programm will set up your Awesomeness project for you. As you install this npm package globally, you will have to use the prefix _sudo_ prompting you for your computer's administrator password.
 ```shell
-$ npm install -g generator-awesomeness
+$ sudo npm install -g generator-awesomeness
 ```
 - Create a new directory for your project
 ```shell
