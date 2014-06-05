@@ -393,49 +393,80 @@
 //	= SLIDER
 //  ---------------------------------------------------------------------------
 
-@mixin slider-items($slideCount:3, $slidesClass:"slides--contains", $loop:true)
-{
-	@if $loop == true
-	
-	{
-			
-		@for $i from 1 through $slideCount 
-		{
+    @mixin slider-items($slideCount:3, $slidesClass:"slides--contains", $loop:true)
+    {
+        @if $loop == true
 
-			.#{$slidesClass + "-" + $i}
-			{
-				@include slider-items-inner($i);
-			}
+        {
 
-		}
-	}
+            @for $i from 1 through $slideCount 
+            {
 
-	@else 
-	
-	{
-		.#{$slidesClass + "-" + $slideCount}
-		{
-			@include slider-items-inner($slideCount);
-		}
-	}
-	
-}
+                .#{$slidesClass + "-" + $i}
+                {
+                    @include slider-items-inner($i);
+                }
 
-@mixin slider-items-inner($slideCount)
-{
-	width: #{$slideCount * 100 - 25 + "%"};
+            }
+        }
 
-	.slide
-	{
-		position: relative;
-		float:left;
-		width: #{100 / $slideCount + "%"};
-		@include rem(padding, $singleSpace/2);	
+        @else 
 
-		@include breakpoint($large-width)
-		{
-			@include rem(padding, $singleSpace);	
-		}
-	}
-}
+        {
+            .#{$slidesClass + "-" + $slideCount}
+            {
+                @include slider-items-inner($slideCount);
+            }
+        }
 
+    }
+
+    @mixin slider-items-inner($slideCount)
+    {
+        width: #{$slideCount * 100 - 25 + "%"};
+
+        .slide
+        {
+            position: relative;
+            float:left;
+            width: #{100 / $slideCount + "%"};
+            @include rem(padding, $singleSpace/2);	
+
+            @include breakpoint($large-width)
+            {
+                @include rem(padding, $singleSpace);	
+            }
+        }
+    }
+
+//  = RESPONSIVE IMAGES MIXIN
+//  ---------------------------------------------------------------------------
+
+    @mixin responsive-image($url, $width, $height, $breakpoint: "")
+    {
+        // No breakpoint set
+        @if $breakpoint == ""
+        {
+            @include set-background-image($url, $width, $height);
+        }
+        // wrap in breakpoint
+        @else
+        {
+            @include breakpoint($breakpoint)
+            {
+                @include set-background-image($url, $width, $height);
+            }
+        }
+    }
+
+    @mixin set-background-image($url, $width, $height)
+    {
+        @include rem(max-height, $height/10);
+
+        > .responsive-image__inner
+        {
+            background-image: url($url);
+            padding-bottom: ($height / $width) * 100%;
+            @include rem(max-width, $width/10);
+        }
+    }

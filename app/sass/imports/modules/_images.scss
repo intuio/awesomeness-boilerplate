@@ -1,0 +1,49 @@
+
+//  ---------------------------------------------------------------------------
+//
+//  RESPONSIVE IMAGES
+//
+//  ---------------------------------------------------------------------------
+
+//  = SETTINGS
+//  ---------------------------------------------------------------------------
+    // Background color for on-image caption
+    $captionBackgroundColor:	$white !default;
+
+//  = RESPONSIVE IMAGES
+//  ---------------------------------------------------------------------------
+
+    .responsive-image__inner
+    {
+        position: relative;
+        background-repeat: no-repeat;
+        background-size: 100%;
+        width: 100%;
+    }
+
+    .responsive-image__caption
+    {
+        position: absolute;
+        background: rgba($captionBackgroundColor, 0.7);
+        width: 100%;
+        @include rem(padding, $singleSpace);
+
+        @include breakpoint($large-width)
+        {
+            width: 45%;
+            @include rem(top, $doubleSpace);
+            @include rem(left, $doubleSpace);
+        }
+    }
+
+    .responsive-image__title
+    {
+        @include rem(font-size, $h4Size);
+        @include rem(line-height, $h4LineHeight);
+        margin:0;
+    }
+
+    .responsive-image__body
+    {
+        margin:0;
+    }
