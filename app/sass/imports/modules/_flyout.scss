@@ -157,6 +157,11 @@
 	.flyout--is-open .flyout__content
 	{
 		@include transform(translate3d($flyoutSlideOpenDistance,0,0));
+        
+        @include breakpoint($flyoutLarge)
+        {
+            @include transform(translate3d($flyoutSlideOpenDistance/2,0,0));
+        }
 
 		@if $becomesSidebar
 		{

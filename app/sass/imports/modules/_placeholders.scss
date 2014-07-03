@@ -1,6 +1,6 @@
 //  ---------------------------------------------------------------------------
 //	
-//	PLACEHOLDER MODULE
+//	PLACEHOLDERS MODULE
 //
 //	Can be used in prototyping stages of projects to create dummy lines of
 //	text or images. 
@@ -18,8 +18,8 @@
 //
 //	HTML Structure:
 //	<div class="img-placeholder">
-//		<div class="aspect-4-to-3"></div>
-//		<div class="inner">Image</div>
+//		<div class="img-placeholder--portrait"></div>
+//		<div class="img-placeholder__inner">Image</div>
 //	</div>
 //
 //  ---------------------------------------------------------------------------
@@ -33,6 +33,9 @@
 	$phImgBackgroundColor:		darken($phTextBackgroundColor, 14%) !default;
 
 
+// PLACEHOLDER HEIGHT
+
+    $phHeight:		            $bodyLineHeight/2 !default;
 
 //  = TEXT PLACEHOLDER
 //  ---------------------------------------------------------------------------
@@ -43,8 +46,8 @@
 
 		div
 		{
-			@include rem(margin-bottom, $bodyLineHeight);
-			@include rem(height, $bodyLineHeight);
+			@include rem(margin-bottom, $phHeight);
+			@include rem(height, $phHeight);
 			background:$phTextBackgroundColor;
 		}
 	}
@@ -62,22 +65,22 @@
 		@include rem(margin-bottom, $doubleSpace);
 	}
 
-	.img-placeholder--aspect-4-to-3
+	.img-placeholder--landscape
 	{
 		padding-top:75%;
 	}
 
-	.img-placeholder--aspect-3-to-4
+	.img-placeholder--portrait
 	{
 		padding-top:125%;
 	}
 
-	.img-placeholder--aspect-1-to-1
+	.img-placeholder--square
 	{
 		padding-top:100%;
 	}
 
-	.img-placeholder--aspect-smartphone-portrait
+	.img-placeholder--smartphone-portrait
 	{
 		padding-top:165%;
 	}

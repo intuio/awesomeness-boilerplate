@@ -1,6 +1,6 @@
 //  ---------------------------------------------------------------------------
 //	
-//	FEATURE MODULE
+//	FEATURE MODULE 
 //
 //	Layout module for elements on a page that are similar to a feature in a
 //	newspaper.
@@ -8,9 +8,8 @@
 //	Example with two elements, each with two sub-elements:
 //	
 //	HTML structure:
-//	<div class="feature-container">
-//	<h2>Was kann der NQR für Sie tun?</h2>
-//		<div class="l-one-fourth--with-heading">
+//	<div class="l-grid-wrapper">
+//		<div class="l-grid">
 //			<div class="feature">
 //				<img class="feature__image" src="../img/arbeitgeber.jpg" alt="Arbeitgeber">
 //				<h2 class="feature__title">...</h2>
@@ -18,7 +17,7 @@
 //				<a class="feature__link" href="#">Lesen Sie mehr.</a> 
 //			</div> 
 //		</div>
-//		<div class="l-one-fourth--with-heading"> 
+//		<div class="l-grid"> 
 //			<div class="feature">  
 //				<img class="feature__image" src="../img/arbeitnehmer.jpg" alt="Mitarbeiter">
 //				<h2 class="feature__title">...</h2>
@@ -26,7 +25,7 @@
 //				<a class="feature__link" href="#">Lesen Sie mehr.</a>
 //			</div> 
 //		</div> 
-//		<div class="l-one-fourth--with-heading">   
+//		<div class="l-grid">   
 //			<div class="feature">
 //				<img class="feature__image" src="../img/ausbilder.jpg" alt="Ausbilder">
 //				<h2 class="feature__title">...</h2>
@@ -34,7 +33,7 @@
 //				<a class="feature__link" href="#">Lesen Sie mehr.</a>
 //			</div>
 //		</div>
-//		<div class="l-one-fourth--with-heading">
+//		<div class="l-grid">
 //			<div class="feature">
 //				<img class="feature__image" src="../img/studenten.jpg" alt="Studenten">
 //				<h2 class="feature__title">...</h2>
@@ -80,35 +79,6 @@
 //  = FEATURE
 //  ---------------------------------------------------------------------------
 	
-	@include with-layout(4 .5em) 
-	{	
-		.l-one-fourth--with-heading
-		{
-
-		//  = LARGE SCREEN
-		//  ---------------------------------------------------------------------------			
-			@include breakpoint($large-width)
-			{
-				@include span(1 of 2);
-				&:nth-child(2n) {
-					@include omega;
-				}
-			}
-
-		//  = HUGE SCREEN
-		//  ---------------------------------------------------------------------------	
-			@include breakpoint($huge-width iemq)
-			{
-				&:nth-child(2n) {
-					clear: none;
-				}
-				@include span(1 of 4);
-				&:nth-child(5n) {
-					@include omega;
-				}
-			}
-		}
-	}
 
 //  ---------------------------------------------------------------------------
 //
@@ -116,23 +86,6 @@
 //
 //  ---------------------------------------------------------------------------
 
-	.feature-container
-	{
-		@extend .cf;
-		@include bleed;
-		background-color:$featureBaseColor;
-
-		> h2
-		{
-			@include rem(padding-top, $doubleSpace);
-			border-top:1px solid $grayVeryLight;
-
-			@include breakpoint($huge-width)
-			{
-				border:0 none;
-			}
-		}
-	}
 
 	.feature
 	{
@@ -145,12 +98,6 @@
 		{
 			border:0 none;
 		}
-	}
-
-	.l-one-fourth--with-heading:last-child .feature
-	{
-		margin-bottom:0;
-		border:0 none;
 	}
 
 	.feature__icon
@@ -248,38 +195,3 @@
 			color:$white;
 		}
 	}
-
-	@include with-layout(4 .5em) 
-	{	
-		.l-one-fourth--with-heading
-		{
-			@include breakpoint($featureLarge)
-			{
-				@include span(1 of 2);
-				&:nth-child(2n) {
-					@include omega;
-				}
-
-				&:nth-child(2n+2)
-				{
-					clear:both;
-				}
-			}
-
-			@include breakpoint($featureHuge iemq)
-			{
-				&:nth-child(2n) {
-					clear: none;
-				}
-				@include span(1 of 4);
-				&:nth-child(5n) {
-					@include omega;
-				}
-
-				&:nth-child(2n+2)
-				{
-					clear:none;
-				}
-			}
-		}
-	} 
