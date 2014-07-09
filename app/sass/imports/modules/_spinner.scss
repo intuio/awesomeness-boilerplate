@@ -88,7 +88,7 @@
     // Spinner with hole
     .spinner--has-hole 
     {
-        @include spinner($bodyBackground);
+        @include spinner($spinner-hole-color);
     }
 
 
