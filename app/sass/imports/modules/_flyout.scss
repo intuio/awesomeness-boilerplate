@@ -48,6 +48,8 @@
 	$becomesSidebar:					true !default;
 	// Change flyout to top bar on large screens
 	$becomesTopBar:						false !default;
+    // Display 'Menu' text adjacent to hamburger nav
+    $flyoutDisplayMenuText:             true !default;
 
 
 //  COLORS
@@ -194,7 +196,12 @@
 		color:$flyoutNavColor;
 		@include transition(transform .3s ease-out);
 		@include transform-origin(0, 50%);
-
+        
+        @include breakpoint($flyoutLarge)
+        {
+            right:100% - $flyoutSlideOpenDistance/2;
+        }
+        
 		.fa
 		{
 			@include rem(margin-right, $singleSpace / 2);
@@ -312,7 +319,27 @@
 	{
 		margin-left:0;
 		padding:0;
+        @include transition(transform .3s ease-out, opacity .3s ease-out);
+        @include transform(translate3d(-15%,0,0) scale3d(.9,.9,.9));
+        @include transform-origin(0, 10%);
+        
+        opacity:0;
+        
+        @if $becomesSidebar
+		{
+            @include breakpoint($flyoutHuge)
+            {
+                @include transform(translate3d(0,0,0) scale3d(1,1,1));
+                opacity:1;
+            }
+		}
 	}
+
+    .flyout--is-open .flyout__items 
+    {
+        @include transform(translate3d(0,0,0) scale3d(1,1,1));
+        opacity:1;
+    }
 
 	.flyout__sub-items
 	{
@@ -528,6 +555,7 @@
 		@include absbleed($singleSpace);
 		@include rem(font-size, 2.4);
 		@include rem(line-height, $touchSize);
+        @include rem(height, $touchSize);
 		color:$flyoutToggleColor;
 		@include transition(background-color .2s linear);
 
@@ -540,11 +568,57 @@
 		}
 	}
 
+    .flyout__toggle
+    {
+        position:relative;
+    }
+
+    @if $flyoutDisplayMenuText
+    {   
+        .flyout__toggle::after
+        {
+            content:"\00a0Menu";
+            font-family:$sansFontFamily;
+            @include rem(font-size, $bodyFontSize);
+            line-height:0;
+            @include rem(height, $touchSize);
+            position:relative;
+            @include rem(bottom, .2);
+		}
+    }
+
+    
+    .flyout__toggle .fa
+    {
+        @include transition(transform 0.3s ease, opacity 0.3s linear);
+        @include transform(rotateZ(360deg) scale3d(1, 1, 1));
+        @include rem(line-height, $touchSize);
+    }
+
+    .flyout__toggle .fa-times
+    {
+        opacity: 0;
+        position:absolute;
+        @include rem(left, 1.5);
+        @include transform(rotateZ(360deg) scale3d(0.5, 0.5, 1));
+    }
+
+    .flyout--is-open .flyout__toggle .fa-bars
+    {
+        opacity:0;
+        @include transform(rotateZ(0deg) scale3d(0.5, 0.5, 1));
+    }
+
+    .flyout--is-open .flyout__toggle .fa-times
+    {
+        opacity: 1;
+        @include transform(rotateZ(0deg) scale3d(1, 1, 1));
+    }
+
 	.sidebar__toggle
 	{
 		display:none;
 		@include rem(width, 4.9);
-		@include rem(height, $touchSize);
 
 		@if $becomesSidebar
 		{
