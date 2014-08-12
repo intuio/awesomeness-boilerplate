@@ -71,6 +71,7 @@
 //  ---------------------------------------------------------------------------
 	
 	$flyoutSlideOpenDistance:			80% !default;
+	$flyoutSlideOpenDistanceMedium:		40% !default;
 	$flyoutLinkBorderWidth:				.1 !default;
 	$flyoutLinkBorderRadius:			.6 !default;
 	$flyoutLinkActiveArrowSize:			$singleSpace - .4 !default;
@@ -96,11 +97,14 @@
 	.flyout
 	{
 		overflow:hidden;
+		min-height:100%;
 	}
 
 	.flyout__content
 	{
+		height:100%;
 		z-index:2;
+		@include rem(padding, $singleSpace);
 		background:$flyoutContentBackground;
 		@include transition(transform .3s ease-out);
 		-webkit-backface-visibility:hidden;
@@ -109,7 +113,10 @@
 		{
 			@include breakpoint($flyoutHuge)
 			{
-				@include span(last 9 of $huge-cols);
+				@include with-layout($huge-cols (gutters:0))
+				{
+					@include span(last 9 of $huge-cols);
+				}
 			}
 		}
 
@@ -124,12 +131,18 @@
 		{
 			@include breakpoint($flyoutGiant)
 			{
-				@include span(last 13 of $giant-cols);
+				@include with-layout($giant-cols (gutters:0))
+				{
+					@include span(last 13 of $giant-cols);
+				}
 			}
 
 			@include breakpoint($flyoutMonstrous)
 			{
-				@include span(last 17 of $monstrous-cols);
+				@include with-layout($monstrous-cols (gutters:0))
+				{
+					@include span(last 17 of $monstrous-cols);
+				}
 			}
 		}
 	}
@@ -162,7 +175,7 @@
         
         @include breakpoint($flyoutLarge)
         {
-            @include transform(translate3d($flyoutSlideOpenDistance/2,0,0));
+            @include transform(translate3d($flyoutSlideOpenDistanceMedium,0,0));
         }
 
 		@if $becomesSidebar
@@ -185,12 +198,15 @@
 
 	.flyout__nav
 	{
+		overflow:auto;
+		min-height:100%;
+
 		position:absolute;
 		top:0;
 		right:100% - $flyoutSlideOpenDistance;
 		bottom:0;
 		left:0;
-		@include rem(padding, 0 $singleSpace $singleSpace $singleSpace / 2);
+		@include rem(padding, $singleSpace $singleSpace $singleSpace $singleSpace / 2);
 		background:$flyoutNavBackgroundColor;
 		font-family:$sansFontFamily;
 		color:$flyoutNavColor;
@@ -199,7 +215,7 @@
         
         @include breakpoint($flyoutLarge)
         {
-            right:100% - $flyoutSlideOpenDistance/2;
+            right:100% - $flyoutSlideOpenDistanceMedium;
         }
         
 		.fa
@@ -220,7 +236,10 @@
 				@include breakpoint($flyoutHuge)
 				{
 					position:static;
-					@include span(3 of $huge-cols);
+					@include with-layout($huge-cols (gutters:0))
+					{
+						@include span(3 of $huge-cols);
+					}
 					@include rem(padding, $singleSpace 0);
 					background:$flyoutContentBackground;
 					color:$textColor;
@@ -231,11 +250,14 @@
 				@include breakpoint($flyoutHuge)
 				{
 					position:absolute;
-					@include rem(top, $touchSize);
-					@include rem(padding-top, $doubleSpace);
+					// @include rem(top, $touchSize);
+					//@include rem(padding-top, $doubleSpace);
 					right:auto;
 
-					@include span(3 of $huge-cols);
+					@include with-layout($huge-cols (gutters:0))
+					{
+						@include span(3 of $huge-cols);
+					}
 					z-index:800;
 				}
 			}
@@ -253,12 +275,18 @@
 		{
 			@include breakpoint($flyoutGiant)
 			{
-				@include span(3 of $giant-cols);
+				@include with-layout($giant-cols (gutters:0))
+				{
+					@include span(3 of $giant-cols);
+				}
 			}
 			
 			@include breakpoint($flyoutMonstrous)
 			{
-				@include span(3 of $monstrous-cols);
+				@include with-layout($monstrous-cols (gutters:0))
+				{
+					@include span(3 of $monstrous-cols);
+				}
 			}
 		}
 	}
@@ -293,8 +321,18 @@
 		@include setType(2.2, $touchSize - .1);
 		font-weight:bold;
 
+		@include transition(transform .3s ease-out, opacity .3s ease-out);
+        @include transform(translate3d(-15%,0,0) scale3d(.9,.9,.9));
+        @include transform-origin(0, 10%);
+
 		@if $becomesSidebar
 		{
+			
+			@include breakpoint($flyoutHuge)
+			{	
+				@include transform(translate3d(0,0,0) scale3d(1,1,1));
+                opacity:1;
+			}
 			@if $becomesTopBar
 			{
 				@include breakpoint($flyoutHuge)
@@ -335,6 +373,7 @@
 		}
 	}
 
+    .flyout--is-open .flyout__header,
     .flyout--is-open .flyout__items 
     {
         @include transform(translate3d(0,0,0) scale3d(1,1,1));
